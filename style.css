@@ -3,7 +3,7 @@ a:focus {
 }
 .text-stoke-hero {
       /* Outline */
-    -webkit-text-stroke: 10px #FBF1E0;
+    -webkit-text-stroke: 4px #FBF1E0;
 
     /* Makes the joins look smoother */
     paint-order: stroke fill;
