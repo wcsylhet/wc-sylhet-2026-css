@@ -33,12 +33,12 @@ a:focus {
 
 .location-info-box {
     position: absolute;
-    bottom: 226px;
+    bottom: 14px;
     width: 90%;
     border-radius: 10px;
     align-items: center;
     text-align: center;
     left: 0;
     right: 0;
-    translate: 23px 0;
+    margin: 0 auto;
 }
