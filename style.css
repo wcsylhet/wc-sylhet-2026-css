@@ -2,12 +2,17 @@ a:focus {
   outline: none !important;
 }
 .text-stoke-hero {
-      /* Outline */
-    -webkit-text-stroke: 4px #FBF1E0;
+    color: #d91f24;
 
-    /* Makes the joins look smoother */
-    paint-order: stroke fill;
-    stroke-linejoin: round;
+    text-shadow:
+        -2px -2px 0 #fbf1e0,
+         2px -2px 0 #fbf1e0,
+        -2px  2px 0 #fbf1e0,
+         2px  2px 0 #fbf1e0,
+        -2px  0    0 #fbf1e0,
+         2px  0    0 #fbf1e0,
+         0   -2px  0 #fbf1e0,
+         0    2px  0 #fbf1e0;
 }
 
 .pill-button {
