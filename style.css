@@ -42,3 +42,13 @@ a:focus {
     right: 0;
     margin: 0 auto;
 }
+
+.post-info-abs {
+    position: absolute;
+    bottom: 24px;
+    width: 90%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    padding: 24px;
+}
