@@ -9,3 +9,11 @@ a:focus {
     paint-order: stroke fill;
     stroke-linejoin: round;
 }
+
+.pill-button {
+    background: #a900052e;
+    border-radius: 5px;
+    padding: 6px 10px;
+    gap: 8px;
+    color: #A90005;
+}
