@@ -1,58 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+
 a:focus {
   outline: none !important;
 }
 .text-stoke-hero {
-    color: #d91f24;
+  color: #d91f24;
 
-    text-shadow:
-        -2px -2px 0 #fbf1e0,
-         2px -2px 0 #fbf1e0,
-        -2px  2px 0 #fbf1e0,
-         2px  2px 0 #fbf1e0,
-        -2px  0    0 #fbf1e0,
-         2px  0    0 #fbf1e0,
-         0   -2px  0 #fbf1e0,
-         0    2px  0 #fbf1e0;
+  text-shadow: -2px -2px 0 #fbf1e0, 2px -2px 0 #fbf1e0, -2px 2px 0 #fbf1e0,
+    2px 2px 0 #fbf1e0, -2px 0 0 #fbf1e0, 2px 0 0 #fbf1e0, 0 -2px 0 #fbf1e0,
+    0 2px 0 #fbf1e0;
 }
 
 .pill-button {
-    background: #a900052e;
-    border-radius: 5px;
-    padding: 6px 10px;
-    gap: 8px;
-    color: #A90005;
+  background: #a900052e;
+  border-radius: 5px;
+  padding: 6px 10px;
+  gap: 8px;
+  color: #a90005;
 }
 
 .position-relative {
-  position:relative !important;
+  position: relative !important;
 }
 .sylhet-fixed {
-    position: absolute;
-    bottom: -35px;
+  position: absolute;
+  bottom: -35px;
+  font-family: "Great Vibes";
 }
 
 .location-info-box {
-    position: absolute;
-    bottom: 14px;
-    width: 90%;
-    border-radius: 10px;
-    align-items: center;
-    text-align: center;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+  position: absolute;
+  bottom: 14px;
+  width: 90%;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 
 .post-info-abs {
-    position: absolute;
-    bottom: 24px;
-    width: 90%;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    padding: 24px;
+  position: absolute;
+  bottom: 24px;
+  width: 90%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  padding: 24px;
 }
 
 .test {
-    color:red;
+  color: red;
 }
