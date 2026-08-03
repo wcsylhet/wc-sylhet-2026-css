@@ -52,3 +52,7 @@ a:focus {
     right: 0;
     padding: 24px;
 }
+
+.test {
+    color:red;
+}
