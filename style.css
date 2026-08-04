@@ -239,6 +239,11 @@ a:focus {
   .wc_venu_section .wp-block-columns,
   .wc_community_section .wp-block-columns {
     flex-wrap: wrap !important;
+
+    /* iPad fix: WordPress' column gap is horizontal only, so once the
+         columns stack the text block and the image sat flush together —
+         measured 0px between them at 820 / 834 / 1024. */
+    row-gap: 40px !important;
   }
 
   .wc_venu_section .wp-block-columns > .wp-block-column,
@@ -441,7 +446,7 @@ a:focus {
 
 @media (max-width: 781px) {
   .wc_card_section .wp-block-column > .wp-block-group {
-    min-height: 300px !important; /* min-height, never height */
+    min-height: 400px !important; /* min-height, never height */
     height: auto !important;
     padding-top: 40px !important;
     padding-bottom: 40px !important;
@@ -452,18 +457,43 @@ a:focus {
   }
 }
 
-/* --- Card background overlay on mobile (button legibility) --------------- */
+/* --- Card height on iPad (782–1024px) ----------------------------------- */
+/*  On iPad Air (820), iPad Pro 11" (834) and iPad Pro 12.9" portrait
+   *  (1024) the two cards stay side by side and keep the inline 850px
+   *  height, but each card is only 333–419px wide. Measured natural
+   *  content height: 426px @820, 427px @834, 361px @1024 — so roughly
+   *  424px of every card was empty, with the text stranded at the top.
+   *
+   *  480px keeps both cards equal and leaves comfortable slack.
+   *  iPad landscape (1180 / 1366) is wide enough to keep the 850px design. */
+
+@media (min-width: 782px) and (max-width: 1024px) {
+  .wc_card_section .wp-block-column > .wp-block-group {
+    min-height: 480px !important;
+    height: auto !important;
+  }
+
+  .wc_card_section .wp-block-columns {
+    row-gap: 24px !important;
+  }
+}
+
+/* --- Card background overlay on mobile + iPad (button legibility) -------- */
 /*  Each card carries a full-bleed illustration as its background
    *  (Column-1.webp / Column.webp, background-size: cover). The "Coming
    *  Soon" button is is-style-outline — transparent fill, 1px border,
    *  #16542F text — so on a phone it sits directly on the busiest part of
    *  the artwork and effectively disappears.
    *
-   *  This lays a cream wash over the image on mobile only, keyed to the
-   *  card's own cream tone so it still reads as the same design, and lifts
-   *  the card content above it. Desktop and tablet are untouched.          */
+   *  This lays a cream wash over the image, keyed to the card's own cream
+   *  tone so it still reads as the same design, and lifts the card content
+   *  above it.
+   *
+   *  Extended to 1024px: once the iPad cards shrink to 480px the button
+   *  lands on the artwork there too. Desktop and iPad landscape (1180px+)
+   *  keep the original 850px card and are untouched.                      */
 
-@media (max-width: 781px) {
+@media (max-width: 1024px) {
   .wc_card_section .wp-block-column > .wp-block-group {
     position: relative !important;
     isolation: isolate;
