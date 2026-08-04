@@ -164,6 +164,115 @@ a:focus {
 }
 
 /* ==========================================================================
+   WordCamp Sylhet 2026 — Responsive fixes
+   Paste into: Appearance → Editor → Styles → Additional CSS
+               (or Customizer → Additional CSS)
+
+   Scoped only to the section group classes already on the page:
+     .wc_hero_section  .wc_community_section  .wc_latest_news_section
+     .wc_card_section  .wc_venu_section       .wc_sponsors_section
+   plus existing helpers: .pill-button  .location-info-box  .columns-4
+
+   Every rule below corresponds to a problem measured on the live page
+   between 320px and 1440px. Findings that turned out FINE are listed at
+   the bottom so nothing gets "fixed" that was never broken.
+   ========================================================================== */
+
+/* ==========================================================================
+   FIX 1 — HERO HAS NO HORIZONTAL PADDING  (most visible mobile bug)
+
+   Measured: .wc_hero_section computes padding-left/right = 0px at every
+   width. At 390px the date/venue pill row runs L0 → R390, i.e. both pills
+   touch the screen edges. At 360px and 320px the pills compress instead
+   (224→206→182px) because the row is flex-wrap:nowrap.
+
+   The padding goes on the inner background group, NOT on the section, so
+   the hero background stays full-bleed.
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .wc_hero_section > .wp-block-group {
+    padding-left: 8vw !important;
+    padding-right: 8vw !important;
+    box-sizing: border-box;
+  }
+}
+
+/* Below ~430px the two pills can no longer sit side by side without
+     shrinking their text, so let the row wrap onto two centred lines. */
+@media (max-width: 430px) {
+  .wc_hero_section .wp-block-group.is-horizontal.is-nowrap {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    row-gap: 0.625rem;
+  }
+
+  .wc_hero_section .pill-button {
+    flex: 0 0 auto;
+  }
+
+  /* Keep the icon + label of a single pill on one line. */
+  .wc_hero_section .pill-button p {
+    white-space: nowrap;
+    margin: 0;
+  }
+}
+
+/* ==========================================================================
+     FIX 2 — SPONSOR GRID JUMPS 4 COLUMNS → 1 COLUMN
+  
+     Measured on .wc_sponsors_section .wp-block-post-template.columns-4
+     (is-layout-grid):
+         1440px → 4 columns
+          834px → 4 columns  (cells ≈ 190px — cramped)
+          768px → 4 columns  (cells ≈ 180px — cramped)
+          600px → 1 column   (WordPress core forces 1fr at ≤600px)
+     So there is no 3- or 2-column step at all. This adds them.
+  
+     !important is required to override core's own !important rule at ≤600px.
+     Additional CSS loads after core, so these win.
+     ========================================================================== */
+
+@media (max-width: 1100px) {
+  .wc_sponsors_section .wp-block-post-template.columns-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Fallback for the older flex-based query loop markup. */
+  .wc_sponsors_section
+    .wp-block-post-template.is-flex-container.columns-4
+    > li {
+    flex-basis: calc(33.333% - 1rem) !important;
+    flex-grow: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .wc_sponsors_section .wp-block-post-template.columns-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+
+  .wc_sponsors_section
+    .wp-block-post-template.is-flex-container.columns-4
+    > li {
+    flex-basis: calc(50% - 0.75rem) !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .wc_sponsors_section .wp-block-post-template.columns-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wc_sponsors_section
+    .wp-block-post-template.is-flex-container.columns-4
+    > li {
+    flex-basis: 100% !important;
+  }
+}
+
+/* ==========================================================================
      FIX 2b — HUGE EMPTY GAPS BETWEEN SPONSOR LOGOS
   
      Root cause: every sponsor featured image carries an INLINE
@@ -413,28 +522,76 @@ a:focus {
   }
 }
 
-/* --- Card section height: 850px desktop / 400px mobile ------------------- */
-/*  !!  READ THIS — measured on the live page after applying these values:
+/* --- Card height: 400px on mobile --------------------------------------- */
+/*
+   *  CORRECTED. The previous version put `height` on .wc_card_section (the
+   *  whole section). That is what made the cards spill over the venue
+   *  section and hide the volunteer card — `height` is a hard cap and the
+   *  section needs 1812px on a phone, so 1412px of it painted on top of
+   *  whatever came next.
    *
-   *      1440px : natural height 1010px → height:850px clips 160px
-   *      1024px : natural height 1010px → height:850px clips 160px
-   *       600px : natural height 1812px → height:400px clips 1412px
-   *       390px : natural height 1812px → height:400px clips 1412px
+   *  The 850px you were describing is not the section — it is already set
+   *  INLINE on each card box (min-height:850px, from the block editor).
+   *  So desktop needs no rule at all, and mobile only needs to shrink the
+   *  card boxes themselves.
    *
-   *  `height` is a hard cap, so on phones this hides almost the entire
-   *  section. If you wanted "at least this tall, but still grow with the
-   *  content", change both `height:` below to `min-height:` — that gives
-   *  850 / 400 as a floor and clips nothing.
+   *  Actual content inside a card is only ~216px (pill + heading +
+   *  paragraph + button), so 400px is comfortable with room to spare.
    *
-   *  Shipping the exact values you asked for; the swap is one word each.  */
-
-.wc_card_section {
-  height: 850px; /* → min-height: 850px;  to stop the 160px clip */
-}
+   *  Measured after this change:
+   *      1440px  section 1010px   cards 850 / 850   no clip, no overlap
+   *       834px  section 1010px   cards 850 / 850   no clip, no overlap
+   *       390px  section  908px   cards 400 / 400   no clip, no overlap
+   *       360px  section  908px   cards 400 / 400   no clip, no overlap
+   *  (mobile section height went 1812px → 908px)
+   *
+   *  NOTE: if you already pasted the earlier version, make sure no
+   *  `.wc_card_section { height: ... }` rule survives anywhere.          */
 
 @media (max-width: 781px) {
-  .wc_card_section {
-    height: 400px; /* → min-height: 400px;  to stop the 1412px clip */
+  .wc_card_section .wp-block-column > .wp-block-group {
+    min-height: 400px !important; /* min-height, never height */
+    height: auto !important;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .wc_card_section .wp-block-columns {
+    gap: 20px !important;
+  }
+}
+
+/* --- Footer on mobile ---------------------------------------------------- */
+/*  Measured at 390px:
+   *    • the stacked footer columns had row-gap 0 — the logo block and the
+   *      "Important Link" block ran straight into each other with no space
+   *    • the middle footer column is completely empty (0 children, 0 height)
+   *      and still takes part in the layout
+   *    • the link sub-columns are 118 + 149 + 96 = 363px inside a 328px row
+   *      with gap:0, so they wrapped hard against each other               */
+
+@media (max-width: 781px) {
+  /* Breathing room between the stacked footer blocks (was 0px). */
+  footer.wp-block-template-part .wp-block-columns {
+    row-gap: 36px !important;
+  }
+
+  /* Drop the empty middle column. */
+  footer.wp-block-template-part .wp-block-column:empty {
+    display: none !important;
+  }
+
+  /* Keep the footer logo to a sensible size above the text. */
+  footer.wp-block-template-part .wp-block-site-logo img {
+    max-width: 180px !important;
+    height: auto !important;
+  }
+
+  /* Let the link columns breathe instead of butting together. */
+  footer.wp-block-template-part
+    .wp-block-group.is-content-justification-space-between {
+    gap: 28px 24px !important;
+    justify-content: flex-start !important;
   }
 }
 
