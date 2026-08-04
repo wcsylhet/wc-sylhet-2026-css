@@ -164,115 +164,6 @@ a:focus {
 }
 
 /* ==========================================================================
-   WordCamp Sylhet 2026 — Responsive fixes
-   Paste into: Appearance → Editor → Styles → Additional CSS
-               (or Customizer → Additional CSS)
-
-   Scoped only to the section group classes already on the page:
-     .wc_hero_section  .wc_community_section  .wc_latest_news_section
-     .wc_card_section  .wc_venu_section       .wc_sponsors_section
-   plus existing helpers: .pill-button  .location-info-box  .columns-4
-
-   Every rule below corresponds to a problem measured on the live page
-   between 320px and 1440px. Findings that turned out FINE are listed at
-   the bottom so nothing gets "fixed" that was never broken.
-   ========================================================================== */
-
-/* ==========================================================================
-   FIX 1 — HERO HAS NO HORIZONTAL PADDING  (most visible mobile bug)
-
-   Measured: .wc_hero_section computes padding-left/right = 0px at every
-   width. At 390px the date/venue pill row runs L0 → R390, i.e. both pills
-   touch the screen edges. At 360px and 320px the pills compress instead
-   (224→206→182px) because the row is flex-wrap:nowrap.
-
-   The padding goes on the inner background group, NOT on the section, so
-   the hero background stays full-bleed.
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-  .wc_hero_section > .wp-block-group {
-    padding-left: 8vw !important;
-    padding-right: 8vw !important;
-    box-sizing: border-box;
-  }
-}
-
-/* Below ~430px the two pills can no longer sit side by side without
-     shrinking their text, so let the row wrap onto two centred lines. */
-@media (max-width: 430px) {
-  .wc_hero_section .wp-block-group.is-horizontal.is-nowrap {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    row-gap: 0.625rem;
-  }
-
-  .wc_hero_section .pill-button {
-    flex: 0 0 auto;
-  }
-
-  /* Keep the icon + label of a single pill on one line. */
-  .wc_hero_section .pill-button p {
-    white-space: nowrap;
-    margin: 0;
-  }
-}
-
-/* ==========================================================================
-     FIX 2 — SPONSOR GRID JUMPS 4 COLUMNS → 1 COLUMN
-  
-     Measured on .wc_sponsors_section .wp-block-post-template.columns-4
-     (is-layout-grid):
-         1440px → 4 columns
-          834px → 4 columns  (cells ≈ 190px — cramped)
-          768px → 4 columns  (cells ≈ 180px — cramped)
-          600px → 1 column   (WordPress core forces 1fr at ≤600px)
-     So there is no 3- or 2-column step at all. This adds them.
-  
-     !important is required to override core's own !important rule at ≤600px.
-     Additional CSS loads after core, so these win.
-     ========================================================================== */
-
-@media (max-width: 1100px) {
-  .wc_sponsors_section .wp-block-post-template.columns-4 {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  }
-
-  /* Fallback for the older flex-based query loop markup. */
-  .wc_sponsors_section
-    .wp-block-post-template.is-flex-container.columns-4
-    > li {
-    flex-basis: calc(33.333% - 1rem) !important;
-    flex-grow: 0;
-  }
-}
-
-@media (max-width: 900px) {
-  .wc_sponsors_section .wp-block-post-template.columns-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 1.5rem !important;
-  }
-
-  .wc_sponsors_section
-    .wp-block-post-template.is-flex-container.columns-4
-    > li {
-    flex-basis: calc(50% - 0.75rem) !important;
-  }
-}
-
-@media (max-width: 479px) {
-  .wc_sponsors_section .wp-block-post-template.columns-4 {
-    grid-template-columns: 1fr !important;
-  }
-
-  .wc_sponsors_section
-    .wp-block-post-template.is-flex-container.columns-4
-    > li {
-    flex-basis: 100% !important;
-  }
-}
-
-/* ==========================================================================
      FIX 2b — HUGE EMPTY GAPS BETWEEN SPONSOR LOGOS
   
      Root cause: every sponsor featured image carries an INLINE
@@ -560,6 +451,63 @@ a:focus {
     gap: 20px !important;
   }
 }
+
+/* --- Card background overlay on mobile (button legibility) --------------- */
+/*  Each card carries a full-bleed illustration as its background
+   *  (Column-1.webp / Column.webp, background-size: cover). The "Coming
+   *  Soon" button is is-style-outline — transparent fill, 1px border,
+   *  #16542F text — so on a phone it sits directly on the busiest part of
+   *  the artwork and effectively disappears.
+   *
+   *  This lays a cream wash over the image on mobile only, keyed to the
+   *  card's own cream tone so it still reads as the same design, and lifts
+   *  the card content above it. Desktop and tablet are untouched.          */
+
+@media (max-width: 781px) {
+  .wc_card_section .wp-block-column > .wp-block-group {
+    position: relative !important;
+    isolation: isolate;
+  }
+
+  .wc_card_section .wp-block-column > .wp-block-group::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit; /* matches the card's 20px corners */
+    pointer-events: none;
+    z-index: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(245, 240, 228, 0.86) 0%,
+      rgba(245, 240, 228, 0.93) 45%,
+      rgba(245, 240, 228, 0.97) 100%
+    );
+  }
+
+  /* Lift pill, heading, paragraph and button above the wash. */
+  .wc_card_section .wp-block-column > .wp-block-group > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Give the outline button a solid ground so it reads as a button.
+       #16542F on white = 8.6:1 contrast (WCAG AAA). */
+  .wc_card_section .wp-block-button__link {
+    background-color: rgba(255, 255, 255, 0.92) !important;
+    border-width: 2px !important;
+  }
+}
+
+/*  ALTERNATIVE — if you would rather drop the artwork on phones entirely
+   *  instead of washing it out, delete the block above and use this:
+   *
+   *  @media (max-width: 781px) {
+   *      .wc_card_section .wp-block-column > .wp-block-group {
+   *          background-image: none !important;
+   *          background-color: #F5F0E4 !important;
+   *      }
+   *  }
+   */
 
 /* --- Footer on mobile ---------------------------------------------------- */
 /*  Measured at 390px:
