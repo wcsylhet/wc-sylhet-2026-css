@@ -53,3 +53,284 @@ a:focus {
 .test {
   color: red;
 }
+
+/* ==========================================================================
+   WordCamp Sylhet 2026 — Responsive fixes
+   Paste into: Appearance → Editor → Styles → Additional CSS
+               (or Customizer → Additional CSS)
+
+   Scoped only to the section group classes already on the page:
+     .wc_hero_section  .wc_community_section  .wc_latest_news_section
+     .wc_card_section  .wc_venu_section       .wc_sponsors_section
+   plus existing helpers: .pill-button  .location-info-box  .columns-4
+
+   Every rule below corresponds to a problem measured on the live page
+   between 320px and 1440px. Findings that turned out FINE are listed at
+   the bottom so nothing gets "fixed" that was never broken.
+   ========================================================================== */
+
+/* ==========================================================================
+   FIX 1 — HERO HAS NO HORIZONTAL PADDING  (most visible mobile bug)
+
+   Measured: .wc_hero_section computes padding-left/right = 0px at every
+   width. At 390px the date/venue pill row runs L0 → R390, i.e. both pills
+   touch the screen edges. At 360px and 320px the pills compress instead
+   (224→206→182px) because the row is flex-wrap:nowrap.
+
+   The padding goes on the inner background group, NOT on the section, so
+   the hero background stays full-bleed.
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .wc_hero_section > .wp-block-group {
+    padding-left: 8vw !important;
+    padding-right: 8vw !important;
+    box-sizing: border-box;
+  }
+}
+
+/* Below ~430px the two pills can no longer sit side by side without
+     shrinking their text, so let the row wrap onto two centred lines. */
+@media (max-width: 430px) {
+  .wc_hero_section .wp-block-group.is-horizontal.is-nowrap {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    row-gap: 0.625rem;
+  }
+
+  .wc_hero_section .pill-button {
+    flex: 0 0 auto;
+  }
+
+  /* Keep the icon + label of a single pill on one line. */
+  .wc_hero_section .pill-button p {
+    white-space: nowrap;
+    margin: 0;
+  }
+}
+
+/* ==========================================================================
+     FIX 2 — SPONSOR GRID JUMPS 4 COLUMNS → 1 COLUMN
+  
+     Measured on .wc_sponsors_section .wp-block-post-template.columns-4
+     (is-layout-grid):
+         1440px → 4 columns
+          834px → 4 columns  (cells ≈ 190px — cramped)
+          768px → 4 columns  (cells ≈ 180px — cramped)
+          600px → 1 column   (WordPress core forces 1fr at ≤600px)
+     So there is no 3- or 2-column step at all. This adds them.
+  
+     !important is required to override core's own !important rule at ≤600px.
+     Additional CSS loads after core, so these win.
+     ========================================================================== */
+
+@media (max-width: 1100px) {
+  .wc_sponsors_section .wp-block-post-template.columns-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  /* Fallback for the older flex-based query loop markup. */
+  .wc_sponsors_section
+    .wp-block-post-template.is-flex-container.columns-4
+    > li {
+    flex-basis: calc(33.333% - 1rem) !important;
+    flex-grow: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .wc_sponsors_section .wp-block-post-template.columns-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+
+  .wc_sponsors_section
+    .wp-block-post-template.is-flex-container.columns-4
+    > li {
+    flex-basis: calc(50% - 0.75rem) !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .wc_sponsors_section .wp-block-post-template.columns-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wc_sponsors_section
+    .wp-block-post-template.is-flex-container.columns-4
+    > li {
+    flex-basis: 100% !important;
+  }
+}
+
+/* Sponsor logos come in mixed sizes — cap and centre them so a 2-up grid
+     stays visually even. */
+@media (max-width: 900px) {
+  .wc_sponsors_section .wp-block-post-template.columns-4 img {
+    max-height: 72px;
+    width: auto;
+    object-fit: contain;
+    margin-inline: auto;
+  }
+}
+
+/* ==========================================================================
+     FIX 3 — TABLET (782–1024px): 2-COLUMN BLOCKS ARE SQUEEZED
+  
+     WordPress only stacks .wp-block-columns at ≤781px, so the whole
+     782–1024px band keeps two columns.
+  
+     Measured at 834px (iPad portrait):
+         .wc_venu_section  → .location-info-box is 203px wide × 228px tall
+         (at 1440px it is 362 × 197). The address card becomes a tall
+         narrow strip next to the map.
+  
+     Stacking these two sections at ≤1024px gives the map and the address
+     card the full 701px inner width instead of ~336px each.
+     ========================================================================== */
+
+@media (max-width: 1024px) {
+  .wc_venu_section .wp-block-columns,
+  .wc_community_section .wp-block-columns {
+    flex-wrap: wrap !important;
+  }
+
+  .wc_venu_section .wp-block-columns > .wp-block-column,
+  .wc_community_section .wp-block-columns > .wp-block-column {
+    flex-basis: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  /* The map keeps a usable height once it is full width. */
+  .wc_venu_section iframe,
+  .wc_venu_section .wp-block-embed iframe {
+    width: 100%;
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wc_venu_section iframe,
+  .wc_venu_section .wp-block-embed iframe {
+    min-height: 260px;
+  }
+
+  .wc_venu_section .location-info-box {
+    padding: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+     FIX 4 — SECTION VERTICAL PADDING NEVER SHRINKS
+  
+     Measured: padding-top / padding-bottom stay at 96px (community) and
+     80px (card, venue, sponsors) all the way down to 320px, while the
+     horizontal padding is fluid (104px → 66.7px → 31.2px).
+     That is ~1/3 of a phone screen spent on empty space between sections.
+  
+     .wc_latest_news_section is deliberately excluded — it already computes
+     0px top/bottom and should stay that way.
+     ========================================================================== */
+
+@media (max-width: 781px) {
+  .wc_community_section,
+  .wc_card_section,
+  .wc_venu_section,
+  .wc_sponsors_section {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .wc_community_section,
+  .wc_card_section,
+  .wc_venu_section,
+  .wc_sponsors_section {
+    padding-top: 44px !important;
+    padding-bottom: 44px !important;
+  }
+}
+
+/* ==========================================================================
+     FIX 5 — SMALL-PHONE SAFETY (≤360px)
+  
+     The hero H1 is already fluid (160px at 1440 → 75.8px at 360), so it is
+     NOT overridden globally. It only gets a floor here so it cannot crowd
+     out the rest of the hero on the narrowest phones.
+     ========================================================================== */
+
+@media (max-width: 360px) {
+  .wc_hero_section h1,
+  .wc_hero_section .wp-block-heading {
+    font-size: clamp(2.5rem, 17vw, 4rem);
+    line-height: 0.95;
+  }
+
+  .wc_hero_section .pill-button p {
+    font-size: 0.8125rem;
+  }
+
+  /* Keep tap targets at the 44px accessibility minimum. */
+  .wc_hero_section .wp-block-button__link,
+  .wc_card_section .wp-block-button__link,
+  .wc_venu_section .wp-block-button__link,
+  .wc_latest_news_section .wp-block-button__link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+     GENERAL SAFETY — cheap, no visual change at current content
+  
+     These only take effect if an image, embed or long unbroken string is
+     ever added that would otherwise force a horizontal scrollbar.
+     ========================================================================== */
+
+.wc_hero_section img,
+.wc_community_section img,
+.wc_latest_news_section img,
+.wc_card_section img,
+.wc_venu_section img,
+.wc_sponsors_section img {
+  max-width: 100%;
+  height: auto;
+}
+
+.wc_hero_section,
+.wc_community_section,
+.wc_latest_news_section,
+.wc_card_section,
+.wc_venu_section,
+.wc_sponsors_section {
+  overflow-wrap: break-word;
+}
+
+/* ==========================================================================
+     CHECKED AND ALREADY FINE — deliberately NOT changed
+     --------------------------------------------------------------------------
+     • No horizontal overflow at any width from 320px to 1440px.
+       document.scrollWidth always equalled the viewport width, so no
+       overflow-x hack is needed.
+  
+     • The hero H1 is already fluid: 160px @1440 → 136.6px @1024 →
+       119.2px @834 → 78.6px @390 → 75.8px @360. Do not add a global
+       clamp() — it would shrink the desktop wordmark.
+  
+     • .post-info-abs and .location-info-box never spill outside their
+       parents (measured spill was negative at every width), so they do not
+       need position:static on mobile. .location-info-box only suffered
+       from the 782–1024px column squeeze, which FIX 3 resolves.
+  
+     • Most .is-nowrap groups in these sections are VERTICAL stacks, not
+       horizontal rows, so a blanket flex-wrap:wrap override would be
+       pointless and could break the intended stacking. Only the hero pill
+       row is a real horizontal nowrap row — handled in FIX 1.
+  
+     • .wc_card_section columns are ~336px each at 834px, which is a
+       workable card width, so they are left to stack at WordPress' own
+       781px breakpoint.
+     ========================================================================== */
