@@ -163,13 +163,59 @@ a:focus {
   }
 }
 
-/* Sponsor logos come in mixed sizes — cap and centre them so a 2-up grid
-     stays visually even. */
-@media (max-width: 900px) {
-  .wc_sponsors_section .wp-block-post-template.columns-4 img {
-    max-height: 72px;
-    width: auto;
-    object-fit: contain;
+/* ==========================================================================
+     FIX 2b — HUGE EMPTY GAPS BETWEEN SPONSOR LOGOS
+  
+     Root cause: every sponsor featured image carries an INLINE
+     `aspect-ratio: 16/9` on its <figure>, plus 16px padding on all sides.
+     Sponsor logos are wide and short (Automattic is 940 × 198), so
+     object-fit:contain letterboxes them inside a 16:9 box and the rest of
+     that box is dead space.
+  
+     Measured at 390px BEFORE:
+         figure  = 328 × 198   (16:9 forced)
+         logo    = 296 × 72
+         → 126px of empty space inside every single cell
+         logo list total height = 932px, whole section = 1198px
+  
+     Measured at 390px AFTER:
+         figure  = 304 × 64    (hugs the logo)
+         logo    = 304 × 64
+         → 0px dead space, even 28px rhythm between logos
+         logo list total height = 328px, whole section = 582px
+  
+     Applied to 1024px and down. Desktop is left alone — at 1440px the logo
+     renders 264 × 149 inside the 16:9 box, which reads as intentional.
+     ========================================================================== */
+
+@media (max-width: 1024px) {
+  .wc_sponsors_section .wp-block-post-template {
+    gap: 28px !important;
+    align-items: center;
+  }
+
+  /* Kill the inline 16/9 box and its padding. */
+  .wc_sponsors_section .wp-block-post-featured-image {
+    aspect-ratio: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .wc_sponsors_section .wp-block-post-featured-image a {
+    display: block !important;
+    height: auto !important;
+  }
+
+  /* Cap every logo to the same optical height so mixed logo shapes
+       (wide wordmarks vs square marks) line up evenly. */
+  .wc_sponsors_section .wp-block-post-featured-image img {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 72px !important;
+    object-fit: contain !important;
+    display: block;
     margin-inline: auto;
   }
 }
@@ -307,6 +353,89 @@ a:focus {
 .wc_venu_section,
 .wc_sponsors_section {
   overflow-wrap: break-word;
+}
+
+/* ==========================================================================
+     REQUESTED OVERRIDES
+     Placed last on purpose so they win over FIX 1 / FIX 4 above.
+     "Mobile" here = 781px and below (WordPress' own mobile breakpoint).
+     Change 781px to 600px if you only want true phones.
+     ========================================================================== */
+
+/* --- Hero: mobile padding — top 50px, bottom 145px ----------------------- */
+/* Applied to the inner background group (same element FIX 1 pads), so the
+     hero background colour still runs full-bleed edge to edge.               */
+
+@media (max-width: 781px) {
+  .wc_hero_section > .wp-block-group {
+    padding-top: 50px !important;
+    padding-bottom: 145px !important;
+  }
+}
+
+/* --- Hero: button gap 0.3rem on mobile ---------------------------------- */
+/* Two "button" rows live in the hero, so both are set. Delete whichever
+     one you did not mean:
+       A) .pill-button row   → the "2nd–3rd October 2026" / "SUST, Sylhet" pills
+       B) .wp-block-buttons  → the actual CTA button block                     */
+
+@media (max-width: 781px) {
+  /* A) pill row */
+  .wc_hero_section .wp-block-group.is-horizontal.is-nowrap {
+    gap: 0.3rem !important;
+    row-gap: 0.3rem !important;
+  }
+
+  /* B) CTA buttons */
+  .wc_hero_section .wp-block-buttons {
+    gap: 0.3rem !important;
+    row-gap: 0.3rem !important;
+  }
+}
+
+/* --- Sponsors: tighter logo size + heading spacing on phones ------------- */
+/*  The gap above "Global Sponsors" came from the section header group's
+   *  margin-bottom: 48px. Measured at 390px:
+   *      header → "Global Sponsors"   48px  →  20px
+   *      "Global Sponsors" → 1st logo  ~32px →  16px                        */
+
+@media (max-width: 781px) {
+  .wc_sponsors_section .wp-block-post-featured-image img {
+    max-height: 64px !important;
+  }
+
+  .wc_sponsors_section > .wp-block-group:first-of-type {
+    margin-bottom: 20px !important;
+  }
+
+  .wc_sponsors_section h3 {
+    margin-bottom: 16px !important;
+  }
+}
+
+/* --- Card section height: 850px desktop / 400px mobile ------------------- */
+/*  !!  READ THIS — measured on the live page after applying these values:
+   *
+   *      1440px : natural height 1010px → height:850px clips 160px
+   *      1024px : natural height 1010px → height:850px clips 160px
+   *       600px : natural height 1812px → height:400px clips 1412px
+   *       390px : natural height 1812px → height:400px clips 1412px
+   *
+   *  `height` is a hard cap, so on phones this hides almost the entire
+   *  section. If you wanted "at least this tall, but still grow with the
+   *  content", change both `height:` below to `min-height:` — that gives
+   *  850 / 400 as a floor and clips nothing.
+   *
+   *  Shipping the exact values you asked for; the swap is one word each.  */
+
+.wc_card_section {
+  height: 850px; /* → min-height: 850px;  to stop the 160px clip */
+}
+
+@media (max-width: 781px) {
+  .wc_card_section {
+    height: 400px; /* → min-height: 400px;  to stop the 1412px clip */
+  }
 }
 
 /* ==========================================================================
