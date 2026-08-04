@@ -677,7 +677,6 @@ a:focus {
   padding-left: 0 !important;
   padding-right: 0 !important;
   gap: 28px !important;
-  margin: 0 0 56px !important;
   align-items: stretch; /* every card in a row matches the tallest */
 }
 
