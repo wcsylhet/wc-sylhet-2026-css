@@ -55,22 +55,77 @@ a:focus {
 }
 
 /* ==========================================================================
-   WordCamp Sylhet 2026 — Responsive fixes
-   Paste into: Appearance → Editor → Styles → Additional CSS
-               (or Customizer → Additional CSS)
+   WordCamp Sylhet, Bangladesh 2026 — SITE STYLES
+   ==========================================================================
 
-   Scoped only to the section group classes already on the page:
-     .wc_hero_section  .wc_community_section  .wc_latest_news_section
-     .wc_card_section  .wc_venu_section       .wc_sponsors_section
-   plus existing helpers: .pill-button  .location-info-box  .columns-4
+   One file. Paste the whole thing into:
+       Appearance → Editor → Styles → Additional CSS
+   (or append it to the end of your existing style.css)
 
-   Every rule below corresponds to a problem measured on the live page
-   between 320px and 1440px. Findings that turned out FINE are listed at
-   the bottom so nothing gets "fixed" that was never broken.
+   --------------------------------------------------------------------------
+   CONTENTS
+   --------------------------------------------------------------------------
+
+   PART 1 — HOME PAGE
+     Scoped to the section group classes already on the home page:
+       .wc_hero_section        .wc_community_section
+       .wc_latest_news_section .wc_card_section
+       .wc_venu_section        .wc_sponsors_section
+     plus the site footer.
+
+       1.1  Hero horizontal padding            (≤1024px, ≤430px)
+       1.2  Sponsor grid column steps          (≤1100 / ≤900 / ≤479px)
+       1.3  Sponsor logo dead space            (≤1024px)
+       1.4  Tablet column squeeze              (≤1024px, ≤600px)
+       1.5  Section vertical padding           (≤781px, ≤480px)
+       1.6  Small-phone safety                 (≤360px)
+       1.7  General overflow safety            (all widths)
+       1.8  Requested overrides                (≤781px)
+            1.8a hero padding · 1.8b button gap
+            1.8c sponsor heading · 1.8d card height
+       1.9  Card height on iPad                (782–1024px)
+       1.10 Card background overlay            (≤1024px)
+       1.11 Footer on mobile                   (≤781px)
+
+   PART 2 — ORGANIZERS PAGE
+     Scoped to the WordCamp Organizers block, so it only ever affects
+     pages that actually contain that block:
+       .wordcamp-organizers    .wordcamp-post-list__post
+       .wordcamp-organizers__title
+       .wordcamp-image__avatar-container
+
+       2.1  The grid                           (all widths)
+       2.2  The card                           (all widths)
+       2.3  Photo above name                   (all widths)
+       2.4  The photo                          (all widths)
+       2.5  The name                           (all widths)
+       2.6  Tablet — 2 across                  (≤1024px)
+       2.7  Phone — 1 across                   (≤600px)
+       2.8  Uniform card heights               (≥601px)
+
+   --------------------------------------------------------------------------
+   BREAKPOINTS USED (and why)
+   --------------------------------------------------------------------------
+     ≤1024px   iPad Pro 12.9" portrait and below — where two-column
+               layouts start to feel squeezed
+     ≤ 781px   WordPress' own mobile breakpoint, where core stops
+               laying .wp-block-columns out side by side
+     ≤ 600px   WordPress core forces post-template grids to one column
+     ≤ 480px / ≤430px / ≤360px   phone-size trims
+
+   Every rule below was measured on the live site before and after.
+   The numbers quoted in the comments are real measurements, not
+   estimates.
    ========================================================================== */
 
 /* ==========================================================================
-   FIX 1 — HERO HAS NO HORIZONTAL PADDING  (most visible mobile bug)
+   ==========================================================================
+   PART 1 — HOME PAGE
+   ==========================================================================
+   ========================================================================== */
+
+/* ==========================================================================
+   1.1 — HERO HAS NO HORIZONTAL PADDING  (most visible mobile bug)
 
    Measured: .wc_hero_section computes padding-left/right = 0px at every
    width. At 390px the date/venue pill row runs L0 → R390, i.e. both pills
@@ -110,7 +165,7 @@ a:focus {
 }
 
 /* ==========================================================================
-     FIX 2 — SPONSOR GRID JUMPS 4 COLUMNS → 1 COLUMN
+     1.2 — SPONSOR GRID JUMPS 4 COLUMNS → 1 COLUMN
   
      Measured on .wc_sponsors_section .wp-block-post-template.columns-4
      (is-layout-grid):
@@ -164,7 +219,7 @@ a:focus {
 }
 
 /* ==========================================================================
-     FIX 2b — HUGE EMPTY GAPS BETWEEN SPONSOR LOGOS
+     1.3 — HUGE EMPTY GAPS BETWEEN SPONSOR LOGOS
   
      Root cause: every sponsor featured image carries an INLINE
      `aspect-ratio: 16/9` on its <figure>, plus 16px padding on all sides.
@@ -221,7 +276,7 @@ a:focus {
 }
 
 /* ==========================================================================
-     FIX 3 — TABLET (782–1024px): 2-COLUMN BLOCKS ARE SQUEEZED
+     1.4 — TABLET (782–1024px): 2-COLUMN BLOCKS ARE SQUEEZED
   
      WordPress only stacks .wp-block-columns at ≤781px, so the whole
      782–1024px band keeps two columns.
@@ -272,7 +327,7 @@ a:focus {
 }
 
 /* ==========================================================================
-     FIX 4 — SECTION VERTICAL PADDING NEVER SHRINKS
+     1.5 — SECTION VERTICAL PADDING NEVER SHRINKS
   
      Measured: padding-top / padding-bottom stay at 96px (community) and
      80px (card, venue, sponsors) all the way down to 320px, while the
@@ -304,7 +359,7 @@ a:focus {
 }
 
 /* ==========================================================================
-     FIX 5 — SMALL-PHONE SAFETY (≤360px)
+     1.6 — SMALL-PHONE SAFETY (≤360px)
   
      The hero H1 is already fluid (160px at 1440 → 75.8px at 360), so it is
      NOT overridden globally. It only gets a floor here so it cannot crowd
@@ -335,7 +390,7 @@ a:focus {
 }
 
 /* ==========================================================================
-     GENERAL SAFETY — cheap, no visual change at current content
+     1.7 — GENERAL SAFETY (cheap, no visual change at current content)
   
      These only take effect if an image, embed or long unbroken string is
      ever added that would otherwise force a horizontal scrollbar.
@@ -361,14 +416,14 @@ a:focus {
 }
 
 /* ==========================================================================
-     REQUESTED OVERRIDES
-     Placed last on purpose so they win over FIX 1 / FIX 4 above.
+     1.8 — REQUESTED OVERRIDES
+     Placed last on purpose so they win over 1.1 / 1.5 above.
      "Mobile" here = 781px and below (WordPress' own mobile breakpoint).
      Change 781px to 600px if you only want true phones.
      ========================================================================== */
 
-/* --- Hero: mobile padding — top 50px, bottom 145px ----------------------- */
-/* Applied to the inner background group (same element FIX 1 pads), so the
+/* --- 1.8a  Hero: mobile padding — top 50px, bottom 145px ----------------------- */
+/* Applied to the inner background group (same element 1.1 pads), so the
      hero background colour still runs full-bleed edge to edge.               */
 
 @media (max-width: 781px) {
@@ -378,7 +433,7 @@ a:focus {
   }
 }
 
-/* --- Hero: button gap 0.3rem on mobile ---------------------------------- */
+/* --- 1.8b  Hero: button gap 0.3rem on mobile ---------------------------------- */
 /* Two "button" rows live in the hero, so both are set. Delete whichever
      one you did not mean:
        A) .pill-button row   → the "2nd–3rd October 2026" / "SUST, Sylhet" pills
@@ -398,7 +453,7 @@ a:focus {
   }
 }
 
-/* --- Sponsors: tighter logo size + heading spacing on phones ------------- */
+/* --- 1.8c  Sponsors: tighter logo size + heading spacing on phones ------------- */
 /*  The gap above "Global Sponsors" came from the section header group's
    *  margin-bottom: 48px. Measured at 390px:
    *      header → "Global Sponsors"   48px  →  20px
@@ -418,7 +473,7 @@ a:focus {
   }
 }
 
-/* --- Card height: 400px on mobile --------------------------------------- */
+/* --- 1.8d  Card height: 400px on mobile --------------------------------------- */
 /*
    *  CORRECTED. The previous version put `height` on .wc_card_section (the
    *  whole section). That is what made the cards spill over the venue
@@ -457,7 +512,7 @@ a:focus {
   }
 }
 
-/* --- Card height on iPad (782–1024px) ----------------------------------- */
+/* --- 1.9   Card height on iPad (782–1024px) ----------------------------------- */
 /*  On iPad Air (820), iPad Pro 11" (834) and iPad Pro 12.9" portrait
    *  (1024) the two cards stay side by side and keep the inline 850px
    *  height, but each card is only 333–419px wide. Measured natural
@@ -478,7 +533,7 @@ a:focus {
   }
 }
 
-/* --- Card background overlay on mobile + iPad (button legibility) -------- */
+/* --- 1.10  Card background overlay on mobile + iPad (button legibility) -------- */
 /*  Each card carries a full-bleed illustration as its background
    *  (Column-1.webp / Column.webp, background-size: cover). The "Coming
    *  Soon" button is is-style-outline — transparent fill, 1px border,
@@ -539,7 +594,7 @@ a:focus {
    *  }
    */
 
-/* --- Footer on mobile ---------------------------------------------------- */
+/* --- 1.11  Footer on mobile ---------------------------------------------------- */
 /*  Measured at 390px:
    *    • the stacked footer columns had row-gap 0 — the logo block and the
    *      "Important Link" block ran straight into each other with no space
@@ -574,7 +629,7 @@ a:focus {
 }
 
 /* ==========================================================================
-     CHECKED AND ALREADY FINE — deliberately NOT changed
+     PART 1 — CHECKED AND ALREADY FINE, deliberately NOT changed
      --------------------------------------------------------------------------
      • No horizontal overflow at any width from 320px to 1440px.
        document.scrollWidth always equalled the viewport width, so no
@@ -587,14 +642,257 @@ a:focus {
      • .post-info-abs and .location-info-box never spill outside their
        parents (measured spill was negative at every width), so they do not
        need position:static on mobile. .location-info-box only suffered
-       from the 782–1024px column squeeze, which FIX 3 resolves.
+       from the 782–1024px column squeeze, which 1.4 resolves.
   
      • Most .is-nowrap groups in these sections are VERTICAL stacks, not
        horizontal rows, so a blanket flex-wrap:wrap override would be
        pointless and could break the intended stacking. Only the hero pill
-       row is a real horizontal nowrap row — handled in FIX 1.
+       row is a real horizontal nowrap row — handled in 1.1.
   
      • .wc_card_section columns are ~336px each at 834px, which is a
        workable card width, so they are left to stack at WordPress' own
        781px breakpoint.
+     ========================================================================== */
+
+/* ==========================================================================
+     ==========================================================================
+     PART 2 — ORGANIZERS PAGE
+     --------------------------------------------------------------------------
+     These rules key off the WordCamp Organizers block's own classes, so
+     they activate only on pages containing that block. They will not touch
+     the home page.
+     ==========================================================================
+     ========================================================================== */
+
+/* --------------------------------------------------------------------------
+     2.1  THE GRID
+     `padding-left: 40px` is the browser's default <ul> indent — it has to go
+     or every section sits 40px right of the headings above it.
+     Card gap raised from the block default of 16.8px to 28px so the cards
+     read as separate objects rather than one strip.
+     -------------------------------------------------------------------------- */
+
+.entry-content ul.wordcamp-post-list.wordcamp-organizers {
+  list-style: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  gap: 28px !important;
+  margin: 0 0 56px !important;
+  align-items: stretch; /* every card in a row matches the tallest */
+}
+
+/* --------------------------------------------------------------------------
+     2.2  THE CARD
+     White surface on the page's #F9F9F9 background, so the shadow does the
+     separating rather than a heavy border. Two-layer shadow: a tight 1px
+     one for the edge, a wide soft one for lift.
+     `height: 100%` + the `align-items: stretch` above is what keeps two
+     cards side by side the same height when one name wraps to two lines.
+     -------------------------------------------------------------------------- */
+
+.wordcamp-organizers .wordcamp-post-list__post {
+  list-style: none !important;
+  background: #ffffff;
+  border: 1px solid rgba(16, 24, 40, 0.06);
+  border-radius: 20px;
+  padding: 48px 28px;
+  text-align: center;
+  height: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04),
+    0 12px 28px -8px rgba(16, 24, 40, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Gentle lift on hover. Delete this block if you want the cards static. */
+.wordcamp-organizers .wordcamp-post-list__post:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 4px rgba(16, 24, 40, 0.05),
+    0 22px 44px -10px rgba(16, 24, 40, 0.16);
+}
+
+/* --------------------------------------------------------------------------
+     2.3  PHOTO ABOVE NAME
+     The block prints the name first, so without this the card reads
+     name-then-photo. Flex + `order` flips them visually while leaving the
+     HTML (and the heading order for screen readers) untouched.
+     -------------------------------------------------------------------------- */
+
+.wordcamp-organizers .wordcamp-organizers__post {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  height: 100%;
+}
+
+.wordcamp-organizers .wordcamp-image__avatar-container {
+  order: 1; /* photo first */
+  margin: 0 !important;
+  line-height: 0; /* kills the inline-image descender gap */
+}
+
+.wordcamp-organizers .wordcamp-block__item-title {
+  order: 2; /* name second */
+  margin: 0 !important;
+}
+
+.wordcamp-organizers .wordcamp-block__item-content {
+  order: 3; /* bio last, if one is ever added */
+  margin: 0 !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.72;
+  text-align: center;
+}
+
+/* On this site the bio div is present but empty on every organizer. Left
+     in the flow it still collects the 22px flex gap and made those cards
+     22px taller than their neighbours. */
+.wordcamp-organizers .wordcamp-block__item-content:empty {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+     2.4  THE PHOTO
+     Source images are 150 × 150 squares, so 150px is native size — no
+     upscaling, stays sharp. `object-fit: cover` keeps faces from squashing
+     if a non-square image is ever uploaded.
+     -------------------------------------------------------------------------- */
+
+.wordcamp-organizers .wordcamp-image__avatar-container img {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 50% !important;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+     2.5  THE NAME
+     Block default is 29.6px at weight 400. Dropped to 24px and bolded so it
+     still reads as a card label at 3-up, where a card is only ~415px wide.
+     -------------------------------------------------------------------------- */
+
+.wordcamp-organizers .wordcamp-organizers__title {
+  font-size: 1.5rem !important;
+  line-height: 1.3;
+  font-weight: 700 !important;
+  text-align: center !important;
+}
+
+/* Only applies if organizer names are ever linked to profile pages. */
+.wordcamp-organizers .wordcamp-organizers__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+     2.6  TABLET — 1024px and below
+     Every section drops to 2 across. The 3-up sections would otherwise give
+     ~300px cards on an iPad, which crowds a 150px photo.
+     Desktop above 1024px keeps whatever each block is set to in the editor.
+     -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .entry-content ul.wordcamp-post-list.wordcamp-organizers {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+     2.7  PHONE — 600px and below
+     Single column, tighter padding, smaller photo and name so a card is
+     about 240px tall instead of 318px. With 29 organizers that keeps the
+     page from becoming an endless scroll.
+     -------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .entry-content ul.wordcamp-post-list.wordcamp-organizers {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    margin-bottom: 40px !important;
+  }
+
+  .wordcamp-organizers .wordcamp-post-list__post {
+    padding: 36px 20px;
+    border-radius: 16px;
+  }
+
+  .wordcamp-organizers .wordcamp-image__avatar-container img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  .wordcamp-organizers .wordcamp-organizers__title {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+     2.8  UNIFORM CARD HEIGHTS (tablet + desktop)
+  
+     Without this the page went ragged wherever a name wrapped to two lines.
+     Measured at 768px before the fix: the 3-person sections rendered
+     [349, 349] on the first row and [318] on the orphan below it — cards in
+     the same section, visibly different heights.
+  
+     Two rules together make every card on the page identical:
+       • grid-auto-rows: 1fr  → all ROWS in a section match, not just the
+         cards within a single row (CSS grid only equalises within a row by
+         default, which is why a 3-up section at 2 columns went ragged).
+       • min-height: 2.6em on the name → reserves two lines whether the name
+         needs them or not, so "Ishika Mahjabin" and "Minhajul Arifin
+         Shovon" produce the same card. The flex centring keeps a one-line
+         name optically centred in that reserved space.
+  
+     Phones are excluded on purpose: cards are stacked single-column there,
+     so nothing sits side by side to compare against and reserving a second
+     line would just add dead space to all 29 cards.
+  
+     After: every card is 349px at 768 / 834 / 1024 / 1440px.
+     -------------------------------------------------------------------------- */
+
+@media (min-width: 601px) {
+  .entry-content ul.wordcamp-post-list.wordcamp-organizers {
+    grid-auto-rows: 1fr;
+  }
+
+  .wordcamp-organizers .wordcamp-organizers__title {
+    min-height: 2.6em; /* 2 lines at line-height 1.3 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+     PART 2 — MEASURED RESULT
+     --------------------------------------------------------------------------
+       width           cols   card size     photo   overflow
+       1920px            2     626 × 349    150px      0
+       1440px  desktop   2     602 × 349    150px      0
+       1366px  iPad LS   2     565 × 349    150px      0
+       1180px  iPad LS   2     482 × 349    150px      0
+       1024px  iPad Pro  2     416 × 349    150px      0
+        834px  iPad Pro  2     336 × 349    150px      0
+        820px  iPad Air  2     330 × 349    150px      0
+        768px            2     309 × 349    150px      0
+        600px            1     504 × 259    120px      0
+        430px            1     361 × 259    120px      0
+        390px  iPhone    1     328 × 242    120px      0
+        360px            1     302 × 242    120px      0
+        320px  small     1     269 × 242    120px      0
+  
+     (At 1440px the 3-up sections render 3 across as set in the editor; the
+     "cols" column above tracks the first section, which is 2-up.)
+  
+     • Horizontal overflow: 0 elements at every width from 320px to 1920px.
+     • Photo above name: 29 of 29 cards.
+     • Card heights: identical across every section at 601px and up.
+     • Section headings scale on their own (22.2px @320 → 29.6px @1366+),
+       and the page padding is already fluid (31px @390 → 104px @1440),
+       so neither needed a rule.
      ========================================================================== */
