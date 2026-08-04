@@ -441,7 +441,7 @@ a:focus {
 
 @media (max-width: 781px) {
   .wc_card_section .wp-block-column > .wp-block-group {
-    min-height: 400px !important; /* min-height, never height */
+    min-height: 300px !important; /* min-height, never height */
     height: auto !important;
     padding-top: 40px !important;
     padding-bottom: 40px !important;
