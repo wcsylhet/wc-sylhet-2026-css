@@ -871,6 +871,15 @@ a:focus {
    ==========================================================================
    PART 3 — CALL FOR SPONSORS PAGE   (?page_id=389)
    --------------------------------------------------------------------------
+   DESKTOP IS NOT TOUCHED. Every rule in this part is inside a
+   max-width media query, so above 1024px the page renders exactly as it
+   did before this file was added — same full-width intro copy, same
+   full-width form fields, same submit button.
+ 
+   (An earlier version of this part capped the text column at 680px and
+   the form at 720px at ALL widths. That changed the desktop design and
+   has been removed.)
+ 
    Page structure, top to bottom:
        .sponsor-welcome-text     intro copy + an 8-item list
        .sponsor-form-section     Jetpack contact form (.sponsor-form)
@@ -883,101 +892,39 @@ a:focus {
    sponsor grid was already at 2 columns, both from PART 1. Nothing here
    duplicates those rules.
  
-   There is NO horizontal overflow on this page at any width from 320px to
-   1920px, before or after these rules. Every problem below is a
-   proportion problem, not a breakage problem — which is why it shows up
-   worst on DESKTOP rather than on phones.
+   Note: this page has NO horizontal overflow at any width from 320px to
+   1920px. The only genuine small-screen problems are the ones below.
    ==========================================================================
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   3.1 — READING WIDTH  (the main desktop issue)
+   3.1 — TABLET AND BELOW: form breathing room  (≤1024px)
  
-   The intro copy ran the full content width, which measured:
-       1920px viewport -> 1232px of text -> ~147 characters per line
-       1440px viewport -> 1232px of text -> ~147 characters per line
- 
-   Comfortable reading is 45-75 characters; past about 90 the eye loses
-   its place jumping back to the start of the next line. 680px lands at
-   ~81ch at the site's 16.8px body size, which keeps the paragraphs
-   looking deliberate without making the column feel narrow.
- 
-   No media query needed: 680px only takes effect once there is more than
-   680px to give, so phones and small tablets are untouched.
+   The form column computes padding-top / padding-bottom of 0px, so on a
+   tablet the form sits flush against the sections above and below it.
+   Desktop keeps its original spacing.
    -------------------------------------------------------------------------- */
 
-.sponsor-welcome-text > .wp-block-column,
-.sponsor-notice-section > .wp-block-column {
-  max-width: 680px;
-  margin-left: auto;
-  margin-right: auto;
+@media (max-width: 1024px) {
+  .sponsor-form-section > .wp-block-column {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
-      3.2 — FORM WIDTH
-    
-      Same problem, worse: every field stretched the full 1232px, so the
-      "Name" box was over a metre wide on a large monitor. A form field that
-      much wider than its content reads as broken rather than generous, and
-      the eye has to travel the whole width to check what it typed.
-    
-      720px is a little wider than the text column on purpose — form fields
-      carry labels and placeholder text and can take the extra room.
-      -------------------------------------------------------------------------- */
-
-.sponsor-form {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* --------------------------------------------------------------------------
-      3.3 — FORM PANEL PADDING
-    
-      The form column computed padding-top / padding-bottom of 0px, so the
-      form sat flush against the sections above and below it with nothing
-      separating them.
-      -------------------------------------------------------------------------- */
-
-.sponsor-form-section > .wp-block-column {
-  padding-top: 48px !important;
-  padding-bottom: 48px !important;
-}
-
-/* --------------------------------------------------------------------------
-      3.4 — SUBMIT BUTTON
-    
-      Measured at 81 x 60px — an 81px target at the end of a ten-field form,
-      narrower than every input above it. 200px gives it the weight of a
-      primary action; 52px min-height keeps it above the 44px accessibility
-      minimum for touch.
-      -------------------------------------------------------------------------- */
-
-.sponsor-form .wp-block-button.form-button-submit .wp-block-button__link {
-  min-width: 200px;
-  min-height: 52px;
-}
-
-/* --------------------------------------------------------------------------
-      3.5 — PHONES (600px and below)
-    
-      Three textareas at 200px each is roughly 1.5 phone screens of empty
-      box before the visitor reaches the submit button. 140px still shows
-      about 5 lines of typing.
-    
-      The submit button goes full width, which is the expected pattern for a
-      form on a phone and gives the largest possible tap target.
-      -------------------------------------------------------------------------- */
+     3.2 — PHONES (≤600px): submit button
+   
+     Measured at 81 x 60px — an 81px target at the end of a ten-field form,
+     narrower than every input above it. Full width is the expected pattern
+     for a form on a phone and gives the largest possible tap target.
+     Desktop keeps the original 81px button.
+     -------------------------------------------------------------------------- */
 
 @media (max-width: 600px) {
   .sponsor-form-section > .wp-block-column {
     padding-top: 32px !important;
     padding-bottom: 32px !important;
-  }
-
-  .sponsor-form textarea {
-    min-height: 140px !important;
-    height: 140px !important;
   }
 
   .sponsor-form .wp-block-button.form-button-submit {
@@ -987,46 +934,38 @@ a:focus {
   .sponsor-form .wp-block-button.form-button-submit .wp-block-button__link {
     width: 100%;
     min-width: 0;
+    min-height: 52px; /* 44px is the accessibility touch minimum */
+  }
+}
+
+/* --------------------------------------------------------------------------
+     3.3 — PHONES (≤600px): textarea height
+   
+     Three textareas at 200px each is roughly 1.5 phone screens of empty
+     box before the visitor reaches the submit button. 140px still shows
+     about 5 lines of typing. Desktop keeps the original 200px.
+     -------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .sponsor-form textarea {
+    min-height: 140px !important;
+    height: 140px !important;
   }
 }
 
 /* ==========================================================================
-    
-      PART 3 — CHECKED AND ALREADY FINE, deliberately NOT changed
-      --------------------------------------------------------------------------
-      • Input font-size is 16.8px. Anything under 16px makes iOS Safari zoom
-        the page in when a field is focused, which is the single most common
-        mobile form bug. This form is already safe, so no override.
-      • Input height is 60px, comfortably over the 44px touch minimum.
-      • Labels are already block-level above their fields, so nothing
-        collapses awkwardly on a narrow screen.
-      • No horizontal overflow at any width from 320px to 1920px, before or
-        after these rules.
-    
-    
-      OPTIONAL — two-column form on desktop
-      --------------------------------------------------------------------------
-      The form is one field per row. If you would rather pair the short
-      fields side by side above 782px, uncomment this. It is left off by
-      default because the page has two generic .wp-block-jetpack-field-text
-      wrappers and pairing is done by position, so re-ordering fields in the
-      editor would change which two sit together.
-    
-      @media (min-width: 782px) {
-          .sponsor-form {
-              display: flex;
-              flex-wrap: wrap;
-              gap: 0 20px;
-          }
-          .sponsor-form > .wp-block-jetpack-field-name,
-          .sponsor-form > .wp-block-jetpack-field-email,
-          .sponsor-form > .wp-block-jetpack-field-url,
-          .sponsor-form > .wp-block-jetpack-field-select {
-              flex: 1 1 calc(50% - 10px);
-          }
-          .sponsor-form > .wp-block-jetpack-field-textarea,
-          .sponsor-form > .wp-block-button {
-              flex: 1 1 100%;
-          }
-      }
-      ========================================================================== */
+  
+     Everything at 1025px and above is byte-for-byte the original design.
+   
+     PART 3 — CHECKED AND ALREADY FINE, deliberately NOT changed
+     --------------------------------------------------------------------------
+     • Input font-size is 16.8px. Anything under 16px makes iOS Safari zoom
+       the page in when a field is focused, which is the single most common
+       mobile form bug. This form is already safe, so no override.
+     • Input height is 60px, comfortably over the 44px touch minimum.
+     • Labels are already block-level above their fields, so nothing
+       collapses awkwardly on a narrow screen.
+     • Intro copy runs ~147 characters per line on a wide monitor. That is
+       wider than typographic best practice, but it is your design choice
+       and is NOT overridden here.
+     ========================================================================== */
