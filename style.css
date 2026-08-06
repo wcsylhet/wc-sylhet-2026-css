@@ -657,75 +657,12 @@ a:focus {
 /* ==========================================================================
    ==========================================================================
    PART 2 — ORGANIZERS PAGE
-   --------------------------------------------------------------------------
-   Card design: a rounded photo panel with a dark green name bar beneath
-   it, matching the supplied reference.
- 
-   Markup the WordCamp Organizers block produces for each of the 29
-   people, across 14 team sections:
- 
-     ul.wordcamp-post-list.wordcamp-organizers      <- the grid
-       li.wordcamp-post-list__post
-         div.wordcamp-organizers__post              <- THE CARD
-           h3.wordcamp-block__item-title            <- the name
-           div.wordcamp-image__avatar-container     <- the photo
-             img                                    <- Gravatar, 150 x 150
-           div.wordcamp-block__item-content         <- bio (empty here)
- 
-   Two things drive the CSS:
- 
-     1. The NAME comes BEFORE the photo in the HTML. The card becomes a
-        flex column and the two are re-ordered with `order`, so the photo
-        sits on top with no HTML edits, and the heading stays first in
-        the source for screen readers.
- 
-     2. Each team section is its own <ul> with its own column count set
-        in the editor (some 2-up, some 3-up), so card WIDTH would
-        otherwise change depending on how many people are in a team.
-        Section 2.1 fixes that.
-   ==========================================================================
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   2.1 — ONE CARD SIZE, WHATEVER THE TEAM SIZE
- 
-   Before this, a person in a 2-person team got a 628px card while a
-   person in a 3-person team got 415px — same page, same design, two
-   different sizes, purely because of how many colleagues they have.
- 
-   Capping the card makes every one of the 29 cards identical. Change
-   the one value below to resize every card on the page.
- 
-   IMPORTANT: the grid tracks are sized to this value too (see 2.2), not
-   just the card. An earlier version capped only the card and left it
-   centred inside the block's original 628px column, which parked two
-   cards ~780px apart with a chasm between them. Sizing the TRACKS is
-   what keeps the cards next to each other.
- 
-   It also keeps the photos sharp — see 2.4.
+   2.2 — THE GRID AND THE CARD
+
    -------------------------------------------------------------------------- */
-
-.wordcamp-organizers {
-  --wc-organizer-card: 240px;
-}
-
-/* --------------------------------------------------------------------------
-     2.2 — THE GRID AND THE CARD
-   
-     `repeat(auto-fit, <card>)` builds as many card-width tracks as the row
-     can hold, and `auto-fit` collapses the ones a section does not use, so
-     a 2-person team gets exactly 2 tracks and a 3-person team gets 3.
-     `justify-content: center` then centres that group on the page.
-   
-     The upshot: cards always sit a clean 28px apart, whatever the team
-     size, and the block's own column setting no longer decides how wide
-     anyone's card is.
-   
-     `padding-left: 40px` is the browser's default <ul> indent — it has to
-     go or every section sits 40px right of the heading above it.
-     The card itself carries no background or border; the photo panel and
-     the name bar are the two visible pieces.
-     -------------------------------------------------------------------------- */
 
 .entry-content ul.wordcamp-post-list.wordcamp-organizers {
   list-style: none !important;
@@ -733,7 +670,7 @@ a:focus {
   padding-right: 0 !important;
   gap: 28px !important;
   margin: 0 0 48px !important;
-  grid-template-columns: repeat(auto-fit, var(--wc-organizer-card)) !important;
+  grid-template-columns: repeat(auto-fit, 240px) !important;
   justify-content: center !important;
   align-items: stretch;
 }
@@ -762,7 +699,7 @@ a:focus {
   justify-content: flex-start !important;
   gap: 10px;
   height: 100%;
-  max-width: var(--wc-organizer-card);
+  max-width: 240px;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -852,25 +789,41 @@ a:focus {
 }
 
 /* --------------------------------------------------------------------------
-     2.6 — PHONES
+     2.6 — PHONES: KEEP TWO PER ROW
    
-     No tablet rule is needed: auto-fit already drops from 3 cards a row to
-     2 to 1 on its own as the viewport narrows, because the track width is
-     fixed. Only the card size and spacing are trimmed for phones.
+     Above 600px the fixed 240px tracks handle everything on their own —
+     auto-fit steps 3 a row down to 2 as the viewport narrows.
+   
+     Below 600px that same fixed track becomes the problem: a 240px (or
+     220px) track only fits ONCE in a 328px phone content width, so the
+     grid dropped to a single card per row. Switching to two `1fr` tracks
+     lets them share the available width instead.
+   
+     A happy side effect: at 156px the 150px Gravatar is finally rendering
+     at roughly 1:1, so phone photos are pin sharp — no upscaling at all.
      -------------------------------------------------------------------------- */
 
 @media (max-width: 600px) {
-  .wordcamp-organizers {
-    --wc-organizer-card: 220px;
-  }
-
   .entry-content ul.wordcamp-post-list.wordcamp-organizers {
-    gap: 20px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
   }
 
+  .wordcamp-organizers .wordcamp-organizers__post {
+    max-width: 100%;
+  }
+
+  .wordcamp-organizers .wordcamp-image__avatar-container {
+    border-radius: 16px;
+  }
+
+  /* Smaller name bar so two-word and three-word names still fit in a
+       ~156px card without wrapping to four lines. */
   .wordcamp-organizers .wordcamp-block__item-title {
-    font-size: 0.9375rem !important;
-    padding: 10px 12px;
+    font-size: 0.8125rem !important;
+    padding: 8px 6px;
+    border-radius: 10px;
+    line-height: 1.25;
   }
 }
 
