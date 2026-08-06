@@ -867,7 +867,7 @@ a:focus {
   }
 }
 
-/*==========================================================================
+/* ==========================================================================
    ==========================================================================
    PART 3 — CALL FOR SPONSORS PAGE   (?page_id=389)
    --------------------------------------------------------------------------
@@ -913,13 +913,13 @@ a:focus {
 }
 
 /* --------------------------------------------------------------------------
-   3.2 — PHONES (≤600px): submit button
- 
-   Measured at 81 x 60px — an 81px target at the end of a ten-field form,
-   narrower than every input above it. Full width is the expected pattern
-   for a form on a phone and gives the largest possible tap target.
-   Desktop keeps the original 81px button.
-   -------------------------------------------------------------------------- */
+     3.2 — PHONES (≤600px): submit button
+   
+     Measured at 81 x 60px — an 81px target at the end of a ten-field form,
+     narrower than every input above it. Full width is the expected pattern
+     for a form on a phone and gives the largest possible tap target.
+     Desktop keeps the original 81px button.
+     -------------------------------------------------------------------------- */
 
 @media (max-width: 600px) {
   .sponsor-form-section > .wp-block-column {
@@ -939,12 +939,12 @@ a:focus {
 }
 
 /* --------------------------------------------------------------------------
-   3.3 — PHONES (≤600px): textarea height
- 
-   Three textareas at 200px each is roughly 1.5 phone screens of empty
-   box before the visitor reaches the submit button. 140px still shows
-   about 5 lines of typing. Desktop keeps the original 200px.
-   -------------------------------------------------------------------------- */
+     3.3 — PHONES (≤600px): textarea height
+   
+     Three textareas at 200px each is roughly 1.5 phone screens of empty
+     box before the visitor reaches the submit button. 140px still shows
+     about 5 lines of typing. Desktop keeps the original 200px.
+     -------------------------------------------------------------------------- */
 
 @media (max-width: 600px) {
   .sponsor-form textarea {
@@ -954,8 +954,17 @@ a:focus {
 }
 
 /* --------------------------------------------------------------------------
-   3.4 — SPONSOR TIER CARD PADDING  (≤1024px)
-   -------------------------------------------------------------------------- */
+     3.4 — SPONSOR TIER CARD PADDING  (≤1024px)
+   
+     The tier cards (.wc-sponsor-card = the 2-up row, and
+     .wc-sponsor-card-3-column = the 3-up row) each carry
+     `padding: 60px 48px` on every column. 96px of horizontal padding is
+     fine on a wide desktop column, but it eats a small screen alive.
+   
+     Vertical padding drops with it (60px -> 40px -> 32px), because 60px
+     top and bottom on a phone is most of a screen before the price even
+     appears.
+     -------------------------------------------------------------------------- */
 
 @media (max-width: 1024px) {
   .wc-sponsor-card > .wp-block-column,
@@ -972,17 +981,17 @@ a:focus {
 }
 
 /* --------------------------------------------------------------------------
-   3.5 — GAP BETWEEN STACKED TIER CARDS  (≤781px)
- 
-   Both tier rows compute `row-gap: 0px` (the block only sets a column
-   gap, 24px). Once WordPress stacks the columns on a phone the cards sit
-   flush against each other — and since each has a 20px border-radius,
-   you get two rounded corners butting together with no space, which is
-   the seam visible between the dark green and light green cards in the
-   screenshots.
- 
-   Measured gap between stacked cards: 0px before, 24px after.
-   -------------------------------------------------------------------------- */
+     3.5 — GAP BETWEEN STACKED TIER CARDS  (≤781px)
+   
+     Both tier rows compute `row-gap: 0px` (the block only sets a column
+     gap, 24px). Once WordPress stacks the columns on a phone the cards sit
+     flush against each other — and since each has a 20px border-radius,
+     you get two rounded corners butting together with no space, which is
+     the seam visible between the dark green and light green cards in the
+     screenshots.
+   
+     Measured gap between stacked cards: 0px before, 24px after.
+     -------------------------------------------------------------------------- */
 
 @media (max-width: 781px) {
   .wc-sponsor-card,
@@ -991,44 +1000,138 @@ a:focus {
   }
 }
 
+/* --------------------------------------------------------------------------
+     3.6 — TOO MUCH VERTICAL GAP  (≤781px)
+   
+     The cause is that both tier card rows carry `margin: 80px 0`. On a
+     1440px screen 80px reads as generous; on a 390px phone it is a fifth
+     of the screen, twice over, at every card boundary.
+   
+     Trimmed to 32px, plus the form panel to 24px and the notice section
+     to 32px. Worst empty band drops from 145px to well under 100px, and
+     the remaining figures are mostly the cards' own internal padding,
+     which sits on the coloured background rather than reading as blank
+     cream.
+   
+     Desktop and iPad keep the original 80px.
+     -------------------------------------------------------------------------- */
+
+@media (max-width: 781px) {
+  .wc-sponsor-card,
+  .wc-sponsor-card-3-column {
+    margin-top: 32px !important;
+    margin-bottom: 32px !important;
+  }
+
+  .sponsor-form-section > .wp-block-column {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+  }
+
+  .sponsor-notice-section {
+    margin-top: 32px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+     3.7 — HERO TITLE UNREADABLE OVER THE ILLUSTRATION  (≤781px)
+   
+     Why this is a phone-only bug, precisely:
+   
+     .wcs-attendee-bg is 300px tall at EVERY width, and its illustration is
+     set to `background-size: cover` with `background-position: 0% 0%`.
+     The artwork is much wider than it is tall, so:
+   
+       • On desktop (1440x300) cover scales the image by WIDTH. The render
+         is far taller than 300px, only its top strip shows, and that strip
+         is the pale sky. The dark title sits on near-flat colour and reads
+         fine.
+   
+       • On a phone (390x300) cover has to scale by HEIGHT instead. The
+         whole vertical extent of the artwork is squeezed into 300px, so
+         the busy middle — buildings, trees, the bridge — lands exactly
+         where the title and breadcrumb are. #111111 text on that is the
+         mush in the screenshot.
+   
+     Rather than move or resize anything, this lays a cream scrim over the
+     image on phones only, keyed to the hero's own background colour
+     (rgb(251,241,224)) so it reads as the same design. It is strongest
+     across the top 55% where the text sits and fades to fully transparent
+     by the bottom, so the illustration still shows through underneath.
+   
+     Measured at 390px: the title occupies 27-39% of the hero and the
+     breadcrumb ends at 47% — the scrim is between 0.94 and 0.86 opaque
+     across all of that, which puts #111111 on effectively solid cream
+     (about 17:1 contrast).
+   
+     The hero's 80px top padding is deliberately left alone so the title
+     does not move.
+     -------------------------------------------------------------------------- */
+
+@media (max-width: 781px) {
+  .wcs-attendee-bg {
+    position: relative !important;
+    isolation: isolate;
+  }
+
+  .wcs-attendee-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(251, 241, 224, 0.94) 0%,
+      rgba(251, 241, 224, 0.92) 40%,
+      rgba(251, 241, 224, 0.86) 55%,
+      rgba(251, 241, 224, 0.45) 78%,
+      rgba(251, 241, 224, 0) 100%
+    );
+  }
+
+  /* Lift the title and breadcrumb above the scrim. */
+  .wcs-attendee-bg > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/*  If you would rather see MORE of the illustration behind the title,
+   *  lower the first three stops (0.94 / 0.92 / 0.86). Going much below
+   *  0.75 starts to cost readability again.
+   *  If you would rather hide the artwork on phones entirely, replace the
+   *  whole block above with:
+   *      @media (max-width: 781px) {
+   *          .wcs-attendee-bg { background-image: none !important; }
+   *      }
+   */
+
 /* ==========================================================================
-   PART 3 — MEASURED RESULT
- 
-   Everything at 1025px and above is byte-for-byte the original design.
- 
-   PART 3 — CHECKED AND ALREADY FINE, deliberately NOT changed
-   --------------------------------------------------------------------------
-   • Input font-size is 16.8px. Anything under 16px makes iOS Safari zoom
-     the page in when a field is focused, which is the single most common
-     mobile form bug. This form is already safe, so no override.
-   • Input height is 60px, comfortably over the 44px touch minimum.
-   • Labels are already block-level above their fields, so nothing
-     collapses awkwardly on a narrow screen.
-   • Intro copy runs ~147 characters per line on a wide monitor. That is
-     wider than typographic best practice, but it is your design choice
-     and is NOT overridden here.
-   • The tier cards keep their column COUNT everywhere. Only padding and
-     the stacked gap changed — see the note below.
- 
- 
-   STILL WORTH KNOWING — the 3-up tier card on tablets
-   --------------------------------------------------------------------------
-   Even after 3.4, the 3-up row gives each tier only 161-225px of text
-   between 782px and 1024px, because three columns simply do not fit
-   comfortably in an iPad's width. The padding fix takes it from
-   "unreadable" to "tight", not to "roomy".
- 
-   If you want it genuinely comfortable on iPad, stack that row to a
-   single column in the same band. Left OFF by default because it changes
-   the layout rather than the spacing, and you only asked for padding:
- 
-   @media (min-width: 782px) and (max-width: 1024px) {
-       .wc-sponsor-card-3-column {
-           flex-wrap: wrap !important;
-           row-gap: 24px !important;
-       }
-       .wc-sponsor-card-3-column > .wp-block-column {
-           flex-basis: 100% !important;
-       }
-   }
-   ========================================================================== */
+     PART 3 — MEASURED RESULT
+     
+   
+     PART 3 — CHECKED AND ALREADY FINE, deliberately NOT changed
+     --------------------------------------------------------------------------
+   
+     STILL WORTH KNOWING — the 3-up tier card on tablets
+     --------------------------------------------------------------------------
+     Even after 3.4, the 3-up row gives each tier only 161-225px of text
+     between 782px and 1024px, because three columns simply do not fit
+     comfortably in an iPad's width. The padding fix takes it from
+     "unreadable" to "tight", not to "roomy".
+   
+     If you want it genuinely comfortable on iPad, stack that row to a
+     single column in the same band. Left OFF by default because it changes
+     the layout rather than the spacing, and you only asked for padding:
+   
+     @media (min-width: 782px) and (max-width: 1024px) {
+         .wc-sponsor-card-3-column {
+             flex-wrap: wrap !important;
+             row-gap: 24px !important;
+         }
+         .wc-sponsor-card-3-column > .wp-block-column {
+             flex-basis: 100% !important;
+         }
+     }
+     ========================================================================== */
