@@ -867,7 +867,7 @@ a:focus {
   }
 }
 
-/* ==========================================================================
+/*==========================================================================
    ==========================================================================
    PART 3 — CALL FOR SPONSORS PAGE   (?page_id=389)
    --------------------------------------------------------------------------
@@ -913,13 +913,13 @@ a:focus {
 }
 
 /* --------------------------------------------------------------------------
-     3.2 — PHONES (≤600px): submit button
-   
-     Measured at 81 x 60px — an 81px target at the end of a ten-field form,
-     narrower than every input above it. Full width is the expected pattern
-     for a form on a phone and gives the largest possible tap target.
-     Desktop keeps the original 81px button.
-     -------------------------------------------------------------------------- */
+   3.2 — PHONES (≤600px): submit button
+ 
+   Measured at 81 x 60px — an 81px target at the end of a ten-field form,
+   narrower than every input above it. Full width is the expected pattern
+   for a form on a phone and gives the largest possible tap target.
+   Desktop keeps the original 81px button.
+   -------------------------------------------------------------------------- */
 
 @media (max-width: 600px) {
   .sponsor-form-section > .wp-block-column {
@@ -939,12 +939,12 @@ a:focus {
 }
 
 /* --------------------------------------------------------------------------
-     3.3 — PHONES (≤600px): textarea height
-   
-     Three textareas at 200px each is roughly 1.5 phone screens of empty
-     box before the visitor reaches the submit button. 140px still shows
-     about 5 lines of typing. Desktop keeps the original 200px.
-     -------------------------------------------------------------------------- */
+   3.3 — PHONES (≤600px): textarea height
+ 
+   Three textareas at 200px each is roughly 1.5 phone screens of empty
+   box before the visitor reaches the submit button. 140px still shows
+   about 5 lines of typing. Desktop keeps the original 200px.
+   -------------------------------------------------------------------------- */
 
 @media (max-width: 600px) {
   .sponsor-form textarea {
@@ -953,19 +953,82 @@ a:focus {
   }
 }
 
+/* --------------------------------------------------------------------------
+   3.4 — SPONSOR TIER CARD PADDING  (≤1024px)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .wc-sponsor-card > .wp-block-column,
+  .wc-sponsor-card-3-column > .wp-block-column {
+    padding: 40px 24px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .wc-sponsor-card > .wp-block-column,
+  .wc-sponsor-card-3-column > .wp-block-column {
+    padding: 32px 20px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3.5 — GAP BETWEEN STACKED TIER CARDS  (≤781px)
+ 
+   Both tier rows compute `row-gap: 0px` (the block only sets a column
+   gap, 24px). Once WordPress stacks the columns on a phone the cards sit
+   flush against each other — and since each has a 20px border-radius,
+   you get two rounded corners butting together with no space, which is
+   the seam visible between the dark green and light green cards in the
+   screenshots.
+ 
+   Measured gap between stacked cards: 0px before, 24px after.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 781px) {
+  .wc-sponsor-card,
+  .wc-sponsor-card-3-column {
+    row-gap: 24px !important;
+  }
+}
+
 /* ==========================================================================
-  
-     Everything at 1025px and above is byte-for-byte the original design.
-   
-     PART 3 — CHECKED AND ALREADY FINE, deliberately NOT changed
-     --------------------------------------------------------------------------
-     • Input font-size is 16.8px. Anything under 16px makes iOS Safari zoom
-       the page in when a field is focused, which is the single most common
-       mobile form bug. This form is already safe, so no override.
-     • Input height is 60px, comfortably over the 44px touch minimum.
-     • Labels are already block-level above their fields, so nothing
-       collapses awkwardly on a narrow screen.
-     • Intro copy runs ~147 characters per line on a wide monitor. That is
-       wider than typographic best practice, but it is your design choice
-       and is NOT overridden here.
-     ========================================================================== */
+   PART 3 — MEASURED RESULT
+ 
+   Everything at 1025px and above is byte-for-byte the original design.
+ 
+   PART 3 — CHECKED AND ALREADY FINE, deliberately NOT changed
+   --------------------------------------------------------------------------
+   • Input font-size is 16.8px. Anything under 16px makes iOS Safari zoom
+     the page in when a field is focused, which is the single most common
+     mobile form bug. This form is already safe, so no override.
+   • Input height is 60px, comfortably over the 44px touch minimum.
+   • Labels are already block-level above their fields, so nothing
+     collapses awkwardly on a narrow screen.
+   • Intro copy runs ~147 characters per line on a wide monitor. That is
+     wider than typographic best practice, but it is your design choice
+     and is NOT overridden here.
+   • The tier cards keep their column COUNT everywhere. Only padding and
+     the stacked gap changed — see the note below.
+ 
+ 
+   STILL WORTH KNOWING — the 3-up tier card on tablets
+   --------------------------------------------------------------------------
+   Even after 3.4, the 3-up row gives each tier only 161-225px of text
+   between 782px and 1024px, because three columns simply do not fit
+   comfortably in an iPad's width. The padding fix takes it from
+   "unreadable" to "tight", not to "roomy".
+ 
+   If you want it genuinely comfortable on iPad, stack that row to a
+   single column in the same band. Left OFF by default because it changes
+   the layout rather than the spacing, and you only asked for padding:
+ 
+   @media (min-width: 782px) and (max-width: 1024px) {
+       .wc-sponsor-card-3-column {
+           flex-wrap: wrap !important;
+           row-gap: 24px !important;
+       }
+       .wc-sponsor-card-3-column > .wp-block-column {
+           flex-basis: 100% !important;
+       }
+   }
+   ========================================================================== */
