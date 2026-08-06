@@ -655,21 +655,76 @@ a:focus {
      ========================================================================== */
 
 /* ==========================================================================
-     ==========================================================================
-     PART 2 — ORGANIZERS PAGE
-     --------------------------------------------------------------------------
-     These rules key off the WordCamp Organizers block's own classes, so
-     they activate only on pages containing that block. They will not touch
-     the home page.
-     ==========================================================================
-     ========================================================================== */
+   ==========================================================================
+   PART 2 — ORGANIZERS PAGE
+   --------------------------------------------------------------------------
+   Card design: a rounded photo panel with a dark green name bar beneath
+   it, matching the supplied reference.
+ 
+   Markup the WordCamp Organizers block produces for each of the 29
+   people, across 14 team sections:
+ 
+     ul.wordcamp-post-list.wordcamp-organizers      <- the grid
+       li.wordcamp-post-list__post
+         div.wordcamp-organizers__post              <- THE CARD
+           h3.wordcamp-block__item-title            <- the name
+           div.wordcamp-image__avatar-container     <- the photo
+             img                                    <- Gravatar, 150 x 150
+           div.wordcamp-block__item-content         <- bio (empty here)
+ 
+   Two things drive the CSS:
+ 
+     1. The NAME comes BEFORE the photo in the HTML. The card becomes a
+        flex column and the two are re-ordered with `order`, so the photo
+        sits on top with no HTML edits, and the heading stays first in
+        the source for screen readers.
+ 
+     2. Each team section is its own <ul> with its own column count set
+        in the editor (some 2-up, some 3-up), so card WIDTH would
+        otherwise change depending on how many people are in a team.
+        Section 2.1 fixes that.
+   ==========================================================================
+   ========================================================================== */
 
 /* --------------------------------------------------------------------------
-     2.1  THE GRID
-     `padding-left: 40px` is the browser's default <ul> indent — it has to go
-     or every section sits 40px right of the headings above it.
-     Card gap raised from the block default of 16.8px to 28px so the cards
-     read as separate objects rather than one strip.
+   2.1 — ONE CARD SIZE, WHATEVER THE TEAM SIZE
+ 
+   Before this, a person in a 2-person team got a 628px card while a
+   person in a 3-person team got 415px — same page, same design, two
+   different sizes, purely because of how many colleagues they have.
+ 
+   Capping the card makes every one of the 29 cards identical. Change
+   the one value below to resize every card on the page.
+ 
+   IMPORTANT: the grid tracks are sized to this value too (see 2.2), not
+   just the card. An earlier version capped only the card and left it
+   centred inside the block's original 628px column, which parked two
+   cards ~780px apart with a chasm between them. Sizing the TRACKS is
+   what keeps the cards next to each other.
+ 
+   It also keeps the photos sharp — see 2.4.
+   -------------------------------------------------------------------------- */
+
+.wordcamp-organizers {
+  --wc-organizer-card: 240px;
+}
+
+/* --------------------------------------------------------------------------
+     2.2 — THE GRID AND THE CARD
+   
+     `repeat(auto-fit, <card>)` builds as many card-width tracks as the row
+     can hold, and `auto-fit` collapses the ones a section does not use, so
+     a 2-person team gets exactly 2 tracks and a 3-person team gets 3.
+     `justify-content: center` then centres that group on the page.
+   
+     The upshot: cards always sit a clean 28px apart, whatever the team
+     size, and the block's own column setting no longer decides how wide
+     anyone's card is.
+   
+     `padding-left: 40px` is the browser's default <ul> indent — it has to
+     go or every section sits 40px right of the heading above it.
+     The card itself carries no background or border; the photo panel and
+     the name bar are the two visible pieces.
      -------------------------------------------------------------------------- */
 
 .entry-content ul.wordcamp-post-list.wordcamp-organizers {
@@ -677,193 +732,145 @@ a:focus {
   padding-left: 0 !important;
   padding-right: 0 !important;
   gap: 28px !important;
-  align-items: stretch; /* every card in a row matches the tallest */
+  margin: 0 0 48px !important;
+  grid-template-columns: repeat(auto-fit, var(--wc-organizer-card)) !important;
+  justify-content: center !important;
+  align-items: stretch;
 }
-
-/* --------------------------------------------------------------------------
-     2.2  THE CARD
-     White surface on the page's #F9F9F9 background, so the shadow does the
-     separating rather than a heavy border. Two-layer shadow: a tight 1px
-     one for the edge, a wide soft one for lift.
-     `height: 100%` + the `align-items: stretch` above is what keeps two
-     cards side by side the same height when one name wraps to two lines.
-     -------------------------------------------------------------------------- */
 
 .wordcamp-organizers .wordcamp-post-list__post {
   list-style: none !important;
-  background: #ffffff;
-  border: 1px solid rgba(16, 24, 40, 0.06);
-  border-radius: 20px;
-  padding: 48px 28px;
-  text-align: center;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
   height: 100%;
   box-sizing: border-box;
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04),
-    0 12px 28px -8px rgba(16, 24, 40, 0.1);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Gentle lift on hover. Delete this block if you want the cards static. */
-.wordcamp-organizers .wordcamp-post-list__post:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 2px 4px rgba(16, 24, 40, 0.05),
-    0 22px 44px -10px rgba(16, 24, 40, 0.16);
 }
 
 /* --------------------------------------------------------------------------
-     2.3  PHOTO ABOVE NAME
-     The block prints the name first, so without this the card reads
-     name-then-photo. Flex + `order` flips them visually while leaving the
-     HTML (and the heading order for screen readers) untouched.
+     2.3 — PHOTO ABOVE NAME
+   
+     The block prints the name first, so without the `order` swap the card
+     reads name-then-photo.
      -------------------------------------------------------------------------- */
 
 .wordcamp-organizers .wordcamp-organizers__post {
   display: flex !important;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 22px;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 10px;
   height: 100%;
+  max-width: var(--wc-organizer-card);
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .wordcamp-organizers .wordcamp-image__avatar-container {
   order: 1; /* photo first */
   margin: 0 !important;
   line-height: 0; /* kills the inline-image descender gap */
+  border: 1px solid rgba(22, 84, 47, 0.35);
+  border-radius: 20px;
+  overflow: hidden; /* clips the photo to the rounded corners */
+  background: #ffffff;
 }
 
 .wordcamp-organizers .wordcamp-block__item-title {
-  order: 2; /* name second */
-  margin: 0 !important;
+  order: 2; /* name bar second */
 }
 
-.wordcamp-organizers .wordcamp-block__item-content {
-  order: 3; /* bio last, if one is ever added */
-  margin: 0 !important;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  opacity: 0.72;
-  text-align: center;
-}
-
-/* On this site the bio div is present but empty on every organizer. Left
-     in the flow it still collects the 22px flex gap and made those cards
-     22px taller than their neighbours. */
+/* The bio div is present but empty on every organizer. Left in the flow
+     it still collects the flex gap and pushes the name bar down. */
 .wordcamp-organizers .wordcamp-block__item-content:empty {
   display: none !important;
 }
 
 /* --------------------------------------------------------------------------
-     2.4  THE PHOTO
-     Source images are 150 × 150 squares, so 150px is native size — no
-     upscaling, stays sharp. `object-fit: cover` keeps faces from squashing
-     if a non-square image is ever uploaded.
+     2.4 — THE PHOTO (shown whole, not cropped to a circle)
+   
+     `aspect-ratio: 1/1` with `object-fit: cover` gives the square panel in
+     the reference. The corner rounding lives on the container, not the
+     image, so the photo is clipped by it rather than being cut into a
+     shape itself.
+   
+     SHARPNESS — worth reading:
+     The block requests each avatar from Gravatar at `s=150`, so the source
+     file is only 150 x 150. Blown up to a full 628px column that is a
+     4.2x upscale, which is the blur you saw. At the 240px card set in 2.1
+     it is 1.6x, which reads as clean.
+   
+     Gravatar WILL serve these same avatars larger — I checked, and
+     `s=300` and `s=400` both return real 300px and 400px images. CSS
+     cannot change an image's src, so to go bigger AND sharp:
+   
+         raise the Avatar Size setting on each Organizers block in the
+         editor sidebar (150 -> 400), then increase --wc-organizer-card
+         in 2.1 to taste.
+   
+     Until then, leave the card at 240px and the photos stay crisp.
      -------------------------------------------------------------------------- */
 
 .wordcamp-organizers .wordcamp-image__avatar-container img {
-  width: 150px !important;
-  height: 150px !important;
-  border-radius: 50% !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  margin: 0 auto;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
 }
 
 /* --------------------------------------------------------------------------
-     2.5  THE NAME
-     Block default is 29.6px at weight 400. Dropped to 24px and bolded so it
-     still reads as a card label at 3-up, where a card is only ~415px wide.
+     2.5 — THE NAME BAR
+   
+     Dark green panel under the photo, white text, centred. #16542f is the
+     theme's own `custom-primary` colour, the same green as the section
+     headings, so nothing new is introduced to the palette.
+     White on #16542f measures about 9.4:1 — WCAG AAA.
      -------------------------------------------------------------------------- */
 
-.wordcamp-organizers .wordcamp-organizers__title {
-  font-size: 1.5rem !important;
-  line-height: 1.3;
-  font-weight: 700 !important;
+.wordcamp-organizers .wordcamp-block__item-title {
+  margin: 0 !important;
+  background: #16542f;
+  color: #ffffff !important;
+  border-radius: 12px;
+  padding: 12px 14px;
   text-align: center !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  line-height: 1.3;
+  min-height: 0 !important;
+  display: block !important;
 }
 
-/* Only applies if organizer names are ever linked to profile pages. */
-.wordcamp-organizers .wordcamp-organizers__title a {
+.wordcamp-organizers .wordcamp-block__item-title a {
   color: inherit;
   text-decoration: none;
 }
 
 /* --------------------------------------------------------------------------
-     2.6  TABLET — 1024px and below
-     Every section drops to 2 across. The 3-up sections would otherwise give
-     ~300px cards on an iPad, which crowds a 150px photo.
-     Desktop above 1024px keeps whatever each block is set to in the editor.
-     -------------------------------------------------------------------------- */
-
-@media (max-width: 1024px) {
-  .entry-content ul.wordcamp-post-list.wordcamp-organizers {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
-     2.7  PHONE — 600px and below
-     Single column, tighter padding, smaller photo and name so a card is
-     about 240px tall instead of 318px. With 29 organizers that keeps the
-     page from becoming an endless scroll.
+     2.6 — PHONES
+   
+     No tablet rule is needed: auto-fit already drops from 3 cards a row to
+     2 to 1 on its own as the viewport narrows, because the track width is
+     fixed. Only the card size and spacing are trimmed for phones.
      -------------------------------------------------------------------------- */
 
 @media (max-width: 600px) {
+  .wordcamp-organizers {
+    --wc-organizer-card: 220px;
+  }
+
   .entry-content ul.wordcamp-post-list.wordcamp-organizers {
-    grid-template-columns: 1fr !important;
     gap: 20px !important;
-    margin-bottom: 40px !important;
   }
 
-  .wordcamp-organizers .wordcamp-post-list__post {
-    padding: 36px 20px;
-    border-radius: 16px;
-  }
-
-  .wordcamp-organizers .wordcamp-image__avatar-container img {
-    width: 120px !important;
-    height: 120px !important;
-  }
-
-  .wordcamp-organizers .wordcamp-organizers__title {
-    font-size: 1.25rem !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
-     2.8  UNIFORM CARD HEIGHTS (tablet + desktop)
-  
-     Without this the page went ragged wherever a name wrapped to two lines.
-     Measured at 768px before the fix: the 3-person sections rendered
-     [349, 349] on the first row and [318] on the orphan below it — cards in
-     the same section, visibly different heights.
-  
-     Two rules together make every card on the page identical:
-       • grid-auto-rows: 1fr  → all ROWS in a section match, not just the
-         cards within a single row (CSS grid only equalises within a row by
-         default, which is why a 3-up section at 2 columns went ragged).
-       • min-height: 2.6em on the name → reserves two lines whether the name
-         needs them or not, so "Ishika Mahjabin" and "Minhajul Arifin
-         Shovon" produce the same card. The flex centring keeps a one-line
-         name optically centred in that reserved space.
-  
-     Phones are excluded on purpose: cards are stacked single-column there,
-     so nothing sits side by side to compare against and reserving a second
-     line would just add dead space to all 29 cards.
-  
-     After: every card is 349px at 768 / 834 / 1024 / 1440px.
-     -------------------------------------------------------------------------- */
-
-@media (min-width: 601px) {
-  .entry-content ul.wordcamp-post-list.wordcamp-organizers {
-    grid-auto-rows: 1fr;
-  }
-
-  .wordcamp-organizers .wordcamp-organizers__title {
-    min-height: 2.6em; /* 2 lines at line-height 1.3 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .wordcamp-organizers .wordcamp-block__item-title {
+    font-size: 0.9375rem !important;
+    padding: 10px 12px;
   }
 }
 
