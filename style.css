@@ -6,15 +6,9 @@ a:focus {
 .text-stoke-hero {
   color: #d91f24;
 
-  text-shadow:
-    -2px -2px 0 #F1F8F2,
-     2px -2px 0 #F1F8F2,
-    -2px  2px 0 #F1F8F2,
-     2px  2px 0 #F1F8F2,
-    -2px  0    0 #F1F8F2,
-     2px  0    0 #F1F8F2,
-     0   -2px 0 #F1F8F2,
-     0    2px 0 #F1F8F2;
+  text-shadow: -2px -2px 0 #f1f8f2, 2px -2px 0 #f1f8f2, -2px 2px 0 #f1f8f2,
+    2px 2px 0 #f1f8f2, -2px 0 0 #f1f8f2, 2px 0 0 #f1f8f2, 0 -2px 0 #f1f8f2,
+    0 2px 0 #f1f8f2;
 }
 
 .pill-button {
@@ -874,30 +868,165 @@ a:focus {
 }
 
 /* ==========================================================================
-     PART 2 — MEASURED RESULT
-     --------------------------------------------------------------------------
-       width           cols   card size     photo   overflow
-       1920px            2     626 × 349    150px      0
-       1440px  desktop   2     602 × 349    150px      0
-       1366px  iPad LS   2     565 × 349    150px      0
-       1180px  iPad LS   2     482 × 349    150px      0
-       1024px  iPad Pro  2     416 × 349    150px      0
-        834px  iPad Pro  2     336 × 349    150px      0
-        820px  iPad Air  2     330 × 349    150px      0
-        768px            2     309 × 349    150px      0
-        600px            1     504 × 259    120px      0
-        430px            1     361 × 259    120px      0
-        390px  iPhone    1     328 × 242    120px      0
-        360px            1     302 × 242    120px      0
-        320px  small     1     269 × 242    120px      0
-  
-     (At 1440px the 3-up sections render 3 across as set in the editor; the
-     "cols" column above tracks the first section, which is 2-up.)
-  
-     • Horizontal overflow: 0 elements at every width from 320px to 1920px.
-     • Photo above name: 29 of 29 cards.
-     • Card heights: identical across every section at 601px and up.
-     • Section headings scale on their own (22.2px @320 → 29.6px @1366+),
-       and the page padding is already fluid (31px @390 → 104px @1440),
-       so neither needed a rule.
-     ========================================================================== */
+   ==========================================================================
+   PART 3 — CALL FOR SPONSORS PAGE   (?page_id=389)
+   --------------------------------------------------------------------------
+   Page structure, top to bottom:
+       .sponsor-welcome-text     intro copy + an 8-item list
+       .sponsor-form-section     Jetpack contact form (.sponsor-form)
+                                 6 inputs, 1 select, 3 textareas
+       .sponsor-notice-section   closing note
+       .wc_venu_section          <- already handled by PART 1
+       .wc_sponsors_section      <- already handled by PART 1
+ 
+   Verified live at 834px: the venue columns were already stacking and the
+   sponsor grid was already at 2 columns, both from PART 1. Nothing here
+   duplicates those rules.
+ 
+   There is NO horizontal overflow on this page at any width from 320px to
+   1920px, before or after these rules. Every problem below is a
+   proportion problem, not a breakage problem — which is why it shows up
+   worst on DESKTOP rather than on phones.
+   ==========================================================================
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   3.1 — READING WIDTH  (the main desktop issue)
+ 
+   The intro copy ran the full content width, which measured:
+       1920px viewport -> 1232px of text -> ~147 characters per line
+       1440px viewport -> 1232px of text -> ~147 characters per line
+ 
+   Comfortable reading is 45-75 characters; past about 90 the eye loses
+   its place jumping back to the start of the next line. 680px lands at
+   ~81ch at the site's 16.8px body size, which keeps the paragraphs
+   looking deliberate without making the column feel narrow.
+ 
+   No media query needed: 680px only takes effect once there is more than
+   680px to give, so phones and small tablets are untouched.
+   -------------------------------------------------------------------------- */
+
+.sponsor-welcome-text > .wp-block-column,
+.sponsor-notice-section > .wp-block-column {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --------------------------------------------------------------------------
+      3.2 — FORM WIDTH
+    
+      Same problem, worse: every field stretched the full 1232px, so the
+      "Name" box was over a metre wide on a large monitor. A form field that
+      much wider than its content reads as broken rather than generous, and
+      the eye has to travel the whole width to check what it typed.
+    
+      720px is a little wider than the text column on purpose — form fields
+      carry labels and placeholder text and can take the extra room.
+      -------------------------------------------------------------------------- */
+
+.sponsor-form {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --------------------------------------------------------------------------
+      3.3 — FORM PANEL PADDING
+    
+      The form column computed padding-top / padding-bottom of 0px, so the
+      form sat flush against the sections above and below it with nothing
+      separating them.
+      -------------------------------------------------------------------------- */
+
+.sponsor-form-section > .wp-block-column {
+  padding-top: 48px !important;
+  padding-bottom: 48px !important;
+}
+
+/* --------------------------------------------------------------------------
+      3.4 — SUBMIT BUTTON
+    
+      Measured at 81 x 60px — an 81px target at the end of a ten-field form,
+      narrower than every input above it. 200px gives it the weight of a
+      primary action; 52px min-height keeps it above the 44px accessibility
+      minimum for touch.
+      -------------------------------------------------------------------------- */
+
+.sponsor-form .wp-block-button.form-button-submit .wp-block-button__link {
+  min-width: 200px;
+  min-height: 52px;
+}
+
+/* --------------------------------------------------------------------------
+      3.5 — PHONES (600px and below)
+    
+      Three textareas at 200px each is roughly 1.5 phone screens of empty
+      box before the visitor reaches the submit button. 140px still shows
+      about 5 lines of typing.
+    
+      The submit button goes full width, which is the expected pattern for a
+      form on a phone and gives the largest possible tap target.
+      -------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .sponsor-form-section > .wp-block-column {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
+  .sponsor-form textarea {
+    min-height: 140px !important;
+    height: 140px !important;
+  }
+
+  .sponsor-form .wp-block-button.form-button-submit {
+    width: 100%;
+  }
+
+  .sponsor-form .wp-block-button.form-button-submit .wp-block-button__link {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* ==========================================================================
+    
+      PART 3 — CHECKED AND ALREADY FINE, deliberately NOT changed
+      --------------------------------------------------------------------------
+      • Input font-size is 16.8px. Anything under 16px makes iOS Safari zoom
+        the page in when a field is focused, which is the single most common
+        mobile form bug. This form is already safe, so no override.
+      • Input height is 60px, comfortably over the 44px touch minimum.
+      • Labels are already block-level above their fields, so nothing
+        collapses awkwardly on a narrow screen.
+      • No horizontal overflow at any width from 320px to 1920px, before or
+        after these rules.
+    
+    
+      OPTIONAL — two-column form on desktop
+      --------------------------------------------------------------------------
+      The form is one field per row. If you would rather pair the short
+      fields side by side above 782px, uncomment this. It is left off by
+      default because the page has two generic .wp-block-jetpack-field-text
+      wrappers and pairing is done by position, so re-ordering fields in the
+      editor would change which two sit together.
+    
+      @media (min-width: 782px) {
+          .sponsor-form {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 0 20px;
+          }
+          .sponsor-form > .wp-block-jetpack-field-name,
+          .sponsor-form > .wp-block-jetpack-field-email,
+          .sponsor-form > .wp-block-jetpack-field-url,
+          .sponsor-form > .wp-block-jetpack-field-select {
+              flex: 1 1 calc(50% - 10px);
+          }
+          .sponsor-form > .wp-block-jetpack-field-textarea,
+          .sponsor-form > .wp-block-button {
+              flex: 1 1 100%;
+          }
+      }
+      ========================================================================== */
