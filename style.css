@@ -669,7 +669,6 @@ a:focus {
   padding-left: 0 !important;
   padding-right: 0 !important;
   gap: 28px !important;
-  margin: 0 0 48px !important;
   grid-template-columns: repeat(auto-fit, 240px) !important;
   justify-content: center !important;
   align-items: stretch;
