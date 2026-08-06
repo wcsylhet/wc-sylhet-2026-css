@@ -4,11 +4,17 @@ a:focus {
   outline: none !important;
 }
 .text-stoke-hero {
-  color: #F1F8F2;
+  color: #d91f24;
 
-  text-shadow: -2px -2px 0 #fbf1e0, 2px -2px 0 #fbf1e0, -2px 2px 0 #fbf1e0,
-    2px 2px 0 #fbf1e0, -2px 0 0 #fbf1e0, 2px 0 0 #fbf1e0, 0 -2px 0 #fbf1e0,
-    0 2px 0 #fbf1e0;
+  text-shadow:
+    -2px -2px 0 #F1F8F2,
+     2px -2px 0 #F1F8F2,
+    -2px  2px 0 #F1F8F2,
+     2px  2px 0 #F1F8F2,
+    -2px  0    0 #F1F8F2,
+     2px  0    0 #F1F8F2,
+     0   -2px 0 #F1F8F2,
+     0    2px 0 #F1F8F2;
 }
 
 .pill-button {
