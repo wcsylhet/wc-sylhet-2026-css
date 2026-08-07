@@ -1204,3 +1204,11 @@ a:focus {
  *  Exclude one specific page: add a body-class guard, e.g.
  *      body:not(.page-id-12) .wcs-attendee-bg::before { content: none; }
  */
+
+ .sd-content ul li a {
+    padding: 8px 16px !important;
+    background: transparent !important;
+    border: 1px solid #0D3A1F !important;
+    box-shadow: none !important;
+    border-radius: 20px !important;
+}
