@@ -1107,6 +1107,7 @@ a:focus {
   .wcs-attendee-bg {
     position: relative !important;
     isolation: isolate;
+    height: 140px;
   }
 
   .wcs-attendee-bg::before {
@@ -1376,20 +1377,18 @@ a:focus {
 ========================================================= */
 
 body.single-post .entry-content.wp-block-post-content {
-    --post-primary: var(--wp--preset--color--custom-primary);
-    --post-accent: var(--wp--preset--color--custom-secondary-accent);
+  --post-primary: var(--wp--preset--color--custom-primary);
+  --post-accent: var(--wp--preset--color--custom-secondary-accent);
 }
-
 
 /* =========================================================
    PARAGRAPHS
 ========================================================= */
 
 body.single-post .entry-content.wp-block-post-content > p {
-    margin-top: 0 !important;
-    margin-bottom: 28px !important;
+  margin-top: 0 !important;
+  margin-bottom: 28px !important;
 }
-
 
 /* =========================================================
    HEADINGS
@@ -1402,43 +1401,41 @@ body.single-post .entry-content.wp-block-post-content > p {
 
 body.single-post .entry-content.wp-block-post-content > h2,
 body.single-post .entry-content.wp-block-post-content .wp-block-heading {
-    color: var(--post-primary) !important;
+  color: var(--post-primary) !important;
 }
 
 body.single-post .entry-content.wp-block-post-content > h2 {
-    position: relative !important;
+  position: relative !important;
 
-    margin-top: 56px !important;
-    margin-bottom: 24px !important;
-    padding-top: 27px !important;
+  margin-top: 56px !important;
+  margin-bottom: 24px !important;
+  padding-top: 27px !important;
 }
 
 body.single-post .entry-content.wp-block-post-content > h2::before {
-    content: "" !important;
+  content: "" !important;
 
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
 
-    width: 100% !important;
-    height: 1px !important;
+  width: 100% !important;
+  height: 1px !important;
 
-    background: var(--post-accent) !important;
+  background: var(--post-accent) !important;
 }
-
 
 /* Other headings */
 
 body.single-post .entry-content.wp-block-post-content h3 {
-    margin-top: 48px !important;
-    margin-bottom: 20px !important;
+  margin-top: 48px !important;
+  margin-bottom: 20px !important;
 }
 
 body.single-post .entry-content.wp-block-post-content h4 {
-    margin-top: 40px !important;
-    margin-bottom: 16px !important;
+  margin-top: 40px !important;
+  margin-bottom: 16px !important;
 }
-
 
 /* =========================================================
    BLOCKQUOTE
@@ -1453,184 +1450,163 @@ body.single-post .entry-content.wp-block-post-content h4 {
  */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-quote {
-    margin: 48px 0 !important;
-    padding: 20px 28px !important;
+  margin: 48px 0 !important;
+  padding: 20px 28px !important;
 
-    border: 0 !important;
-    border-left: 5px solid var(--post-primary) !important;
+  border: 0 !important;
+  border-left: 5px solid var(--post-primary) !important;
 
-    border-radius: 0 12px 12px 0 !important;
+  border-radius: 0 12px 12px 0 !important;
 
-    background: color-mix(
-        in srgb,
-        var(--post-accent) 35%,
-        #fff 65%
-    ) !important;
+  background: color-mix(in srgb, var(--post-accent) 35%, #fff 65%) !important;
 
-    color: var(--post-primary) !important;
+  color: var(--post-primary) !important;
 }
-
 
 /* Quote text */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-quote p {
-    margin: 0 !important;
+  margin: 0 !important;
 }
-
 
 /* Quote citation */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-quote cite {
-    display: block !important;
+  display: block !important;
 
-    margin-top: 12px !important;
+  margin-top: 12px !important;
 
-    color: #e33222 !important;
+  color: #e33222 !important;
 
-    font-style: normal !important;
+  font-style: normal !important;
 }
-
 
 /* Gutenberg quote citation spacing */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-quote p + cite {
-    margin-top: 12px !important;
+  margin-top: 12px !important;
 }
-
 
 /* =========================================================
    IMAGES
 ========================================================= */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-image {
-    margin-top: 40px !important;
-    margin-bottom: 40px !important;
+  margin-top: 40px !important;
+  margin-bottom: 40px !important;
 }
 
 body.single-post .entry-content.wp-block-post-content .wp-block-image img {
-    display: block !important;
+  display: block !important;
 
-    width: 100% !important;
-    height: auto !important;
+  width: 100% !important;
+  height: auto !important;
 
-    border-radius: 10px !important;
+  border-radius: 10px !important;
 }
-
 
 /* Image caption */
 
-body.single-post .entry-content.wp-block-post-content .wp-block-image figcaption {
-    margin-top: 10px !important;
+body.single-post
+  .entry-content.wp-block-post-content
+  .wp-block-image
+  figcaption {
+  margin-top: 10px !important;
 
-    color: var(--post-primary) !important;
+  color: var(--post-primary) !important;
 
-    opacity: 0.55 !important;
+  opacity: 0.55 !important;
 }
-
 
 /* =========================================================
    GALLERY
 ========================================================= */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-gallery {
-    margin-top: 40px !important;
-    margin-bottom: 40px !important;
+  margin-top: 40px !important;
+  margin-bottom: 40px !important;
 }
 
 body.single-post .entry-content.wp-block-post-content .wp-block-gallery img {
-    border-radius: 10px !important;
+  border-radius: 10px !important;
 }
-
 
 /* =========================================================
    TABLE
 ========================================================= */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-table {
-    width: 100% !important;
+  width: 100% !important;
 
-    margin-top: 40px !important;
-    margin-bottom: 40px !important;
+  margin-top: 40px !important;
+  margin-bottom: 40px !important;
 
-    overflow-x: auto !important;
+  overflow-x: auto !important;
 }
-
 
 /* Table */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-table table {
-    width: 100% !important;
+  width: 100% !important;
 
-    border-collapse: separate !important;
-    border-spacing: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
 
-    overflow: hidden !important;
+  overflow: hidden !important;
 
-    border: 1px solid color-mix(
-        in srgb,
-        var(--post-primary) 18%,
-        transparent
-    ) !important;
+  border: 1px solid color-mix(in srgb, var(--post-primary) 18%, transparent) !important;
 
-    border-radius: 10px !important;
+  border-radius: 10px !important;
 }
-
 
 /* Cells */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-table th,
 body.single-post .entry-content.wp-block-post-content .wp-block-table td {
-    padding: 14px 16px !important;
+  padding: 14px 16px !important;
 
-    border: 0 !important;
+  border: 0 !important;
 
-    border-bottom: 1px solid color-mix(
-        in srgb,
-        var(--post-primary) 12%,
-        transparent
-    ) !important;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--post-primary) 12%, transparent) !important;
 
-    text-align: left !important;
+  text-align: left !important;
 }
-
 
 /* Header */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-table thead th {
-    background: var(--post-primary) !important;
+  background: var(--post-primary) !important;
 
-    color: #fff !important;
+  color: #fff !important;
 
-    border-bottom: 0 !important;
+  border-bottom: 0 !important;
 }
-
 
 /* Last row */
 
 body.single-post
-.entry-content.wp-block-post-content
-.wp-block-table
-tbody
-tr:last-child
-td {
-    border-bottom: 0 !important;
+  .entry-content.wp-block-post-content
+  .wp-block-table
+  tbody
+  tr:last-child
+  td {
+  border-bottom: 0 !important;
 }
-
 
 /* Zebra rows */
 
 body.single-post
-.entry-content.wp-block-post-content
-.wp-block-table
-tbody
-tr:nth-child(even) {
-    background: color-mix(
-        in srgb,
-        var(--post-primary) 4%,
-        transparent
-    ) !important;
+  .entry-content.wp-block-post-content
+  .wp-block-table
+  tbody
+  tr:nth-child(even) {
+  background: color-mix(
+    in srgb,
+    var(--post-primary) 4%,
+    transparent
+  ) !important;
 }
-
 
 /* =========================================================
    LISTS
@@ -1638,128 +1614,115 @@ tr:nth-child(even) {
 
 body.single-post .entry-content.wp-block-post-content ul,
 body.single-post .entry-content.wp-block-post-content ol {
-    margin-top: 24px !important;
-    margin-bottom: 32px !important;
+  margin-top: 24px !important;
+  margin-bottom: 32px !important;
 }
 
 body.single-post .entry-content.wp-block-post-content li {
-    margin-bottom: 10px !important;
+  margin-bottom: 10px !important;
 }
-
 
 /* =========================================================
    SEPARATOR
 ========================================================= */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-separator {
-    margin: 48px 0 !important;
+  margin: 48px 0 !important;
 
-    border: 0 !important;
+  border: 0 !important;
 
-    border-top: 1px solid var(--post-accent) !important;
+  border-top: 1px solid var(--post-accent) !important;
 }
-
 
 /* =========================================================
    SINGLE POST CONTENT LINKS
 ========================================================= */
 
 body.single-post .entry-content.wp-block-post-content a {
-    color: var(--wp--preset--color--custom-secondary-accent) !important;
+  color: var(--wp--preset--color--custom-secondary-accent) !important;
 }
 
 body.single-post .entry-content.wp-block-post-content a:hover {
-    color: var(--wp--preset--color--custom-primary) !important;
+  color: var(--wp--preset--color--custom-primary) !important;
 }
-
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 640px) {
+  body.single-post .entry-content.wp-block-post-content {
+    max-width: none !important;
+  }
 
-    body.single-post .entry-content.wp-block-post-content {
-        max-width: none !important;
-    }
+  /* Headings */
 
+  body.single-post .entry-content.wp-block-post-content > h2 {
+    margin-top: 44px !important;
+    padding-top: 22px !important;
+  }
 
-    /* Headings */
+  /* Quote */
 
-    body.single-post .entry-content.wp-block-post-content > h2 {
-        margin-top: 44px !important;
-        padding-top: 22px !important;
-    }
+  body.single-post .entry-content.wp-block-post-content .wp-block-quote {
+    margin: 40px 0 !important;
+    padding: 18px 20px !important;
+  }
 
+  /* Images */
 
-    /* Quote */
+  body.single-post .entry-content.wp-block-post-content .wp-block-image {
+    margin-top: 32px !important;
+    margin-bottom: 32px !important;
+  }
 
-    body.single-post .entry-content.wp-block-post-content .wp-block-quote {
-        margin: 40px 0 !important;
-        padding: 18px 20px !important;
-    }
+  /* Table */
 
-
-    /* Images */
-
-    body.single-post .entry-content.wp-block-post-content .wp-block-image {
-        margin-top: 32px !important;
-        margin-bottom: 32px !important;
-    }
-
-
-    /* Table */
-
-    body.single-post .entry-content.wp-block-post-content .wp-block-table {
-        overflow-x: auto !important;
-    }
+  body.single-post .entry-content.wp-block-post-content .wp-block-table {
+    overflow-x: auto !important;
+  }
 }
-
 
 /* =========================================================
    Contact Form
 ========================================================= */
 
 .contact-form {
-    width: 100% !important;
-    max-width: 650px !important;
-    margin: 0 auto !important;
+  width: 100% !important;
+  max-width: 650px !important;
+  margin: 0 auto !important;
 
-    font-family: var(--wp--preset--font-family--geist) !important;
+  font-family: var(--wp--preset--font-family--geist) !important;
 }
-
 
 /* =========================================================
    FORM ROW
 ========================================================= */
 
 .contact-form .grunion-field-wrap {
-    margin: 0 0 24px !important;
+  margin: 0 0 24px !important;
 }
-
 
 /* =========================================================
    LABEL
 ========================================================= */
 
 .contact-form label {
-    display: block !important;
+  display: block !important;
 
-    margin: 0 0 8px !important;
+  margin: 0 0 8px !important;
 
-    color: var(--wp--preset--color--custom-primary) !important;
+  color: var(--wp--preset--color--custom-primary) !important;
 
-    font-family: var(--wp--preset--font-family--geist) !important;
-    font-weight: 500 !important;
+  font-family: var(--wp--preset--font-family--geist) !important;
+  font-weight: 500 !important;
 }
-
 
 /* Required text */
 
 .contact-form label .grunion-field-label-span {
-    color: var(--wp--preset--color--custom-primary) !important;
+  color: var(--wp--preset--color--custom-primary) !important;
 }
-
 
 /* =========================================================
    INPUTS / TEXTAREA
@@ -1773,48 +1736,45 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 .contact-form input[type="date"],
 .contact-form textarea,
 .contact-form select {
-    display: block !important;
+  display: block !important;
 
-    width: 100% !important;
-    max-width: 100% !important;
+  width: 100% !important;
+  max-width: 100% !important;
 
-    margin: 0 !important;
-    padding: 14px 16px !important;
+  margin: 0 !important;
+  padding: 14px 16px !important;
 
-    box-sizing: border-box !important;
+  box-sizing: border-box !important;
 
-    border: 1px solid color-mix(
-        in srgb,
-        var(--wp--preset--color--custom-primary) 25%,
-        transparent
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--wp--preset--color--custom-primary) 25%,
+      transparent
     ) !important;
 
-    border-radius: 6px !important;
+  border-radius: 6px !important;
 
-    background: transparent !important;
+  background: transparent !important;
 
-    color: var(--wp--preset--color--custom-primary) !important;
+  color: var(--wp--preset--color--custom-primary) !important;
 
-    font-family: var(--wp--preset--font-family--geist) !important;
+  font-family: var(--wp--preset--font-family--geist) !important;
 
-    outline: none !important;
+  outline: none !important;
 
-    transition:
-        border-color 0.2s ease,
-        background-color 0.2s ease,
-        box-shadow 0.2s ease !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease,
+    box-shadow 0.2s ease !important;
 }
-
 
 /* =========================================================
    TEXTAREA
 ========================================================= */
 
 .contact-form textarea {
-    min-height: 180px !important;
-    resize: vertical !important;
+  min-height: 180px !important;
+  resize: vertical !important;
 }
-
 
 /* =========================================================
    PLACEHOLDER
@@ -1822,10 +1782,9 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-    color: var(--wp--preset--color--custom-primary) !important;
-    opacity: 0.45 !important;
+  color: var(--wp--preset--color--custom-primary) !important;
+  opacity: 0.45 !important;
 }
-
 
 /* =========================================================
    FOCUS
@@ -1839,19 +1798,17 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 .contact-form input[type="date"]:focus,
 .contact-form textarea:focus,
 .contact-form select:focus {
-    border-color: var(
-        --wp--preset--color--custom-secondary-accent
-    ) !important;
+  border-color: var(--wp--preset--color--custom-secondary-accent) !important;
 
-    background: rgba(255, 255, 255, 0.25) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
 
-    box-shadow: 0 0 0 2px color-mix(
-        in srgb,
-        var(--wp--preset--color--custom-secondary-accent) 18%,
-        transparent
+  box-shadow: 0 0 0 2px
+    color-mix(
+      in srgb,
+      var(--wp--preset--color--custom-secondary-accent) 18%,
+      transparent
     ) !important;
 }
-
 
 /* =========================================================
    SUBMIT BUTTON
@@ -1859,56 +1816,44 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 .contact-form input[type="submit"],
 .contact-form button[type="submit"] {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-    min-height: 48px !important;
+  min-height: 48px !important;
 
-    margin-top: 4px !important;
-    padding: 0 24px !important;
+  margin-top: 4px !important;
+  padding: 0 24px !important;
 
-    border: 1px solid var(
-        --wp--preset--color--custom-primary
-    ) !important;
+  border: 1px solid var(--wp--preset--color--custom-primary) !important;
 
-    border-radius: 999px !important;
+  border-radius: 999px !important;
 
-    background: var(
-        --wp--preset--color--custom-primary
-    ) !important;
+  background: var(--wp--preset--color--custom-primary) !important;
 
-    color: #fff !important;
+  color: #fff !important;
 
-    font-family: var(--wp--preset--font-family--geist) !important;
-    font-weight: 500 !important;
+  font-family: var(--wp--preset--font-family--geist) !important;
+  font-weight: 500 !important;
 
-    cursor: pointer !important;
+  cursor: pointer !important;
 
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease !important;
 }
-
 
 /* Submit hover */
 
 .contact-form input[type="submit"]:hover,
 .contact-form button[type="submit"]:hover {
-    background: var(
-        --wp--preset--color--custom-secondary-accent
-    ) !important;
+  background: var(--wp--preset--color--custom-secondary-accent) !important;
 
-    border-color: var(
-        --wp--preset--color--custom-secondary-accent
-    ) !important;
+  border-color: var(--wp--preset--color--custom-secondary-accent) !important;
 
-    color: #fff !important;
+  color: #fff !important;
 
-    transform: translateY(-1px) !important;
+  transform: translateY(-1px) !important;
 }
-
 
 /* =========================================================
    CHECKBOX / RADIO
@@ -1916,10 +1861,9 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 .contact-form input[type="checkbox"],
 .contact-form input[type="radio"] {
-    width: auto !important;
-    margin-right: 8px !important;
+  width: auto !important;
+  margin-right: 8px !important;
 }
-
 
 /* =========================================================
    FIELD ERRORS
@@ -1928,11 +1872,10 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 .contact-form .contact-form__error,
 .contact-form .form-error,
 .contact-form .error {
-    margin-top: 6px !important;
+  margin-top: 6px !important;
 
-    color: #d9362e !important;
+  color: #d9362e !important;
 }
-
 
 /* =========================================================
    SUCCESS MESSAGE
@@ -1940,53 +1883,51 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 .contact-form .contact-form__success,
 .contact-form .form-success {
-    margin-top: 20px !important;
+  margin-top: 20px !important;
 
-    padding: 16px 20px !important;
+  padding: 16px 20px !important;
 
-    border-radius: 8px !important;
+  border-radius: 8px !important;
 
-    background: color-mix(
-        in srgb,
-        var(--wp--preset--color--custom-secondary-accent) 20%,
-        transparent
-    ) !important;
+  background: color-mix(
+    in srgb,
+    var(--wp--preset--color--custom-secondary-accent) 20%,
+    transparent
+  ) !important;
 
-    color: var(--wp--preset--color--custom-primary) !important;
+  color: var(--wp--preset--color--custom-primary) !important;
 }
-
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 640px) {
+  .contact-form {
+    max-width: 100% !important;
+  }
 
-    .contact-form {
-        max-width: 100% !important;
-    }
+  .contact-form .grunion-field-wrap {
+    margin-bottom: 20px !important;
+  }
 
-    .contact-form .grunion-field-wrap {
-        margin-bottom: 20px !important;
-    }
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form input[type="url"],
+  .contact-form input[type="tel"],
+  .contact-form input[type="number"],
+  .contact-form input[type="date"],
+  .contact-form textarea,
+  .contact-form select {
+    padding: 13px 14px !important;
+  }
 
-    .contact-form input[type="text"],
-    .contact-form input[type="email"],
-    .contact-form input[type="url"],
-    .contact-form input[type="tel"],
-    .contact-form input[type="number"],
-    .contact-form input[type="date"],
-    .contact-form textarea,
-    .contact-form select {
-        padding: 13px 14px !important;
-    }
+  .contact-form textarea {
+    min-height: 150px !important;
+  }
 
-    .contact-form textarea {
-        min-height: 150px !important;
-    }
-
-    .contact-form input[type="submit"],
-    .contact-form button[type="submit"] {
-        width: 100% !important;
-    }
+  .contact-form input[type="submit"],
+  .contact-form button[type="submit"] {
+    width: 100% !important;
+  }
 }
