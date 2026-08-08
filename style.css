@@ -1384,15 +1384,6 @@ a:focus {
 }
 
 
-/* =========================================================
-   CONTENT WIDTH
-========================================================= */
-
-.entry-content.wp-block-post-content {
-    max-width: 560px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
 
 
 /* =========================================================
