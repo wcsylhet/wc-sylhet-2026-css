@@ -1648,15 +1648,15 @@ a:focus {
 
 
 /* =========================================================
-   LINKS
+   SINGLE POST CONTENT LINKS
 ========================================================= */
 
-.entry-content.wp-block-post-content a {
-    color: var(--post-primary) !important;
+body.single-post .entry-content.wp-block-post-content a {
+    color: var(--wp--preset--color--custom-secondary-accent) !important;
 }
 
-.entry-content.wp-block-post-content a:hover {
-    color: var(--post-accent) !important;
+body.single-post .entry-content.wp-block-post-content a:hover {
+    color: var(--wp--preset--color--custom-primary) !important;
 }
 
 
