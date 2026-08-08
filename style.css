@@ -1212,3 +1212,203 @@ a:focus {
     box-shadow: none !important;
     border-radius: 20px !important;
 }
+
+
+/* ========================================
+   Updates Pagination
+======================================== */
+
+.update-paginate {
+    --pagination-color: #164d35;
+    --pagination-border: rgba(22, 77, 53, 0.22);
+    --pagination-hover: #edf4ee;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 56px;
+
+    font-family: var(--wp--preset--font-family--geist);
+}
+
+
+/* Numbers wrapper
+---------------------------------------- */
+
+.update-paginate .wp-block-query-pagination-numbers {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+
+/* Page numbers
+---------------------------------------- */
+
+.update-paginate .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    border: 1px solid var(--pagination-border);
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--pagination-color);
+
+    font-family: var(--wp--preset--font-family--geist);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Current page
+---------------------------------------- */
+
+.update-paginate .page-numbers.current {
+    background: var(--pagination-color);
+    border-color: var(--pagination-color);
+    color: #fff;
+}
+
+
+/* Hover
+---------------------------------------- */
+
+.update-paginate a.page-numbers:hover {
+    background: var(--pagination-hover);
+    border-color: var(--pagination-color);
+    color: var(--pagination-color);
+    transform: translateY(-2px);
+}
+
+
+/* Previous / Next
+---------------------------------------- */
+
+.update-paginate .wp-block-query-pagination-previous,
+.update-paginate .wp-block-query-pagination-next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    padding: 0 18px;
+
+    border: 1px solid var(--pagination-border);
+    border-radius: 999px;
+
+    background: transparent;
+    color: var(--pagination-color);
+
+    font-family: var(--wp--preset--font-family--geist);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Next arrow */
+
+.update-paginate .wp-block-query-pagination-next::after {
+    content: "→";
+    font-size: 18px;
+    line-height: 1;
+
+    transition: transform 0.2s ease;
+}
+
+
+/* Previous arrow */
+
+.update-paginate .wp-block-query-pagination-previous::before {
+    content: "←";
+    font-size: 18px;
+    line-height: 1;
+
+    transition: transform 0.2s ease;
+}
+
+
+/* Next hover */
+
+.update-paginate .wp-block-query-pagination-next:hover {
+    background: var(--pagination-color);
+    border-color: var(--pagination-color);
+    color: #fff;
+    transform: translateX(2px);
+}
+
+.update-paginate .wp-block-query-pagination-next:hover::after {
+    transform: translateX(3px);
+}
+
+
+/* Previous hover */
+
+.update-paginate .wp-block-query-pagination-previous:hover {
+    background: var(--pagination-color);
+    border-color: var(--pagination-color);
+    color: #fff;
+    transform: translateX(-2px);
+}
+
+.update-paginate .wp-block-query-pagination-previous:hover::before {
+    transform: translateX(-3px);
+}
+
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media (max-width: 640px) {
+
+    .update-paginate {
+        gap: 6px;
+        margin-top: 40px;
+    }
+
+    .update-paginate .wp-block-query-pagination-numbers {
+        gap: 4px;
+    }
+
+    .update-paginate .page-numbers {
+        width: 38px;
+        height: 38px;
+        font-size: 13px;
+    }
+
+    .update-paginate .wp-block-query-pagination-previous,
+    .update-paginate .wp-block-query-pagination-next {
+        min-height: 38px;
+        padding: 0 13px;
+        font-size: 13px;
+    }
+
+}
