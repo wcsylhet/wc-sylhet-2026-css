@@ -1714,3 +1714,279 @@ body.single-post .entry-content.wp-block-post-content a:hover {
         overflow-x: auto !important;
     }
 }
+
+
+/* =========================================================
+   Contact Form
+========================================================= */
+
+.contact-form {
+    width: 100% !important;
+    max-width: 650px !important;
+    margin: 0 auto !important;
+
+    font-family: var(--wp--preset--font-family--geist) !important;
+}
+
+
+/* =========================================================
+   FORM ROW
+========================================================= */
+
+.contact-form .grunion-field-wrap {
+    margin: 0 0 24px !important;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.contact-form label {
+    display: block !important;
+
+    margin: 0 0 8px !important;
+
+    color: var(--wp--preset--color--custom-primary) !important;
+
+    font-family: var(--wp--preset--font-family--geist) !important;
+    font-weight: 500 !important;
+}
+
+
+/* Required text */
+
+.contact-form label .grunion-field-label-span {
+    color: var(--wp--preset--color--custom-primary) !important;
+}
+
+
+/* =========================================================
+   INPUTS / TEXTAREA
+========================================================= */
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="url"],
+.contact-form input[type="tel"],
+.contact-form input[type="number"],
+.contact-form input[type="date"],
+.contact-form textarea,
+.contact-form select {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 14px 16px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid color-mix(
+        in srgb,
+        var(--wp--preset--color--custom-primary) 25%,
+        transparent
+    ) !important;
+
+    border-radius: 6px !important;
+
+    background: transparent !important;
+
+    color: var(--wp--preset--color--custom-primary) !important;
+
+    font-family: var(--wp--preset--font-family--geist) !important;
+
+    outline: none !important;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.contact-form textarea {
+    min-height: 180px !important;
+    resize: vertical !important;
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--wp--preset--color--custom-primary) !important;
+    opacity: 0.45 !important;
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="url"]:focus,
+.contact-form input[type="tel"]:focus,
+.contact-form input[type="number"]:focus,
+.contact-form input[type="date"]:focus,
+.contact-form textarea:focus,
+.contact-form select:focus {
+    border-color: var(
+        --wp--preset--color--custom-secondary-accent
+    ) !important;
+
+    background: rgba(255, 255, 255, 0.25) !important;
+
+    box-shadow: 0 0 0 2px color-mix(
+        in srgb,
+        var(--wp--preset--color--custom-secondary-accent) 18%,
+        transparent
+    ) !important;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.contact-form input[type="submit"],
+.contact-form button[type="submit"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-height: 48px !important;
+
+    margin-top: 4px !important;
+    padding: 0 24px !important;
+
+    border: 1px solid var(
+        --wp--preset--color--custom-primary
+    ) !important;
+
+    border-radius: 999px !important;
+
+    background: var(
+        --wp--preset--color--custom-primary
+    ) !important;
+
+    color: #fff !important;
+
+    font-family: var(--wp--preset--font-family--geist) !important;
+    font-weight: 500 !important;
+
+    cursor: pointer !important;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease !important;
+}
+
+
+/* Submit hover */
+
+.contact-form input[type="submit"]:hover,
+.contact-form button[type="submit"]:hover {
+    background: var(
+        --wp--preset--color--custom-secondary-accent
+    ) !important;
+
+    border-color: var(
+        --wp--preset--color--custom-secondary-accent
+    ) !important;
+
+    color: #fff !important;
+
+    transform: translateY(-1px) !important;
+}
+
+
+/* =========================================================
+   CHECKBOX / RADIO
+========================================================= */
+
+.contact-form input[type="checkbox"],
+.contact-form input[type="radio"] {
+    width: auto !important;
+    margin-right: 8px !important;
+}
+
+
+/* =========================================================
+   FIELD ERRORS
+========================================================= */
+
+.contact-form .contact-form__error,
+.contact-form .form-error,
+.contact-form .error {
+    margin-top: 6px !important;
+
+    color: #d9362e !important;
+}
+
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.contact-form .contact-form__success,
+.contact-form .form-success {
+    margin-top: 20px !important;
+
+    padding: 16px 20px !important;
+
+    border-radius: 8px !important;
+
+    background: color-mix(
+        in srgb,
+        var(--wp--preset--color--custom-secondary-accent) 20%,
+        transparent
+    ) !important;
+
+    color: var(--wp--preset--color--custom-primary) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+    .contact-form {
+        max-width: 100% !important;
+    }
+
+    .contact-form .grunion-field-wrap {
+        margin-bottom: 20px !important;
+    }
+
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form input[type="url"],
+    .contact-form input[type="tel"],
+    .contact-form input[type="number"],
+    .contact-form input[type="date"],
+    .contact-form textarea,
+    .contact-form select {
+        padding: 13px 14px !important;
+    }
+
+    .contact-form textarea {
+        min-height: 150px !important;
+    }
+
+    .contact-form input[type="submit"],
+    .contact-form button[type="submit"] {
+        width: 100% !important;
+    }
+}
