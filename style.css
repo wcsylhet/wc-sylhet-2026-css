@@ -1379,8 +1379,6 @@ a:focus {
 .entry-content.wp-block-post-content {
     --post-primary: var(--wp--preset--color--custom-primary);
     --post-accent: var(--wp--preset--color--custom-secondary-accent);
-
-    color: var(--post-primary) !important;
 }
 
 
