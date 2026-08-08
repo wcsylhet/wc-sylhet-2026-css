@@ -1370,25 +1370,22 @@ a:focus {
   }
 }
 
-
 /* =========================================================
    Single Post Content
    Visual styling only
 ========================================================= */
 
-.entry-content.wp-block-post-content {
+body.single-post .entry-content.wp-block-post-content {
     --post-primary: var(--wp--preset--color--custom-primary);
     --post-accent: var(--wp--preset--color--custom-secondary-accent);
 }
-
-
 
 
 /* =========================================================
    PARAGRAPHS
 ========================================================= */
 
-.entry-content.wp-block-post-content > p {
+body.single-post .entry-content.wp-block-post-content > p {
     margin-top: 0 !important;
     margin-bottom: 28px !important;
 }
@@ -1399,16 +1396,16 @@ a:focus {
 ========================================================= */
 
 /*
- * H2 is the main section heading in the Figma design.
- * The divider sits above it.
+ * H2 is the main section heading.
+ * The Figma design has a thin accent divider above it.
  */
 
-.entry-content.wp-block-post-content > h2,
-.entry-content.wp-block-post-content .wp-block-heading {
+body.single-post .entry-content.wp-block-post-content > h2,
+body.single-post .entry-content.wp-block-post-content .wp-block-heading {
     color: var(--post-primary) !important;
 }
 
-.entry-content.wp-block-post-content > h2 {
+body.single-post .entry-content.wp-block-post-content > h2 {
     position: relative !important;
 
     margin-top: 56px !important;
@@ -1416,7 +1413,7 @@ a:focus {
     padding-top: 27px !important;
 }
 
-.entry-content.wp-block-post-content > h2::before {
+body.single-post .entry-content.wp-block-post-content > h2::before {
     content: "" !important;
 
     position: absolute !important;
@@ -1432,12 +1429,12 @@ a:focus {
 
 /* Other headings */
 
-.entry-content.wp-block-post-content h3 {
+body.single-post .entry-content.wp-block-post-content h3 {
     margin-top: 48px !important;
     margin-bottom: 20px !important;
 }
 
-.entry-content.wp-block-post-content h4 {
+body.single-post .entry-content.wp-block-post-content h4 {
     margin-top: 40px !important;
     margin-bottom: 16px !important;
 }
@@ -1455,7 +1452,7 @@ a:focus {
  * - no border on other sides
  */
 
-.entry-content.wp-block-post-content .wp-block-quote {
+body.single-post .entry-content.wp-block-post-content .wp-block-quote {
     margin: 48px 0 !important;
     padding: 20px 28px !important;
 
@@ -1464,7 +1461,11 @@ a:focus {
 
     border-radius: 0 12px 12px 0 !important;
 
-    background: var(--post-accent) !important;
+    background: color-mix(
+        in srgb,
+        var(--post-accent) 35%,
+        #fff 65%
+    ) !important;
 
     color: var(--post-primary) !important;
 }
@@ -1472,14 +1473,14 @@ a:focus {
 
 /* Quote text */
 
-.entry-content.wp-block-post-content .wp-block-quote p {
+body.single-post .entry-content.wp-block-post-content .wp-block-quote p {
     margin: 0 !important;
 }
 
 
 /* Quote citation */
 
-.entry-content.wp-block-post-content .wp-block-quote cite {
+body.single-post .entry-content.wp-block-post-content .wp-block-quote cite {
     display: block !important;
 
     margin-top: 12px !important;
@@ -1490,9 +1491,9 @@ a:focus {
 }
 
 
-/* Gutenberg quote citation / paragraph spacing */
+/* Gutenberg quote citation spacing */
 
-.entry-content.wp-block-post-content .wp-block-quote p + cite {
+body.single-post .entry-content.wp-block-post-content .wp-block-quote p + cite {
     margin-top: 12px !important;
 }
 
@@ -1501,12 +1502,12 @@ a:focus {
    IMAGES
 ========================================================= */
 
-.entry-content.wp-block-post-content .wp-block-image {
+body.single-post .entry-content.wp-block-post-content .wp-block-image {
     margin-top: 40px !important;
     margin-bottom: 40px !important;
 }
 
-.entry-content.wp-block-post-content .wp-block-image img {
+body.single-post .entry-content.wp-block-post-content .wp-block-image img {
     display: block !important;
 
     width: 100% !important;
@@ -1518,7 +1519,7 @@ a:focus {
 
 /* Image caption */
 
-.entry-content.wp-block-post-content .wp-block-image figcaption {
+body.single-post .entry-content.wp-block-post-content .wp-block-image figcaption {
     margin-top: 10px !important;
 
     color: var(--post-primary) !important;
@@ -1531,12 +1532,12 @@ a:focus {
    GALLERY
 ========================================================= */
 
-.entry-content.wp-block-post-content .wp-block-gallery {
+body.single-post .entry-content.wp-block-post-content .wp-block-gallery {
     margin-top: 40px !important;
     margin-bottom: 40px !important;
 }
 
-.entry-content.wp-block-post-content .wp-block-gallery img {
+body.single-post .entry-content.wp-block-post-content .wp-block-gallery img {
     border-radius: 10px !important;
 }
 
@@ -1545,7 +1546,7 @@ a:focus {
    TABLE
 ========================================================= */
 
-.entry-content.wp-block-post-content .wp-block-table {
+body.single-post .entry-content.wp-block-post-content .wp-block-table {
     width: 100% !important;
 
     margin-top: 40px !important;
@@ -1557,7 +1558,7 @@ a:focus {
 
 /* Table */
 
-.entry-content.wp-block-post-content .wp-block-table table {
+body.single-post .entry-content.wp-block-post-content .wp-block-table table {
     width: 100% !important;
 
     border-collapse: separate !important;
@@ -1577,11 +1578,12 @@ a:focus {
 
 /* Cells */
 
-.entry-content.wp-block-post-content .wp-block-table th,
-.entry-content.wp-block-post-content .wp-block-table td {
+body.single-post .entry-content.wp-block-post-content .wp-block-table th,
+body.single-post .entry-content.wp-block-post-content .wp-block-table td {
     padding: 14px 16px !important;
 
     border: 0 !important;
+
     border-bottom: 1px solid color-mix(
         in srgb,
         var(--post-primary) 12%,
@@ -1594,8 +1596,9 @@ a:focus {
 
 /* Header */
 
-.entry-content.wp-block-post-content .wp-block-table thead th {
+body.single-post .entry-content.wp-block-post-content .wp-block-table thead th {
     background: var(--post-primary) !important;
+
     color: #fff !important;
 
     border-bottom: 0 !important;
@@ -1604,14 +1607,23 @@ a:focus {
 
 /* Last row */
 
-.entry-content.wp-block-post-content .wp-block-table tbody tr:last-child td {
+body.single-post
+.entry-content.wp-block-post-content
+.wp-block-table
+tbody
+tr:last-child
+td {
     border-bottom: 0 !important;
 }
 
 
 /* Zebra rows */
 
-.entry-content.wp-block-post-content .wp-block-table tbody tr:nth-child(even) {
+body.single-post
+.entry-content.wp-block-post-content
+.wp-block-table
+tbody
+tr:nth-child(even) {
     background: color-mix(
         in srgb,
         var(--post-primary) 4%,
@@ -1624,13 +1636,13 @@ a:focus {
    LISTS
 ========================================================= */
 
-.entry-content.wp-block-post-content ul,
-.entry-content.wp-block-post-content ol {
+body.single-post .entry-content.wp-block-post-content ul,
+body.single-post .entry-content.wp-block-post-content ol {
     margin-top: 24px !important;
     margin-bottom: 32px !important;
 }
 
-.entry-content.wp-block-post-content li {
+body.single-post .entry-content.wp-block-post-content li {
     margin-bottom: 10px !important;
 }
 
@@ -1639,10 +1651,11 @@ a:focus {
    SEPARATOR
 ========================================================= */
 
-.entry-content.wp-block-post-content .wp-block-separator {
+body.single-post .entry-content.wp-block-post-content .wp-block-separator {
     margin: 48px 0 !important;
 
     border: 0 !important;
+
     border-top: 1px solid var(--post-accent) !important;
 }
 
@@ -1666,26 +1679,38 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 @media (max-width: 640px) {
 
-    .entry-content.wp-block-post-content {
+    body.single-post .entry-content.wp-block-post-content {
         max-width: none !important;
     }
 
-    .entry-content.wp-block-post-content > h2 {
+
+    /* Headings */
+
+    body.single-post .entry-content.wp-block-post-content > h2 {
         margin-top: 44px !important;
         padding-top: 22px !important;
     }
 
-    .entry-content.wp-block-post-content .wp-block-quote {
+
+    /* Quote */
+
+    body.single-post .entry-content.wp-block-post-content .wp-block-quote {
         margin: 40px 0 !important;
         padding: 18px 20px !important;
     }
 
-    .entry-content.wp-block-post-content .wp-block-image {
+
+    /* Images */
+
+    body.single-post .entry-content.wp-block-post-content .wp-block-image {
         margin-top: 32px !important;
         margin-bottom: 32px !important;
     }
 
-    .entry-content.wp-block-post-content .wp-block-table {
+
+    /* Table */
+
+    body.single-post .entry-content.wp-block-post-content .wp-block-table {
         overflow-x: auto !important;
     }
 }
