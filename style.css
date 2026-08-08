@@ -1107,7 +1107,7 @@ a:focus {
   .wcs-attendee-bg {
     position: relative !important;
     isolation: isolate;
-    height: 140px;
+    min-height: 307px !important;
   }
 
   .wcs-attendee-bg::before {
