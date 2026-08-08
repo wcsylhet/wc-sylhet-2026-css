@@ -659,7 +659,7 @@ a:focus {
    PART 2 — ORGANIZERS PAGE
    ========================================================================== */
 
-/* --- 1. Team box: name left, cards right -------------------------------- */
+/* --- 1. Team box: name left, cards right --------------------------------- */
 .page-slug-organizers
   .entry-content
   > .wp-block-group.has-border-color.is-nowrap {
@@ -667,53 +667,114 @@ a:focus {
   flex-wrap: nowrap !important;
   align-items: center !important;
   gap: 40px !important;
-  padding: 40px 48px !important; /* was: 0 — cards touched the border */
+  padding: 40px 48px !important; /* was 0 — cards sat on the green border */
   border-radius: 20px;
 }
 
-/* --- 2. Team name: left-aligned column, fluid size ----------------------- */
+/* --- 2. Team name ------------------------------------------------------- */
 .page-slug-organizers
   .entry-content
   > .wp-block-group.has-border-color.is-nowrap
   > h2 {
   flex: 0 0 auto !important;
   width: clamp(200px, 24%, 300px) !important;
-  margin: 0 !important; /* was: 80px 0 20px */
-  text-align: left !important; /* was: centred */
-  font-size: clamp(28px, 2.6vw, 44px) !important; /* was: a flat 56px */
+  margin: 0 !important;
+  text-align: left !important;
+  font-size: clamp(28px, 2.6vw, 38px) !important;
   line-height: 1.1;
 }
 
-/* --- 3. Member list: fills the rest of the row, cards grouped right ------ */
+/* --- 3. Member list ------------------------------------------------------
+   flex:1 1 auto is the actual bug fix — the list was 0 1 auto, so it never
+   grew and the auto-fit grid collapsed to a single 240px column. ---------- */
 .page-slug-organizers .entry-content ul.wordcamp-post-list.wordcamp-organizers {
-  flex: 1 1 auto !important; /* was: 0 1 auto */
+  display: grid !important;
+  flex: 1 1 auto !important;
   width: auto !important;
   grid-template-columns: repeat(auto-fit, 180px) !important;
   justify-content: flex-end !important;
+  align-items: start !important;
   gap: 28px 32px !important;
-}
-
-.page-slug-organizers .wordcamp-organizers .wordcamp-organizers__post {
-  max-width: 180px !important;
-}
-
-/* --- 4. Name under the photo: plain green text, not a filled pill -------- */
-.page-slug-organizers .wordcamp-organizers .wordcamp-block__item-title {
-  background: none !important;
-  color: #16542f !important;
+  margin: 0 !important;
   padding: 0 !important;
+  list-style: none !important;
+}
+
+.page-slug-organizers .wordcamp-organizers .wordcamp-post-list__post {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  box-sizing: border-box;
+}
+
+/* --- 4. The card: photo on top, name underneath ------------------------- */
+.page-slug-organizers .wordcamp-organizers .wordcamp-organizer {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 12px !important;
+  max-width: 180px !important;
+  margin: 0 auto !important;
+}
+
+/* Photo — square, cropped, rounded */
+.page-slug-organizers .wordcamp-organizers .wordcamp-image__avatar-container {
+  order: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(22, 84, 47, 0.35);
+  background: #fff;
+}
+
+.page-slug-organizers
+  .wordcamp-organizers
+  .wordcamp-image__avatar-container
+  img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover; /* crops portrait/landscape photos to a square */
+  max-width: none !important;
+  margin: 0 !important;
   border-radius: 0 !important;
+}
+
+/* Name — plain bold green text under the photo */
+.page-slug-organizers .wordcamp-organizers .wordcamp-block__item-title {
+  order: 2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border-radius: 0 !important;
+  color: #16542f !important;
+  text-align: center !important;
   font-size: 1.0625rem !important;
   font-weight: 700 !important;
+  line-height: 1.3 !important;
+}
+
+.page-slug-organizers .wordcamp-organizers .wordcamp-block__item-title a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.page-slug-organizers .wordcamp-organizers .wordcamp-block__item-content:empty {
+  display: none !important;
 }
 
 /* ============================================================================
    RESPONSIVE
    ========================================================================== */
 
-/* Below 1100px the name no longer fits beside the cards without forcing them
-   to wrap, so it moves to the top and centres. */
-
+/* Below 1100px the name can't sit beside the cards without forcing them to
+   wrap, so it moves to the top and centres. */
 @media (max-width: 1100px) {
   .page-slug-organizers
     .entry-content
@@ -740,8 +801,11 @@ a:focus {
   }
 }
 
-/* Phone — two cards per row. */
-
+/* Phone — two cards per row.
+   This also fixes a live bug: WordCamp's blocks.css only switches the list to
+   display:grid inside @media (min-width: 400px), so under 400px the <ul> fell
+   back to display:block and every card went full width. The display:grid in
+   rule 3 above is unconditional, so that's handled. */
 @media (max-width: 600px) {
   .page-slug-organizers
     .entry-content
@@ -758,12 +822,17 @@ a:focus {
   .page-slug-organizers
     .entry-content
     ul.wordcamp-post-list.wordcamp-organizers {
-    display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 22px 14px !important;
   }
-  .page-slug-organizers .wordcamp-organizers .wordcamp-organizers__post {
+  .page-slug-organizers .wordcamp-organizers .wordcamp-organizer {
     max-width: none !important;
+  }
+  .page-slug-organizers .wordcamp-organizers .wordcamp-image__avatar-container {
+    border-radius: 16px;
+  }
+  .page-slug-organizers .wordcamp-organizers .wordcamp-block__item-title {
+    font-size: 0.9375rem !important;
   }
 }
 
