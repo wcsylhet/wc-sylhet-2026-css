@@ -1369,3 +1369,334 @@ a:focus {
     font-size: 13px !important;
   }
 }
+
+
+/* =========================================================
+   Single Post Content
+   Visual styling only
+========================================================= */
+
+.entry-content.wp-block-post-content {
+    --post-primary: var(--wp--preset--color--custom-primary);
+    --post-accent: var(--wp--preset--color--custom-secondary-accent);
+
+    color: var(--post-primary) !important;
+}
+
+
+/* =========================================================
+   CONTENT WIDTH
+========================================================= */
+
+.entry-content.wp-block-post-content {
+    max-width: 560px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+========================================================= */
+
+.entry-content.wp-block-post-content > p {
+    margin-top: 0 !important;
+    margin-bottom: 28px !important;
+}
+
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
+/*
+ * H2 is the main section heading in the Figma design.
+ * The divider sits above it.
+ */
+
+.entry-content.wp-block-post-content > h2,
+.entry-content.wp-block-post-content .wp-block-heading {
+    color: var(--post-primary) !important;
+}
+
+.entry-content.wp-block-post-content > h2 {
+    position: relative !important;
+
+    margin-top: 56px !important;
+    margin-bottom: 24px !important;
+    padding-top: 27px !important;
+}
+
+.entry-content.wp-block-post-content > h2::before {
+    content: "" !important;
+
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    height: 1px !important;
+
+    background: var(--post-accent) !important;
+}
+
+
+/* Other headings */
+
+.entry-content.wp-block-post-content h3 {
+    margin-top: 48px !important;
+    margin-bottom: 20px !important;
+}
+
+.entry-content.wp-block-post-content h4 {
+    margin-top: 40px !important;
+    margin-bottom: 16px !important;
+}
+
+
+/* =========================================================
+   BLOCKQUOTE
+========================================================= */
+
+/*
+ * Figma:
+ * - soft yellow background
+ * - green left border
+ * - rounded right corners
+ * - no border on other sides
+ */
+
+.entry-content.wp-block-post-content .wp-block-quote {
+    margin: 48px 0 !important;
+    padding: 20px 28px !important;
+
+    border: 0 !important;
+    border-left: 5px solid var(--post-primary) !important;
+
+    border-radius: 0 12px 12px 0 !important;
+
+    background: var(--post-accent) !important;
+
+    color: var(--post-primary) !important;
+}
+
+
+/* Quote text */
+
+.entry-content.wp-block-post-content .wp-block-quote p {
+    margin: 0 !important;
+}
+
+
+/* Quote citation */
+
+.entry-content.wp-block-post-content .wp-block-quote cite {
+    display: block !important;
+
+    margin-top: 12px !important;
+
+    color: #e33222 !important;
+
+    font-style: normal !important;
+}
+
+
+/* Gutenberg quote citation / paragraph spacing */
+
+.entry-content.wp-block-post-content .wp-block-quote p + cite {
+    margin-top: 12px !important;
+}
+
+
+/* =========================================================
+   IMAGES
+========================================================= */
+
+.entry-content.wp-block-post-content .wp-block-image {
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
+}
+
+.entry-content.wp-block-post-content .wp-block-image img {
+    display: block !important;
+
+    width: 100% !important;
+    height: auto !important;
+
+    border-radius: 10px !important;
+}
+
+
+/* Image caption */
+
+.entry-content.wp-block-post-content .wp-block-image figcaption {
+    margin-top: 10px !important;
+
+    color: var(--post-primary) !important;
+
+    opacity: 0.55 !important;
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.entry-content.wp-block-post-content .wp-block-gallery {
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
+}
+
+.entry-content.wp-block-post-content .wp-block-gallery img {
+    border-radius: 10px !important;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.entry-content.wp-block-post-content .wp-block-table {
+    width: 100% !important;
+
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
+
+    overflow-x: auto !important;
+}
+
+
+/* Table */
+
+.entry-content.wp-block-post-content .wp-block-table table {
+    width: 100% !important;
+
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+
+    overflow: hidden !important;
+
+    border: 1px solid color-mix(
+        in srgb,
+        var(--post-primary) 18%,
+        transparent
+    ) !important;
+
+    border-radius: 10px !important;
+}
+
+
+/* Cells */
+
+.entry-content.wp-block-post-content .wp-block-table th,
+.entry-content.wp-block-post-content .wp-block-table td {
+    padding: 14px 16px !important;
+
+    border: 0 !important;
+    border-bottom: 1px solid color-mix(
+        in srgb,
+        var(--post-primary) 12%,
+        transparent
+    ) !important;
+
+    text-align: left !important;
+}
+
+
+/* Header */
+
+.entry-content.wp-block-post-content .wp-block-table thead th {
+    background: var(--post-primary) !important;
+    color: #fff !important;
+
+    border-bottom: 0 !important;
+}
+
+
+/* Last row */
+
+.entry-content.wp-block-post-content .wp-block-table tbody tr:last-child td {
+    border-bottom: 0 !important;
+}
+
+
+/* Zebra rows */
+
+.entry-content.wp-block-post-content .wp-block-table tbody tr:nth-child(even) {
+    background: color-mix(
+        in srgb,
+        var(--post-primary) 4%,
+        transparent
+    ) !important;
+}
+
+
+/* =========================================================
+   LISTS
+========================================================= */
+
+.entry-content.wp-block-post-content ul,
+.entry-content.wp-block-post-content ol {
+    margin-top: 24px !important;
+    margin-bottom: 32px !important;
+}
+
+.entry-content.wp-block-post-content li {
+    margin-bottom: 10px !important;
+}
+
+
+/* =========================================================
+   SEPARATOR
+========================================================= */
+
+.entry-content.wp-block-post-content .wp-block-separator {
+    margin: 48px 0 !important;
+
+    border: 0 !important;
+    border-top: 1px solid var(--post-accent) !important;
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.entry-content.wp-block-post-content a {
+    color: var(--post-primary) !important;
+}
+
+.entry-content.wp-block-post-content a:hover {
+    color: var(--post-accent) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+    .entry-content.wp-block-post-content {
+        max-width: none !important;
+    }
+
+    .entry-content.wp-block-post-content > h2 {
+        margin-top: 44px !important;
+        padding-top: 22px !important;
+    }
+
+    .entry-content.wp-block-post-content .wp-block-quote {
+        margin: 40px 0 !important;
+        padding: 18px 20px !important;
+    }
+
+    .entry-content.wp-block-post-content .wp-block-image {
+        margin-top: 32px !important;
+        margin-bottom: 32px !important;
+    }
+
+    .entry-content.wp-block-post-content .wp-block-table {
+        overflow-x: auto !important;
+    }
+}
