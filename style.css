@@ -834,6 +834,9 @@ a:focus {
   .page-slug-organizers .wordcamp-organizers .wordcamp-block__item-title {
     font-size: 0.9375rem !important;
   }
+  .wcsyl-mobile-first-section {
+    margin-top: 0px;
+  }
 }
 
 /* ==========================================================================
