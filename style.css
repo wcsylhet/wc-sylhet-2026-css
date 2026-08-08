@@ -1219,18 +1219,14 @@ a:focus {
 ======================================== */
 
 .update-paginate {
-    --pagination-color: #164d35;
-    --pagination-border: rgba(22, 77, 53, 0.22);
-    --pagination-hover: #edf4ee;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    margin-top: 56px !important;
 
-    margin-top: 56px;
-
-    font-family: var(--wp--preset--font-family--geist);
+    font-family: var(--wp--preset--font-family--geist) !important;
 }
 
 
@@ -1238,10 +1234,10 @@ a:focus {
 ---------------------------------------- */
 
 .update-paginate .wp-block-query-pagination-numbers {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin: 0;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin: 0 !important;
 }
 
 
@@ -1249,166 +1245,167 @@ a:focus {
 ---------------------------------------- */
 
 .update-paginate .page-numbers {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-    width: 44px;
-    height: 44px;
-    padding: 0;
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
 
-    border: 1px solid var(--pagination-border);
-    border-radius: 50%;
+    border: 1px solid var(--wp--preset--color--custom-primary) !important;
+    border-radius: 50% !important;
 
-    background: transparent;
-    color: var(--pagination-color);
+    background: transparent !important;
+    color: var(--wp--preset--color--custom-primary) !important;
 
-    font-family: var(--wp--preset--font-family--geist);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
+    font-family: var(--wp--preset--font-family--geist) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
 
-    text-decoration: none;
+    text-decoration: none !important;
 
     transition:
         background-color 0.2s ease,
         color 0.2s ease,
         border-color 0.2s ease,
-        transform 0.2s ease;
+        transform 0.2s ease !important;
 }
 
 
-/* Current page
----------------------------------------- */
+/* ========================================
+   ACTIVE PAGE
+======================================== */
 
 .update-paginate .page-numbers.current {
-    background: var(--pagination-color);
-    border-color: var(--pagination-color);
-    color: #fff;
+    background: var(--wp--preset--color--custom-primary) !important;
+    border-color: var(--wp--preset--color--custom-primary) !important;
+    color: #fff !important;
 }
 
 
-/* Hover
----------------------------------------- */
+/* ========================================
+   PAGE NUMBER HOVER
+======================================== */
 
 .update-paginate a.page-numbers:hover {
-    background: var(--pagination-hover);
-    border-color: var(--pagination-color);
-    color: var(--pagination-color);
-    transform: translateY(-2px);
+    background: var(--wp--preset--color--custom-secondary-accent) !important;
+    border-color: var(--wp--preset--color--custom-secondary-accent) !important;
+    color: #fff !important;
+
+    transform: translateY(-2px) !important;
 }
 
 
-/* Previous / Next
----------------------------------------- */
+/* ========================================
+   PREVIOUS / NEXT
+======================================== */
 
 .update-paginate .wp-block-query-pagination-previous,
 .update-paginate .wp-block-query-pagination-next {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
 
-    min-height: 44px;
-    padding: 0 18px;
+    min-height: 44px !important;
+    padding: 0 18px !important;
 
-    border: 1px solid var(--pagination-border);
-    border-radius: 999px;
+    border: 1px solid var(--wp--preset--color--custom-primary) !important;
+    border-radius: 999px !important;
 
-    background: transparent;
-    color: var(--pagination-color);
+    background: transparent !important;
+    color: var(--wp--preset--color--custom-primary) !important;
 
-    font-family: var(--wp--preset--font-family--geist);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1;
+    font-family: var(--wp--preset--font-family--geist) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
 
-    text-decoration: none;
+    text-decoration: none !important;
 
     transition:
         background-color 0.2s ease,
         color 0.2s ease,
         border-color 0.2s ease,
-        transform 0.2s ease;
+        transform 0.2s ease !important;
 }
 
 
 /* Next arrow */
 
 .update-paginate .wp-block-query-pagination-next::after {
-    content: "→";
-    font-size: 18px;
-    line-height: 1;
+    content: "→" !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
 
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease !important;
 }
 
 
 /* Previous arrow */
 
 .update-paginate .wp-block-query-pagination-previous::before {
-    content: "←";
-    font-size: 18px;
-    line-height: 1;
+    content: "←" !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
 
-    transition: transform 0.2s ease;
-}
-
-
-/* Next hover */
-
-.update-paginate .wp-block-query-pagination-next:hover {
-    background: var(--pagination-color);
-    border-color: var(--pagination-color);
-    color: #fff;
-    transform: translateX(2px);
-}
-
-.update-paginate .wp-block-query-pagination-next:hover::after {
-    transform: translateX(3px);
-}
-
-
-/* Previous hover */
-
-.update-paginate .wp-block-query-pagination-previous:hover {
-    background: var(--pagination-color);
-    border-color: var(--pagination-color);
-    color: #fff;
-    transform: translateX(-2px);
-}
-
-.update-paginate .wp-block-query-pagination-previous:hover::before {
-    transform: translateX(-3px);
+    transition: transform 0.2s ease !important;
 }
 
 
 /* ========================================
-   Mobile
+   NEXT / PREVIOUS HOVER
+======================================== */
+
+.update-paginate .wp-block-query-pagination-next:hover,
+.update-paginate .wp-block-query-pagination-previous:hover {
+    background: var(--wp--preset--color--custom-secondary-accent) !important;
+    border-color: var(--wp--preset--color--custom-secondary-accent) !important;
+    color: #fff !important;
+}
+
+
+/* Next arrow hover */
+
+.update-paginate .wp-block-query-pagination-next:hover::after {
+    transform: translateX(3px) !important;
+}
+
+
+/* Previous arrow hover */
+
+.update-paginate .wp-block-query-pagination-previous:hover::before {
+    transform: translateX(-3px) !important;
+}
+
+
+/* ========================================
+   MOBILE
 ======================================== */
 
 @media (max-width: 640px) {
 
     .update-paginate {
-        gap: 6px;
-        margin-top: 40px;
+        gap: 6px !important;
+        margin-top: 40px !important;
     }
 
     .update-paginate .wp-block-query-pagination-numbers {
-        gap: 4px;
+        gap: 4px !important;
     }
 
     .update-paginate .page-numbers {
-        width: 38px;
-        height: 38px;
-        font-size: 13px;
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 13px !important;
     }
 
     .update-paginate .wp-block-query-pagination-previous,
     .update-paginate .wp-block-query-pagination-next {
-        min-height: 38px;
-        padding: 0 13px;
-        font-size: 13px;
+        min-height: 38px !important;
+        padding: 0 13px !important;
+        font-size: 13px !important;
     }
-
 }
