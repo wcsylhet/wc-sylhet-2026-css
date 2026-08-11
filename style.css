@@ -679,7 +679,7 @@ a:focus {
   width: clamp(200px, 24%, 300px) !important;
   margin: 0 !important;
   text-align: left !important;
-  font-size: clamp(28px, 2.6vw, 44px) !important;
+  font-size: clamp(28px, 2.6vw, 38px) !important;
   line-height: 1.1;
 }
 
@@ -814,7 +814,7 @@ a:focus {
   border-radius: 0 !important;
   color: #16542f !important;
   text-align: center !important;
-  font-size: 1.0625rem !important;
+  font-size: 1.525rem !important;
   font-weight: 700 !important;
   line-height: 1.3 !important;
 }
