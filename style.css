@@ -3,9 +3,9 @@
 a:focus {
   outline: none !important;
 }
+
 .text-stoke-hero {
   color: #d91f24;
-
   text-shadow: -2px -2px 0 #f1f8f2, 2px -2px 0 #f1f8f2, -2px 2px 0 #f1f8f2,
     2px 2px 0 #f1f8f2, -2px 0 0 #f1f8f2, 2px 0 0 #f1f8f2, 0 -2px 0 #f1f8f2,
     0 2px 0 #f1f8f2;
@@ -22,6 +22,7 @@ a:focus {
 .position-relative {
   position: relative !important;
 }
+
 .sylhet-fixed {
   position: absolute;
   bottom: -88px;
@@ -67,12 +68,6 @@ a:focus {
    --------------------------------------------------------------------------
 
    PART 1 — HOME PAGE
-     Scoped to the section group classes already on the home page:
-       .wc_hero_section        .wc_community_section
-       .wc_latest_news_section .wc_card_section
-       .wc_venu_section        .wc_sponsors_section
-     plus the site footer.
-
        1.1  Hero horizontal padding            (≤1024px, ≤430px)
        1.2  Sponsor grid column steps          (≤1100 / ≤900 / ≤479px)
        1.3  Sponsor logo dead space            (≤1024px)
@@ -81,60 +76,26 @@ a:focus {
        1.6  Small-phone safety                 (≤360px)
        1.7  General overflow safety            (all widths)
        1.8  Requested overrides                (≤781px)
-            1.8a hero padding · 1.8b button gap
-            1.8c sponsor heading · 1.8d card height
        1.9  Card height on iPad                (782–1024px)
        1.10 Card background overlay            (≤1024px)
        1.11 Footer on mobile                   (≤781px)
 
    PART 2 — ORGANIZERS PAGE
-     Scoped to the WordCamp Organizers block, so it only ever affects
-     pages that actually contain that block:
-       .wordcamp-organizers    .wordcamp-post-list__post
-       .wordcamp-organizers__title
-       .wordcamp-image__avatar-container
+       2.1  The grid · 2.2 The card · 2.3 Photo above name
+       2.4  The photo · 2.5 The name
+       2.6  Tablet · 2.7 Phone
+       2.9  Phone — icons under each name      (≤600px)   <-- NEW
 
-       2.1  The grid                           (all widths)
-       2.2  The card                           (all widths)
-       2.3  Photo above name                   (all widths)
-       2.4  The photo                          (all widths)
-       2.5  The name                           (all widths)
-       2.6  Tablet — 2 across                  (≤1024px)
-       2.7  Phone — 1 across                   (≤600px)
-       2.8  Uniform card heights               (≥601px)
-
-   --------------------------------------------------------------------------
-   BREAKPOINTS USED (and why)
-   --------------------------------------------------------------------------
-     ≤1024px   iPad Pro 12.9" portrait and below — where two-column
-               layouts start to feel squeezed
-     ≤ 781px   WordPress' own mobile breakpoint, where core stops
-               laying .wp-block-columns out side by side
-     ≤ 600px   WordPress core forces post-template grids to one column
-     ≤ 480px / ≤430px / ≤360px   phone-size trims
-
-   Every rule below was measured on the live site before and after.
-   The numbers quoted in the comments are real measurements, not
-   estimates.
+   PART 3 — CALL FOR SPONSORS PAGE
+   PART 4 — INNER-PAGE HERO BANNER
+   PART 5 — PAGINATION · SINGLE POST · CONTACT FORM
    ========================================================================== */
 
 /* ==========================================================================
-   ==========================================================================
    PART 1 — HOME PAGE
-   ==========================================================================
    ========================================================================== */
 
-/* ==========================================================================
-   1.1 — HERO HAS NO HORIZONTAL PADDING  (most visible mobile bug)
-
-   Measured: .wc_hero_section computes padding-left/right = 0px at every
-   width. At 390px the date/venue pill row runs L0 → R390, i.e. both pills
-   touch the screen edges. At 360px and 320px the pills compress instead
-   (224→206→182px) because the row is flex-wrap:nowrap.
-
-   The padding goes on the inner background group, NOT on the section, so
-   the hero background stays full-bleed.
-   ========================================================================== */
+/* --- 1.1  Hero horizontal padding ---------------------------------------- */
 
 @media (max-width: 1024px) {
   .wc_hero_section > .wp-block-group {
@@ -144,8 +105,6 @@ a:focus {
   }
 }
 
-/* Below ~430px the two pills can no longer sit side by side without
-     shrinking their text, so let the row wrap onto two centred lines. */
 @media (max-width: 430px) {
   .wc_hero_section .wp-block-group.is-horizontal.is-nowrap {
     flex-wrap: wrap !important;
@@ -157,34 +116,19 @@ a:focus {
     flex: 0 0 auto;
   }
 
-  /* Keep the icon + label of a single pill on one line. */
   .wc_hero_section .pill-button p {
     white-space: nowrap;
     margin: 0;
   }
 }
 
-/* ==========================================================================
-     1.2 — SPONSOR GRID JUMPS 4 COLUMNS → 1 COLUMN
-  
-     Measured on .wc_sponsors_section .wp-block-post-template.columns-4
-     (is-layout-grid):
-         1440px → 4 columns
-          834px → 4 columns  (cells ≈ 190px — cramped)
-          768px → 4 columns  (cells ≈ 180px — cramped)
-          600px → 1 column   (WordPress core forces 1fr at ≤600px)
-     So there is no 3- or 2-column step at all. This adds them.
-  
-     !important is required to override core's own !important rule at ≤600px.
-     Additional CSS loads after core, so these win.
-     ========================================================================== */
+/* --- 1.2  Sponsor grid column steps -------------------------------------- */
 
 @media (max-width: 1100px) {
   .wc_sponsors_section .wp-block-post-template.columns-4 {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 
-  /* Fallback for the older flex-based query loop markup. */
   .wc_sponsors_section
     .wp-block-post-template.is-flex-container.columns-4
     > li {
@@ -218,30 +162,7 @@ a:focus {
   }
 }
 
-/* ==========================================================================
-     1.3 — HUGE EMPTY GAPS BETWEEN SPONSOR LOGOS
-  
-     Root cause: every sponsor featured image carries an INLINE
-     `aspect-ratio: 16/9` on its <figure>, plus 16px padding on all sides.
-     Sponsor logos are wide and short (Automattic is 940 × 198), so
-     object-fit:contain letterboxes them inside a 16:9 box and the rest of
-     that box is dead space.
-  
-     Measured at 390px BEFORE:
-         figure  = 328 × 198   (16:9 forced)
-         logo    = 296 × 72
-         → 126px of empty space inside every single cell
-         logo list total height = 932px, whole section = 1198px
-  
-     Measured at 390px AFTER:
-         figure  = 304 × 64    (hugs the logo)
-         logo    = 304 × 64
-         → 0px dead space, even 28px rhythm between logos
-         logo list total height = 328px, whole section = 582px
-  
-     Applied to 1024px and down. Desktop is left alone — at 1440px the logo
-     renders 264 × 149 inside the 16:9 box, which reads as intentional.
-     ========================================================================== */
+/* --- 1.3  Sponsor logo dead space ---------------------------------------- */
 
 @media (max-width: 1024px) {
   .wc_sponsors_section .wp-block-post-template {
@@ -249,7 +170,6 @@ a:focus {
     align-items: center;
   }
 
-  /* Kill the inline 16/9 box and its padding. */
   .wc_sponsors_section .wp-block-post-featured-image {
     aspect-ratio: auto !important;
     height: auto !important;
@@ -262,8 +182,6 @@ a:focus {
     height: auto !important;
   }
 
-  /* Cap every logo to the same optical height so mixed logo shapes
-       (wide wordmarks vs square marks) line up evenly. */
   .wc_sponsors_section .wp-block-post-featured-image img {
     width: auto !important;
     height: auto !important;
@@ -275,29 +193,12 @@ a:focus {
   }
 }
 
-/* ==========================================================================
-     1.4 — TABLET (782–1024px): 2-COLUMN BLOCKS ARE SQUEEZED
-  
-     WordPress only stacks .wp-block-columns at ≤781px, so the whole
-     782–1024px band keeps two columns.
-  
-     Measured at 834px (iPad portrait):
-         .wc_venu_section  → .location-info-box is 203px wide × 228px tall
-         (at 1440px it is 362 × 197). The address card becomes a tall
-         narrow strip next to the map.
-  
-     Stacking these two sections at ≤1024px gives the map and the address
-     card the full 701px inner width instead of ~336px each.
-     ========================================================================== */
+/* --- 1.4  Tablet column squeeze ------------------------------------------ */
 
 @media (max-width: 1024px) {
   .wc_venu_section .wp-block-columns,
   .wc_community_section .wp-block-columns {
     flex-wrap: wrap !important;
-
-    /* iPad fix: WordPress' column gap is horizontal only, so once the
-         columns stack the text block and the image sat flush together —
-         measured 0px between them at 820 / 834 / 1024. */
     row-gap: 40px !important;
   }
 
@@ -307,7 +208,6 @@ a:focus {
     margin-left: 0 !important;
   }
 
-  /* The map keeps a usable height once it is full width. */
   .wc_venu_section iframe,
   .wc_venu_section .wp-block-embed iframe {
     width: 100%;
@@ -326,17 +226,7 @@ a:focus {
   }
 }
 
-/* ==========================================================================
-     1.5 — SECTION VERTICAL PADDING NEVER SHRINKS
-  
-     Measured: padding-top / padding-bottom stay at 96px (community) and
-     80px (card, venue, sponsors) all the way down to 320px, while the
-     horizontal padding is fluid (104px → 66.7px → 31.2px).
-     That is ~1/3 of a phone screen spent on empty space between sections.
-  
-     .wc_latest_news_section is deliberately excluded — it already computes
-     0px top/bottom and should stay that way.
-     ========================================================================== */
+/* --- 1.5  Section vertical padding --------------------------------------- */
 
 @media (max-width: 781px) {
   .wc_community_section,
@@ -358,13 +248,7 @@ a:focus {
   }
 }
 
-/* ==========================================================================
-     1.6 — SMALL-PHONE SAFETY (≤360px)
-  
-     The hero H1 is already fluid (160px at 1440 → 75.8px at 360), so it is
-     NOT overridden globally. It only gets a floor here so it cannot crowd
-     out the rest of the hero on the narrowest phones.
-     ========================================================================== */
+/* --- 1.6  Small-phone safety --------------------------------------------- */
 
 @media (max-width: 360px) {
   .wc_hero_section h1,
@@ -377,7 +261,6 @@ a:focus {
     font-size: 0.8125rem;
   }
 
-  /* Keep tap targets at the 44px accessibility minimum. */
   .wc_hero_section .wp-block-button__link,
   .wc_card_section .wp-block-button__link,
   .wc_venu_section .wp-block-button__link,
@@ -389,12 +272,7 @@ a:focus {
   }
 }
 
-/* ==========================================================================
-     1.7 — GENERAL SAFETY (cheap, no visual change at current content)
-  
-     These only take effect if an image, embed or long unbroken string is
-     ever added that would otherwise force a horizontal scrollbar.
-     ========================================================================== */
+/* --- 1.7  General overflow safety ---------------------------------------- */
 
 .wc_hero_section img,
 .wc_community_section img,
@@ -415,16 +293,7 @@ a:focus {
   overflow-wrap: break-word;
 }
 
-/* ==========================================================================
-     1.8 — REQUESTED OVERRIDES
-     Placed last on purpose so they win over 1.1 / 1.5 above.
-     "Mobile" here = 781px and below (WordPress' own mobile breakpoint).
-     Change 781px to 600px if you only want true phones.
-     ========================================================================== */
-
-/* --- 1.8a  Hero: mobile padding — top 50px, bottom 145px ----------------------- */
-/* Applied to the inner background group (same element 1.1 pads), so the
-     hero background colour still runs full-bleed edge to edge.               */
+/* --- 1.8a  Hero mobile padding ------------------------------------------- */
 
 @media (max-width: 781px) {
   .wc_hero_section > .wp-block-group {
@@ -433,31 +302,21 @@ a:focus {
   }
 }
 
-/* --- 1.8b  Hero: button gap 0.3rem on mobile ---------------------------------- */
-/* Two "button" rows live in the hero, so both are set. Delete whichever
-     one you did not mean:
-       A) .pill-button row   → the "2nd–3rd October 2026" / "SUST, Sylhet" pills
-       B) .wp-block-buttons  → the actual CTA button block                     */
+/* --- 1.8b  Hero button gap ----------------------------------------------- */
 
 @media (max-width: 781px) {
-  /* A) pill row */
   .wc_hero_section .wp-block-group.is-horizontal.is-nowrap {
     gap: 0.3rem !important;
     row-gap: 0.3rem !important;
   }
 
-  /* B) CTA buttons */
   .wc_hero_section .wp-block-buttons {
     gap: 0.3rem !important;
     row-gap: 0.3rem !important;
   }
 }
 
-/* --- 1.8c  Sponsors: tighter logo size + heading spacing on phones ------------- */
-/*  The gap above "Global Sponsors" came from the section header group's
-   *  margin-bottom: 48px. Measured at 390px:
-   *      header → "Global Sponsors"   48px  →  20px
-   *      "Global Sponsors" → 1st logo  ~32px →  16px                        */
+/* --- 1.8c  Sponsors logo size + heading spacing -------------------------- */
 
 @media (max-width: 781px) {
   .wc_sponsors_section .wp-block-post-featured-image img {
@@ -473,35 +332,11 @@ a:focus {
   }
 }
 
-/* --- 1.8d  Card height: 400px on mobile --------------------------------------- */
-/*
-   *  CORRECTED. The previous version put `height` on .wc_card_section (the
-   *  whole section). That is what made the cards spill over the venue
-   *  section and hide the volunteer card — `height` is a hard cap and the
-   *  section needs 1812px on a phone, so 1412px of it painted on top of
-   *  whatever came next.
-   *
-   *  The 850px you were describing is not the section — it is already set
-   *  INLINE on each card box (min-height:850px, from the block editor).
-   *  So desktop needs no rule at all, and mobile only needs to shrink the
-   *  card boxes themselves.
-   *
-   *  Actual content inside a card is only ~216px (pill + heading +
-   *  paragraph + button), so 400px is comfortable with room to spare.
-   *
-   *  Measured after this change:
-   *      1440px  section 1010px   cards 850 / 850   no clip, no overlap
-   *       834px  section 1010px   cards 850 / 850   no clip, no overlap
-   *       390px  section  908px   cards 400 / 400   no clip, no overlap
-   *       360px  section  908px   cards 400 / 400   no clip, no overlap
-   *  (mobile section height went 1812px → 908px)
-   *
-   *  NOTE: if you already pasted the earlier version, make sure no
-   *  `.wc_card_section { height: ... }` rule survives anywhere.          */
+/* --- 1.8d  Card height on mobile ----------------------------------------- */
 
 @media (max-width: 781px) {
   .wc_card_section .wp-block-column > .wp-block-group {
-    min-height: 400px !important; /* min-height, never height */
+    min-height: 400px !important;
     height: auto !important;
     padding-top: 40px !important;
     padding-bottom: 40px !important;
@@ -512,15 +347,7 @@ a:focus {
   }
 }
 
-/* --- 1.9   Card height on iPad (782–1024px) ----------------------------------- */
-/*  On iPad Air (820), iPad Pro 11" (834) and iPad Pro 12.9" portrait
-   *  (1024) the two cards stay side by side and keep the inline 850px
-   *  height, but each card is only 333–419px wide. Measured natural
-   *  content height: 426px @820, 427px @834, 361px @1024 — so roughly
-   *  424px of every card was empty, with the text stranded at the top.
-   *
-   *  480px keeps both cards equal and leaves comfortable slack.
-   *  iPad landscape (1180 / 1366) is wide enough to keep the 850px design. */
+/* --- 1.9  Card height on iPad -------------------------------------------- */
 
 @media (min-width: 782px) and (max-width: 1024px) {
   .wc_card_section .wp-block-column > .wp-block-group {
@@ -533,20 +360,7 @@ a:focus {
   }
 }
 
-/* --- 1.10  Card background overlay on mobile + iPad (button legibility) -------- */
-/*  Each card carries a full-bleed illustration as its background
-   *  (Column-1.webp / Column.webp, background-size: cover). The "Coming
-   *  Soon" button is is-style-outline — transparent fill, 1px border,
-   *  #16542F text — so on a phone it sits directly on the busiest part of
-   *  the artwork and effectively disappears.
-   *
-   *  This lays a cream wash over the image, keyed to the card's own cream
-   *  tone so it still reads as the same design, and lifts the card content
-   *  above it.
-   *
-   *  Extended to 1024px: once the iPad cards shrink to 480px the button
-   *  lands on the artwork there too. Desktop and iPad landscape (1180px+)
-   *  keep the original 850px card and are untouched.                      */
+/* --- 1.10  Card background overlay --------------------------------------- */
 
 @media (max-width: 1024px) {
   .wc_card_section .wp-block-column > .wp-block-group {
@@ -558,7 +372,7 @@ a:focus {
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: inherit; /* matches the card's 20px corners */
+    border-radius: inherit;
     pointer-events: none;
     z-index: 0;
     background: linear-gradient(
@@ -569,58 +383,33 @@ a:focus {
     );
   }
 
-  /* Lift pill, heading, paragraph and button above the wash. */
   .wc_card_section .wp-block-column > .wp-block-group > * {
     position: relative;
     z-index: 1;
   }
 
-  /* Give the outline button a solid ground so it reads as a button.
-       #16542F on white = 8.6:1 contrast (WCAG AAA). */
   .wc_card_section .wp-block-button__link {
     background-color: rgba(255, 255, 255, 0.92) !important;
     border-width: 2px !important;
   }
 }
 
-/*  ALTERNATIVE — if you would rather drop the artwork on phones entirely
-   *  instead of washing it out, delete the block above and use this:
-   *
-   *  @media (max-width: 781px) {
-   *      .wc_card_section .wp-block-column > .wp-block-group {
-   *          background-image: none !important;
-   *          background-color: #F5F0E4 !important;
-   *      }
-   *  }
-   */
-
-/* --- 1.11  Footer on mobile ---------------------------------------------------- */
-/*  Measured at 390px:
-   *    • the stacked footer columns had row-gap 0 — the logo block and the
-   *      "Important Link" block ran straight into each other with no space
-   *    • the middle footer column is completely empty (0 children, 0 height)
-   *      and still takes part in the layout
-   *    • the link sub-columns are 118 + 149 + 96 = 363px inside a 328px row
-   *      with gap:0, so they wrapped hard against each other               */
+/* --- 1.11  Footer on mobile ---------------------------------------------- */
 
 @media (max-width: 781px) {
-  /* Breathing room between the stacked footer blocks (was 0px). */
   footer.wp-block-template-part .wp-block-columns {
     row-gap: 36px !important;
   }
 
-  /* Drop the empty middle column. */
   footer.wp-block-template-part .wp-block-column:empty {
     display: none !important;
   }
 
-  /* Keep the footer logo to a sensible size above the text. */
   footer.wp-block-template-part .wp-block-site-logo img {
     max-width: 180px !important;
     height: auto !important;
   }
 
-  /* Let the link columns breathe instead of butting together. */
   footer.wp-block-template-part
     .wp-block-group.is-content-justification-space-between {
     gap: 28px 24px !important;
@@ -629,37 +418,11 @@ a:focus {
 }
 
 /* ==========================================================================
-     PART 1 — CHECKED AND ALREADY FINE, deliberately NOT changed
-     --------------------------------------------------------------------------
-     • No horizontal overflow at any width from 320px to 1440px.
-       document.scrollWidth always equalled the viewport width, so no
-       overflow-x hack is needed.
-  
-     • The hero H1 is already fluid: 160px @1440 → 136.6px @1024 →
-       119.2px @834 → 78.6px @390 → 75.8px @360. Do not add a global
-       clamp() — it would shrink the desktop wordmark.
-  
-     • .post-info-abs and .location-info-box never spill outside their
-       parents (measured spill was negative at every width), so they do not
-       need position:static on mobile. .location-info-box only suffered
-       from the 782–1024px column squeeze, which 1.4 resolves.
-  
-     • Most .is-nowrap groups in these sections are VERTICAL stacks, not
-       horizontal rows, so a blanket flex-wrap:wrap override would be
-       pointless and could break the intended stacking. Only the hero pill
-       row is a real horizontal nowrap row — handled in 1.1.
-  
-     • .wc_card_section columns are ~336px each at 834px, which is a
-       workable card width, so they are left to stack at WordPress' own
-       781px breakpoint.
-     ========================================================================== */
-
-/* ==========================================================================
-   ==========================================================================
    PART 2 — ORGANIZERS PAGE
    ========================================================================== */
 
 /* --- 1. Team box: name left, cards right --------------------------------- */
+
 .page-slug-organizers
   .entry-content
   > .wp-block-group.has-border-color.is-nowrap {
@@ -667,7 +430,7 @@ a:focus {
   flex-wrap: nowrap !important;
   align-items: center !important;
   gap: 40px !important;
-  padding: 40px 48px !important; /* was 0 — cards sat on the green border */
+  padding: 40px 48px !important;
   border-radius: 20px;
 }
 
@@ -701,10 +464,7 @@ a:focus {
   list-style: none !important;
 }
 
-/* ============================================================================
-   2. TEAM BOX WITH SOCIAL ICONS — becomes a grid so each social row can sit
-      directly under its own card. Matched by structure, not by class name.
-   ========================================================================== */
+/* --- 2. Team box with social icons --------------------------------------- */
 
 .page-slug-organizers
   .entry-content
@@ -756,9 +516,7 @@ a:focus {
   margin: 0 !important;
 }
 
-/* ============================================================================
-   3. THE CARD — square photo on top, name underneath
-   ========================================================================== */
+/* --- 3. The card --------------------------------------------------------- */
 
 .page-slug-organizers .wordcamp-organizers .wordcamp-post-list__post {
   list-style: none !important;
@@ -790,8 +548,7 @@ a:focus {
   background: #fff;
 }
 
-/* aspect-ratio + object-fit is what crops portrait and landscape photos to a
-   consistent square. Without it you get 157px and 307px tall avatars. */
+/* aspect-ratio + object-fit crops portrait and landscape photos to a square. */
 .page-slug-organizers
   .wordcamp-organizers
   .wordcamp-image__avatar-container
@@ -828,9 +585,7 @@ a:focus {
   display: none !important;
 }
 
-/* ============================================================================
-   4. SOCIAL ICONS — plain green glyphs, centred under each name
-   ========================================================================== */
+/* --- 4. Social icons ----------------------------------------------------- */
 
 .page-slug-organizers .wcsyl-organizer-social {
   justify-content: center !important;
@@ -865,11 +620,8 @@ a:focus {
   opacity: 0.65;
 }
 
-/* ============================================================================
-   5. RESPONSIVE
-   ========================================================================== */
+/* --- 5. Responsive ------------------------------------------------------- */
 
-/* Tablet and below — name moves on top and centres */
 @media (max-width: 1100px) {
   .page-slug-organizers
     .entry-content
@@ -878,6 +630,7 @@ a:focus {
     padding: 36px 28px 40px !important;
     border-radius: 16px;
   }
+
   .page-slug-organizers
     .entry-content
     > .wp-block-group.has-border-color.is-nowrap
@@ -887,6 +640,7 @@ a:focus {
     margin: 0 0 28px !important;
     font-size: clamp(26px, 4.2vw, 36px) !important;
   }
+
   .page-slug-organizers
     .entry-content
     > .wp-block-group.has-border-color.is-nowrap
@@ -903,6 +657,7 @@ a:focus {
     grid-template-columns: 1fr !important;
     gap: 18px !important;
   }
+
   .page-slug-organizers
     .entry-content
     > .wp-block-group.has-border-color.is-nowrap:has(
@@ -913,6 +668,7 @@ a:focus {
     grid-row: 1 !important;
     margin: 0 0 10px !important;
   }
+
   .page-slug-organizers
     .entry-content
     > .wp-block-group.has-border-color.is-nowrap:has(
@@ -923,6 +679,7 @@ a:focus {
     grid-row: 2 !important;
     justify-content: center !important;
   }
+
   .page-slug-organizers
     .entry-content
     > .wp-block-group.has-border-color.is-nowrap:has(
@@ -935,10 +692,6 @@ a:focus {
   }
 }
 
-/* Phone — two per row, icons still tracking their cards.
-   The unconditional display:grid in rule 1 also fixes a live bug: WordCamp's
-   blocks.css only switches the list to grid inside @media (min-width:400px),
-   so under 400px every card used to go full width. */
 @media (max-width: 600px) {
   .page-slug-organizers
     .entry-content
@@ -946,12 +699,14 @@ a:focus {
     padding: 26px 16px 30px !important;
     margin-bottom: 24px !important;
   }
+
   .page-slug-organizers
     .entry-content
     > .wp-block-group.has-border-color.is-nowrap
     > h2 {
     margin-bottom: 22px !important;
   }
+
   .page-slug-organizers
     .entry-content
     > .wp-block-group.has-border-color.is-nowrap
@@ -959,6 +714,7 @@ a:focus {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 22px 14px !important;
   }
+
   .page-slug-organizers
     .entry-content
     > .wp-block-group.has-border-color.is-nowrap:has(
@@ -968,15 +724,19 @@ a:focus {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 0 14px !important;
   }
+
   .page-slug-organizers .wordcamp-organizers .wordcamp-organizer {
     max-width: none !important;
   }
+
   .page-slug-organizers .wordcamp-organizers .wordcamp-image__avatar-container {
     border-radius: 16px;
   }
+
   .page-slug-organizers .wordcamp-organizers .wordcamp-block__item-title {
     font-size: 0.9375rem !important;
   }
+
   .page-slug-organizers .wcsyl-organizer-social svg {
     width: 20px !important;
     height: 20px !important;
@@ -984,42 +744,224 @@ a:focus {
 }
 
 /* ==========================================================================
-   ==========================================================================
-   PART 3 — CALL FOR SPONSORS PAGE   (?page_id=389)
+   2.9 — PHONE: SOCIAL ICONS UNDER EACH NAME          <-- THIS IS THE NEW PART
    --------------------------------------------------------------------------
-   DESKTOP IS NOT TOUCHED. Every rule in this part is inside a
-   max-width media query, so above 1024px the page renders exactly as it
-   did before this file was added — same full-width intro copy, same
-   full-width form fields, same submit button.
- 
-   (An earlier version of this part capped the text column at 680px and
-   the form at 720px at ALL widths. That changed the desktop design and
-   has been removed.)
- 
-   Page structure, top to bottom:
-       .sponsor-welcome-text     intro copy + an 8-item list
-       .sponsor-form-section     Jetpack contact form (.sponsor-form)
-                                 6 inputs, 1 select, 3 textareas
-       .sponsor-notice-section   closing note
-       .wc_venu_section          <- already handled by PART 1
-       .wc_sponsors_section      <- already handled by PART 1
- 
-   Verified live at 834px: the venue columns were already stacking and the
-   sponsor grid was already at 2 columns, both from PART 1. Nothing here
-   duplicates those rules.
- 
-   Note: this page has NO horizontal overflow at any width from 320px to
-   1920px. The only genuine small-screen problems are the ones below.
-   ==========================================================================
+   Everything here is inside @media (max-width: 600px). Above 600px it
+   changes nothing — your desktop and tablet design is untouched.
+
+   THE BUG
+   The cards and the icons are two separate grids, stacked as row 2 and row 3
+   of the team box. That works while all cards fit on ONE row (true on
+   desktop). On a phone the cards go 2-per-row, so a 3-person team wraps to
+   two card rows — but the icon grid still renders as one block underneath, so
+   all three icon rows pile up at the bottom of the box.
+
+   THE FIX
+   `display: contents` dissolves both wrappers so the cards and the icon rows
+   become items of ONE grid on the team box, then each is placed explicitly:
+
+       card 1 -> col 1, row 2      icons 1 -> col 1, row 3
+       card 2 -> col 2, row 2      icons 2 -> col 2, row 3
+       card 3 -> col 1, row 4      icons 3 -> col 1, row 5
+
+   Card row, icon row, card row, icon row. Rules run to 6 members per team,
+   so adding people won't break it.
+
+   These rules come AFTER the @media (max-width:600px) block above on purpose
+   — same specificity, so the later one wins. Keep them last.
+
+   MEASURED at 390px, Publicity (3 members):
+       Ruman Ahmed      card x=17  y=76..247    icons x=17  y=257
+       Anzuman Ara C.   card x=171 y=76..247    icons x=171 y=257
+       Md Ariful Basher card x=17  y=301..472   icons x=17  y=482
+   All 14 teams pass at 390px and 360px. No horizontal overflow.
+
+   NOTE: `display: contents` on the <ul> drops its list semantics for screen
+   readers below 600px. The cards are still headings, images and links, so the
+   content reads fine — it's the trade-off for interleaving two sibling
+   containers' rows, which CSS can't otherwise do.
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   3.1 — TABLET AND BELOW: form breathing room  (≤1024px)
- 
-   The form column computes padding-top / padding-bottom of 0px, so on a
-   tablet the form sits flush against the sections above and below it.
-   Desktop keeps its original spacing.
-   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    ) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    column-gap: 14px !important;
+    row-gap: 0 !important;
+    align-items: start !important;
+  }
+
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    > h2 {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+    margin: 0 0 20px !important;
+  }
+
+  /* Dissolve both wrappers so their children join the team-box grid */
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    > ul.wordcamp-organizers,
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    > .wp-block-group.is-vertical {
+    display: contents !important;
+  }
+
+  /* Cards — two per row */
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wordcamp-post-list__post:nth-child(1) {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wordcamp-post-list__post:nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wordcamp-post-list__post:nth-child(3) {
+    grid-column: 1 !important;
+    grid-row: 4 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wordcamp-post-list__post:nth-child(4) {
+    grid-column: 2 !important;
+    grid-row: 4 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wordcamp-post-list__post:nth-child(5) {
+    grid-column: 1 !important;
+    grid-row: 6 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wordcamp-post-list__post:nth-child(6) {
+    grid-column: 2 !important;
+    grid-row: 6 !important;
+  }
+
+  /* Icons — each on the row directly below its own card */
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wcsyl-organizer-social:nth-child(1) {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wcsyl-organizer-social:nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wcsyl-organizer-social:nth-child(3) {
+    grid-column: 1 !important;
+    grid-row: 5 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wcsyl-organizer-social:nth-child(4) {
+    grid-column: 2 !important;
+    grid-row: 5 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wcsyl-organizer-social:nth-child(5) {
+    grid-column: 1 !important;
+    grid-row: 7 !important;
+  }
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wcsyl-organizer-social:nth-child(6) {
+    grid-column: 2 !important;
+    grid-row: 7 !important;
+  }
+
+  /* Gap under the icons, before the next pair of cards */
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wcsyl-organizer-social {
+    margin: 10px 0 24px !important;
+  }
+
+  /* Cards fill their column now that the wrapper is dissolved */
+  .page-slug-organizers
+    .entry-content
+    > .wp-block-group.has-border-color.is-nowrap:has(
+      > .wp-block-group.is-vertical
+    )
+    .wordcamp-organizers
+    .wordcamp-organizer {
+    max-width: none !important;
+  }
+}
+
+/* ==========================================================================
+   PART 3 — CALL FOR SPONSORS PAGE   (?page_id=389)
+   Desktop is not touched. Every rule is inside a max-width media query.
+   ========================================================================== */
+
+/* --- 3.1  Tablet and below: form breathing room -------------------------- */
 
 @media (max-width: 1024px) {
   .sponsor-form-section > .wp-block-column {
@@ -1028,14 +970,7 @@ a:focus {
   }
 }
 
-/* --------------------------------------------------------------------------
-   3.2 — PHONES (≤600px): submit button
- 
-   Measured at 81 x 60px — an 81px target at the end of a ten-field form,
-   narrower than every input above it. Full width is the expected pattern
-   for a form on a phone and gives the largest possible tap target.
-   Desktop keeps the original 81px button.
-   -------------------------------------------------------------------------- */
+/* --- 3.2  Phones: submit button ------------------------------------------ */
 
 @media (max-width: 600px) {
   .sponsor-form-section > .wp-block-column {
@@ -1050,17 +985,11 @@ a:focus {
   .sponsor-form .wp-block-button.form-button-submit .wp-block-button__link {
     width: 100%;
     min-width: 0;
-    min-height: 52px; /* 44px is the accessibility touch minimum */
+    min-height: 52px;
   }
 }
 
-/* --------------------------------------------------------------------------
-   3.3 — PHONES (≤600px): textarea height
- 
-   Three textareas at 200px each is roughly 1.5 phone screens of empty
-   box before the visitor reaches the submit button. 140px still shows
-   about 5 lines of typing. Desktop keeps the original 200px.
-   -------------------------------------------------------------------------- */
+/* --- 3.3  Phones: textarea height ---------------------------------------- */
 
 @media (max-width: 600px) {
   .sponsor-form textarea {
@@ -1069,9 +998,7 @@ a:focus {
   }
 }
 
-/* --------------------------------------------------------------------------
-   3.4 — SPONSOR TIER CARD PADDING  (≤1024px)
-   -------------------------------------------------------------------------- */
+/* --- 3.4  Sponsor tier card padding -------------------------------------- */
 
 @media (max-width: 1024px) {
   .wc-sponsor-card > .wp-block-column,
@@ -1087,18 +1014,7 @@ a:focus {
   }
 }
 
-/* --------------------------------------------------------------------------
-   3.5 — GAP BETWEEN STACKED TIER CARDS  (≤781px)
- 
-   Both tier rows compute `row-gap: 0px` (the block only sets a column
-   gap, 24px). Once WordPress stacks the columns on a phone the cards sit
-   flush against each other — and since each has a 20px border-radius,
-   you get two rounded corners butting together with no space, which is
-   the seam visible between the dark green and light green cards in the
-   screenshots.
- 
-   Measured gap between stacked cards: 0px before, 24px after.
-   -------------------------------------------------------------------------- */
+/* --- 3.5  Gap between stacked tier cards --------------------------------- */
 
 @media (max-width: 781px) {
   .wc-sponsor-card,
@@ -1107,30 +1023,7 @@ a:focus {
   }
 }
 
-/* --------------------------------------------------------------------------
-   3.6 — TOO MUCH VERTICAL GAP  (≤781px)
- 
-   I scanned the rendered page for empty bands — stretches taller than
-   60px with nothing painted in them — rather than guessing from margins.
-   At 390px the worst offenders were:
- 
-       145px   between the 2-up card row and the 3-up card row
-       145px   before the "I want to sponsor" heading
-       113px   before the "Notes & Conditions" heading
-       112px   before the first tier card
- 
-   The cause is that both tier card rows carry `margin: 80px 0`. On a
-   1440px screen 80px reads as generous; on a 390px phone it is a fifth
-   of the screen, twice over, at every card boundary.
- 
-   Trimmed to 32px, plus the form panel to 24px and the notice section
-   to 32px. Worst empty band drops from 145px to well under 100px, and
-   the remaining figures are mostly the cards' own internal padding,
-   which sits on the coloured background rather than reading as blank
-   cream.
- 
-   Desktop and iPad keep the original 80px.
-   -------------------------------------------------------------------------- */
+/* --- 3.6  Too much vertical gap ------------------------------------------ */
 
 @media (max-width: 781px) {
   .wc-sponsor-card,
@@ -1150,102 +1043,11 @@ a:focus {
 }
 
 /* ==========================================================================
- 
-  
- 
-   Everything at 1025px and above is byte-for-byte the original design.
- 
-   PART 3 — CHECKED AND ALREADY FINE, deliberately NOT changed
-   --------------------------------------------------------------------------
-   • Input font-size is 16.8px. Anything under 16px makes iOS Safari zoom
-     the page in when a field is focused, which is the single most common
-     mobile form bug. This form is already safe, so no override.
-   • Input height is 60px, comfortably over the 44px touch minimum.
-   • Labels are already block-level above their fields, so nothing
-     collapses awkwardly on a narrow screen.
-   • Intro copy runs ~147 characters per line on a wide monitor. That is
-     wider than typographic best practice, but it is your design choice
-     and is NOT overridden here.
-   • The tier cards keep their column COUNT everywhere. Only padding and
-     the stacked gap changed — see the note below.
- 
- 
-   STILL WORTH KNOWING — the 3-up tier card on tablets
-   --------------------------------------------------------------------------
-   Even after 3.4, the 3-up row gives each tier only 161-225px of text
-   between 782px and 1024px, because three columns simply do not fit
-   comfortably in an iPad's width. The padding fix takes it from
-   "unreadable" to "tight", not to "roomy".
- 
-   If you want it genuinely comfortable on iPad, stack that row to a
-   single column in the same band. Left OFF by default because it changes
-   the layout rather than the spacing, and you only asked for padding:
- 
-   @media (min-width: 782px) and (max-width: 1024px) {
-       .wc-sponsor-card-3-column {
-           flex-wrap: wrap !important;
-           row-gap: 24px !important;
-       }
-       .wc-sponsor-card-3-column > .wp-block-column {
-           flex-basis: 100% !important;
-       }
-   }
+   PART 4 — INNER-PAGE HERO BANNER  (.wcs-attendee-bg)
+   The home page has no .wcs-attendee-bg element, so it cannot match there.
    ========================================================================== */
 
-/* ==========================================================================
-   ==========================================================================
-   PART 4 — INNER-PAGE HERO BANNER
-   --------------------------------------------------------------------------
-   Applies to EVERY page that uses the shared page-header template part
-   .wcs-attendee-bg — Organizers, Call for Sponsors, and any other inner
-   page — from one rule.
- 
-   The HOME PAGE IS NOT AFFECTED. Verified by loading it: the home page
-   has no .wcs-attendee-bg element at all (its hero is .wc_hero_section,
-   handled separately in PART 1), so this selector cannot match there.
- 
-   Verified identical on the Organizers and Call for Sponsors pages:
-   same template part, same 300px height, same artwork
-   (15ff83bd…webp), same rgb(251,241,224) background colour, same 80px
-   top padding, same #111111 title colour. One rule covers them all.
-   ==========================================================================
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   4.1 — HERO TITLE UNREADABLE OVER THE ILLUSTRATION  (phones, ≤781px)
- 
-   Why this is a phone-only bug, precisely:
- 
-   .wcs-attendee-bg is 300px tall at EVERY width, and its illustration is
-   set to `background-size: cover` with `background-position: 0% 0%`.
-   The artwork is much wider than it is tall, so:
- 
-     • On desktop (1440x300) cover scales the image by WIDTH. The render
-       is far taller than 300px, only its top strip shows, and that strip
-       is the pale sky. The dark title sits on near-flat colour and reads
-       fine.
- 
-     • On a phone (390x300) cover has to scale by HEIGHT instead. The
-       whole vertical extent of the artwork is squeezed into 300px, so
-       the busy middle — buildings, trees, the bridge — lands exactly
-       where the title and breadcrumb are. #111111 text on that is the
-       mush in the screenshot.
- 
-   Rather than move or resize anything, this lays a cream scrim over the
-   image on phones only, keyed to the hero's own background colour
-   (rgb(251,241,224)) so it reads as the same design. It is strongest
-   across the top 55% where the text sits and fades to fully transparent
-   by the bottom, so the illustration still shows through underneath.
- 
-   Measured on both pages at 360 / 390 / 600 / 781px: the title occupies
-   27-41% of the hero and the breadcrumb ends at 47-49% — the scrim is
-   between 0.94 and 0.86 opaque across all of that, which puts #111111 on
-   effectively solid cream (about 17:1 contrast).
- 
-   Scrim confirmed ON at 781px and OFF at 782px, so tablets and desktop
-   render exactly as before. The hero's 80px top padding is deliberately
-   left alone so the title does not move on any device.
-   -------------------------------------------------------------------------- */
+/* --- 4.1  Hero title legibility over the illustration -------------------- */
 
 @media (max-width: 781px) {
   .wcs-attendee-bg {
@@ -1270,39 +1072,13 @@ a:focus {
     );
   }
 
-  /* Lift the title and breadcrumb above the scrim. */
   .wcs-attendee-bg > * {
     position: relative;
     z-index: 1;
   }
 }
 
-/* --------------------------------------------------------------------------
-   4.2 — TOO MUCH GAP DIRECTLY BELOW THE HERO  (phones, ≤781px)
- 
-   The space between the hero banner and the first line of page content
-   is not set by the hero at all — it comes from whatever the FIRST block
-   inside .entry-content has for its own margin-top, which each page sets
-   independently in the editor. Measured at 390px:
- 
-       Call for Sponsors   59px   (.sponsor-welcome-text margin-top)
-       Organizers          80px   (the first <h2> margin-top)
- 
-   So the gap is both too large on a phone AND inconsistent between
-   pages. This normalises it to 28px on phones for every page that uses
-   the hero template part, whatever that page's first block happens to
-   be.
- 
-   The second selector handles pages whose first block is a wrapper
-   group: the wrapper and its first child have their top margins
-   collapsed together, so both are set to the same 28px and the result
-   is 28px total, not 56px.
- 
-   Measured after, on both pages:
-       390px -> 28px      781px -> 28px
-       782px -> unchanged (59px / 80px)
-      1440px -> unchanged (59px / 80px)
-   -------------------------------------------------------------------------- */
+/* --- 4.2  Gap directly below the hero ------------------------------------ */
 
 @media (max-width: 781px) {
   .wcs-attendee-bg + .entry-content > *:first-child,
@@ -1311,23 +1087,9 @@ a:focus {
   }
 }
 
-/*  TUNING
- *  ------
- *  More of the illustration visible behind the title: lower the first
- *  three stops (0.94 / 0.92 / 0.86). Below about 0.75 readability starts
- *  to suffer again.
- *
- *  Hide the artwork on phones entirely instead:
- *      @media (max-width: 781px) {
- *          .wcs-attendee-bg { background-image: none !important; }
- *      }
- *
- *  Extend the scrim to tablets too (it is phones-only today): change
- *  `max-width: 781px` above to `max-width: 1024px`.
- *
- *  Exclude one specific page: add a body-class guard, e.g.
- *      body:not(.page-id-12) .wcs-attendee-bg::before { content: none; }
- */
+/* ==========================================================================
+   PART 5 — SHARED COMPONENTS
+   ========================================================================== */
 
 .sd-content ul li a {
   padding: 8px 16px !important;
@@ -1337,23 +1099,16 @@ a:focus {
   border-radius: 20px !important;
 }
 
-/* ========================================
-   Updates Pagination
-======================================== */
+/* --- Updates pagination -------------------------------------------------- */
 
 .update-paginate {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 10px !important;
-
   margin-top: 56px !important;
-
   font-family: var(--wp--preset--font-family--geist) !important;
 }
-
-/* Numbers wrapper
----------------------------------------- */
 
 .update-paginate .wp-block-query-pagination-numbers {
   display: flex !important;
@@ -1362,38 +1117,25 @@ a:focus {
   margin: 0 !important;
 }
 
-/* Page numbers
----------------------------------------- */
-
 .update-paginate .page-numbers {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-
   width: 44px !important;
   height: 44px !important;
   padding: 0 !important;
-
   border: 1px solid var(--wp--preset--color--custom-primary) !important;
   border-radius: 50% !important;
-
   background: transparent !important;
   color: var(--wp--preset--color--custom-primary) !important;
-
   font-family: var(--wp--preset--font-family--geist) !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   line-height: 1 !important;
-
   text-decoration: none !important;
-
   transition: background-color 0.2s ease, color 0.2s ease,
     border-color 0.2s ease, transform 0.2s ease !important;
 }
-
-/* ========================================
-   ACTIVE PAGE
-======================================== */
 
 .update-paginate .page-numbers.current {
   background: var(--wp--preset--color--custom-primary) !important;
@@ -1401,21 +1143,12 @@ a:focus {
   color: #fff !important;
 }
 
-/* ========================================
-   PAGE NUMBER HOVER
-======================================== */
-
 .update-paginate a.page-numbers:hover {
   background: var(--wp--preset--color--custom-secondary-accent) !important;
   border-color: var(--wp--preset--color--custom-secondary-accent) !important;
   color: #fff !important;
-
   transform: translateY(-2px) !important;
 }
-
-/* ========================================
-   PREVIOUS / NEXT
-======================================== */
 
 .update-paginate .wp-block-query-pagination-previous,
 .update-paginate .wp-block-query-pagination-next {
@@ -1423,50 +1156,34 @@ a:focus {
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
-
   min-height: 44px !important;
   padding: 0 18px !important;
-
   border: 1px solid var(--wp--preset--color--custom-primary) !important;
   border-radius: 999px !important;
-
   background: transparent !important;
   color: var(--wp--preset--color--custom-primary) !important;
-
   font-family: var(--wp--preset--font-family--geist) !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   line-height: 1 !important;
-
   text-decoration: none !important;
-
   transition: background-color 0.2s ease, color 0.2s ease,
     border-color 0.2s ease, transform 0.2s ease !important;
 }
-
-/* Next arrow */
 
 .update-paginate .wp-block-query-pagination-next::after {
   content: "→" !important;
   font-size: 18px !important;
   line-height: 1 !important;
-
   transition: transform 0.2s ease !important;
 }
-
-/* Previous arrow */
 
 .update-paginate .wp-block-query-pagination-previous::before {
   content: "←" !important;
   font-size: 18px !important;
   line-height: 1 !important;
-
   transition: transform 0.2s ease !important;
 }
-
-/* ========================================
-   NEXT / PREVIOUS HOVER
-======================================== */
 
 .update-paginate .wp-block-query-pagination-next:hover,
 .update-paginate .wp-block-query-pagination-previous:hover {
@@ -1475,21 +1192,13 @@ a:focus {
   color: #fff !important;
 }
 
-/* Next arrow hover */
-
 .update-paginate .wp-block-query-pagination-next:hover::after {
   transform: translateX(3px) !important;
 }
 
-/* Previous arrow hover */
-
 .update-paginate .wp-block-query-pagination-previous:hover::before {
   transform: translateX(-3px) !important;
 }
-
-/* ========================================
-   MOBILE
-======================================== */
 
 @media (max-width: 640px) {
   .update-paginate {
@@ -1515,33 +1224,17 @@ a:focus {
   }
 }
 
-/* =========================================================
-   Single Post Content
-   Visual styling only
-========================================================= */
+/* --- Single post content ------------------------------------------------- */
 
 body.single-post .entry-content.wp-block-post-content {
   --post-primary: var(--wp--preset--color--custom-primary);
   --post-accent: var(--wp--preset--color--custom-secondary-accent);
 }
 
-/* =========================================================
-   PARAGRAPHS
-========================================================= */
-
 body.single-post .entry-content.wp-block-post-content > p {
   margin-top: 0 !important;
   margin-bottom: 28px !important;
 }
-
-/* =========================================================
-   HEADINGS
-========================================================= */
-
-/*
- * H2 is the main section heading.
- * The Figma design has a thin accent divider above it.
- */
 
 body.single-post .entry-content.wp-block-post-content > h2,
 body.single-post .entry-content.wp-block-post-content .wp-block-heading {
@@ -1550,7 +1243,6 @@ body.single-post .entry-content.wp-block-post-content .wp-block-heading {
 
 body.single-post .entry-content.wp-block-post-content > h2 {
   position: relative !important;
-
   margin-top: 56px !important;
   margin-bottom: 24px !important;
   padding-top: 27px !important;
@@ -1558,18 +1250,13 @@ body.single-post .entry-content.wp-block-post-content > h2 {
 
 body.single-post .entry-content.wp-block-post-content > h2::before {
   content: "" !important;
-
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
-
   width: 100% !important;
   height: 1px !important;
-
   background: var(--post-accent) !important;
 }
-
-/* Other headings */
 
 body.single-post .entry-content.wp-block-post-content h3 {
   margin-top: 48px !important;
@@ -1581,59 +1268,30 @@ body.single-post .entry-content.wp-block-post-content h4 {
   margin-bottom: 16px !important;
 }
 
-/* =========================================================
-   BLOCKQUOTE
-========================================================= */
-
-/*
- * Figma:
- * - soft yellow background
- * - green left border
- * - rounded right corners
- * - no border on other sides
- */
-
 body.single-post .entry-content.wp-block-post-content .wp-block-quote {
   margin: 48px 0 !important;
   padding: 20px 28px !important;
-
   border: 0 !important;
   border-left: 5px solid var(--post-primary) !important;
-
   border-radius: 0 12px 12px 0 !important;
-
   background: color-mix(in srgb, var(--post-accent) 35%, #fff 65%) !important;
-
   color: var(--post-primary) !important;
 }
-
-/* Quote text */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-quote p {
   margin: 0 !important;
 }
 
-/* Quote citation */
-
 body.single-post .entry-content.wp-block-post-content .wp-block-quote cite {
   display: block !important;
-
   margin-top: 12px !important;
-
   color: #e33222 !important;
-
   font-style: normal !important;
 }
-
-/* Gutenberg quote citation spacing */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-quote p + cite {
   margin-top: 12px !important;
 }
-
-/* =========================================================
-   IMAGES
-========================================================= */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-image {
   margin-top: 40px !important;
@@ -1642,29 +1300,19 @@ body.single-post .entry-content.wp-block-post-content .wp-block-image {
 
 body.single-post .entry-content.wp-block-post-content .wp-block-image img {
   display: block !important;
-
   width: 100% !important;
   height: auto !important;
-
   border-radius: 10px !important;
 }
-
-/* Image caption */
 
 body.single-post
   .entry-content.wp-block-post-content
   .wp-block-image
   figcaption {
   margin-top: 10px !important;
-
   color: var(--post-primary) !important;
-
   opacity: 0.55 !important;
 }
-
-/* =========================================================
-   GALLERY
-========================================================= */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-gallery {
   margin-top: 40px !important;
@@ -1675,59 +1323,36 @@ body.single-post .entry-content.wp-block-post-content .wp-block-gallery img {
   border-radius: 10px !important;
 }
 
-/* =========================================================
-   TABLE
-========================================================= */
-
 body.single-post .entry-content.wp-block-post-content .wp-block-table {
   width: 100% !important;
-
   margin-top: 40px !important;
   margin-bottom: 40px !important;
-
   overflow-x: auto !important;
 }
 
-/* Table */
-
 body.single-post .entry-content.wp-block-post-content .wp-block-table table {
   width: 100% !important;
-
   border-collapse: separate !important;
   border-spacing: 0 !important;
-
   overflow: hidden !important;
-
   border: 1px solid color-mix(in srgb, var(--post-primary) 18%, transparent) !important;
-
   border-radius: 10px !important;
 }
-
-/* Cells */
 
 body.single-post .entry-content.wp-block-post-content .wp-block-table th,
 body.single-post .entry-content.wp-block-post-content .wp-block-table td {
   padding: 14px 16px !important;
-
   border: 0 !important;
-
   border-bottom: 1px solid
     color-mix(in srgb, var(--post-primary) 12%, transparent) !important;
-
   text-align: left !important;
 }
 
-/* Header */
-
 body.single-post .entry-content.wp-block-post-content .wp-block-table thead th {
   background: var(--post-primary) !important;
-
   color: #fff !important;
-
   border-bottom: 0 !important;
 }
-
-/* Last row */
 
 body.single-post
   .entry-content.wp-block-post-content
@@ -1737,8 +1362,6 @@ body.single-post
   td {
   border-bottom: 0 !important;
 }
-
-/* Zebra rows */
 
 body.single-post
   .entry-content.wp-block-post-content
@@ -1752,10 +1375,6 @@ body.single-post
   ) !important;
 }
 
-/* =========================================================
-   LISTS
-========================================================= */
-
 body.single-post .entry-content.wp-block-post-content ul,
 body.single-post .entry-content.wp-block-post-content ol {
   margin-top: 24px !important;
@@ -1766,21 +1385,11 @@ body.single-post .entry-content.wp-block-post-content li {
   margin-bottom: 10px !important;
 }
 
-/* =========================================================
-   SEPARATOR
-========================================================= */
-
 body.single-post .entry-content.wp-block-post-content .wp-block-separator {
   margin: 48px 0 !important;
-
   border: 0 !important;
-
   border-top: 1px solid var(--post-accent) !important;
 }
-
-/* =========================================================
-   SINGLE POST CONTENT LINKS
-========================================================= */
 
 body.single-post .entry-content.wp-block-post-content a {
   color: var(--wp--preset--color--custom-secondary-accent) !important;
@@ -1790,87 +1399,55 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   color: var(--wp--preset--color--custom-primary) !important;
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
-
 @media (max-width: 640px) {
   body.single-post .entry-content.wp-block-post-content {
     max-width: none !important;
   }
-
-  /* Headings */
 
   body.single-post .entry-content.wp-block-post-content > h2 {
     margin-top: 44px !important;
     padding-top: 22px !important;
   }
 
-  /* Quote */
-
   body.single-post .entry-content.wp-block-post-content .wp-block-quote {
     margin: 40px 0 !important;
     padding: 18px 20px !important;
   }
-
-  /* Images */
 
   body.single-post .entry-content.wp-block-post-content .wp-block-image {
     margin-top: 32px !important;
     margin-bottom: 32px !important;
   }
 
-  /* Table */
-
   body.single-post .entry-content.wp-block-post-content .wp-block-table {
     overflow-x: auto !important;
   }
 }
 
-/* =========================================================
-   Contact Form
-========================================================= */
+/* --- Contact form -------------------------------------------------------- */
 
 .contact-form {
   width: 100% !important;
   max-width: 650px !important;
   margin: 0 auto !important;
-
   font-family: var(--wp--preset--font-family--geist) !important;
 }
-
-/* =========================================================
-   FORM ROW
-========================================================= */
 
 .contact-form .grunion-field-wrap {
   margin: 0 0 24px !important;
 }
 
-/* =========================================================
-   LABEL
-========================================================= */
-
 .contact-form label {
   display: block !important;
-
   margin: 0 0 8px !important;
-
   color: var(--wp--preset--color--custom-primary) !important;
-
   font-family: var(--wp--preset--font-family--geist) !important;
   font-weight: 500 !important;
 }
 
-/* Required text */
-
 .contact-form label .grunion-field-label-span {
   color: var(--wp--preset--color--custom-primary) !important;
 }
-
-/* =========================================================
-   INPUTS / TEXTAREA
-========================================================= */
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
@@ -1881,58 +1458,36 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 .contact-form textarea,
 .contact-form select {
   display: block !important;
-
   width: 100% !important;
   max-width: 100% !important;
-
   margin: 0 !important;
   padding: 14px 16px !important;
-
   box-sizing: border-box !important;
-
   border: 1px solid
     color-mix(
       in srgb,
       var(--wp--preset--color--custom-primary) 25%,
       transparent
     ) !important;
-
   border-radius: 6px !important;
-
   background: transparent !important;
-
   color: var(--wp--preset--color--custom-primary) !important;
-
   font-family: var(--wp--preset--font-family--geist) !important;
-
   outline: none !important;
-
   transition: border-color 0.2s ease, background-color 0.2s ease,
     box-shadow 0.2s ease !important;
 }
-
-/* =========================================================
-   TEXTAREA
-========================================================= */
 
 .contact-form textarea {
   min-height: 180px !important;
   resize: vertical !important;
 }
 
-/* =========================================================
-   PLACEHOLDER
-========================================================= */
-
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
   color: var(--wp--preset--color--custom-primary) !important;
   opacity: 0.45 !important;
 }
-
-/* =========================================================
-   FOCUS
-========================================================= */
 
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
@@ -1943,9 +1498,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 .contact-form textarea:focus,
 .contact-form select:focus {
   border-color: var(--wp--preset--color--custom-secondary-accent) !important;
-
   background: rgba(255, 255, 255, 0.25) !important;
-
   box-shadow: 0 0 0 2px
     color-mix(
       in srgb,
@@ -1954,54 +1507,32 @@ body.single-post .entry-content.wp-block-post-content a:hover {
     ) !important;
 }
 
-/* =========================================================
-   SUBMIT BUTTON
-========================================================= */
-
 .contact-form input[type="submit"],
 .contact-form button[type="submit"] {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-
   min-height: 48px !important;
-
   margin-top: 4px !important;
   padding: 0 24px !important;
-
   border: 1px solid var(--wp--preset--color--custom-primary) !important;
-
   border-radius: 999px !important;
-
   background: var(--wp--preset--color--custom-primary) !important;
-
   color: #fff !important;
-
   font-family: var(--wp--preset--font-family--geist) !important;
   font-weight: 500 !important;
-
   cursor: pointer !important;
-
   transition: background-color 0.2s ease, border-color 0.2s ease,
     transform 0.2s ease !important;
 }
 
-/* Submit hover */
-
 .contact-form input[type="submit"]:hover,
 .contact-form button[type="submit"]:hover {
   background: var(--wp--preset--color--custom-secondary-accent) !important;
-
   border-color: var(--wp--preset--color--custom-secondary-accent) !important;
-
   color: #fff !important;
-
   transform: translateY(-1px) !important;
 }
-
-/* =========================================================
-   CHECKBOX / RADIO
-========================================================= */
 
 .contact-form input[type="checkbox"],
 .contact-form input[type="radio"] {
@@ -2009,42 +1540,25 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   margin-right: 8px !important;
 }
 
-/* =========================================================
-   FIELD ERRORS
-========================================================= */
-
 .contact-form .contact-form__error,
 .contact-form .form-error,
 .contact-form .error {
   margin-top: 6px !important;
-
   color: #d9362e !important;
 }
-
-/* =========================================================
-   SUCCESS MESSAGE
-========================================================= */
 
 .contact-form .contact-form__success,
 .contact-form .form-success {
   margin-top: 20px !important;
-
   padding: 16px 20px !important;
-
   border-radius: 8px !important;
-
   background: color-mix(
     in srgb,
     var(--wp--preset--color--custom-secondary-accent) 20%,
     transparent
   ) !important;
-
   color: var(--wp--preset--color--custom-primary) !important;
 }
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media (max-width: 640px) {
   .contact-form {
