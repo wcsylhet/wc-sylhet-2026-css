@@ -1426,7 +1426,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 /* --- Contact form -------------------------------------------------------- */
 
-.contact-form {
+.wc-contact-form {
   width: 100% !important;
   max-width: 650px !important;
   margin: 0 auto !important;
