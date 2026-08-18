@@ -1732,6 +1732,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   margin-left: -8px;
   border-radius: 6px;
   transition: background-color 0.15s ease;
+  text-underline-offset: 8px !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1765,8 +1766,6 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 .entry-content:has(#i-want-to-be-a-speaker:target)
   .wc-spekaer-left-content
   a[href$="#i-want-to-be-a-speaker"] {
-  background-color: rgba(22, 84, 47, 0.12) !important;
-  font-weight: 700 !important;
-  text-decoration-thickness: 2px !important;
-  text-underline-offset: 3px !important;
+  font-weight: 600 !important;
+  text-decoration-thickness: 1px !important;
 }
