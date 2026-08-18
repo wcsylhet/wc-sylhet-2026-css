@@ -1589,3 +1589,184 @@ body.single-post .entry-content.wp-block-post-content a:hover {
     width: 100% !important;
   }
 }
+/* Call For Speaker page */
+
+@media (min-width: 782px) {
+  .wc-spekaer-left-content > ol.wp-block-list {
+    position: sticky !important;
+    top: calc(24px + var(--wp-admin--admin-bar--height, 0px));
+    max-height: calc(100vh - 48px - var(--wp-admin--admin-bar--height, 0px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+/* --- 2. TABLET (782–1024px): stop the TOC column being crushed                      
+   */
+
+@media (min-width: 782px) and (max-width: 1024px) {
+  .wp-block-columns > .wc-spekaer-left-content {
+    flex-basis: 212px !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .wc-spekaer-left-content ol.wp-block-list {
+    font-size: 0.875rem !important;
+  }
+
+  .wc-spekaer-left-content ol.wp-block-list li {
+    line-height: 1.35 !important;
+  }
+}
+
+/* 
+ 3. MOBILE (≤781px): row gap + tap targets 
+  */
+
+@media (max-width: 781px) {
+  .wp-block-columns:has(> .wc-spekaer-left-content) {
+    row-gap: 32px !important;
+  }
+
+  .wc-spekaer-left-content ol.wp-block-list li {
+    margin-bottom: 2px !important;
+  }
+
+  .wc-spekaer-left-content ol.wp-block-list a {
+    display: block !important;
+    padding: 9px 0 !important;
+    line-height: 1.35 !important;
+  }
+}
+
+/* 
+ 4. HEADING GAP ON PHONES 
+ */
+
+@media (max-width: 781px) {
+  .wc-spekaer-right-content :is(h2, h3) {
+    margin-top: 28px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .wc-spekaer-right-content :is(h2, h3) {
+    margin-top: 24px !important;
+  }
+}
+
+/* 
+ 5. Anchor jumps 
+*/
+
+.wc-spekaer-right-content :is(h2, h3)[id] {
+  scroll-margin-top: 90px;
+}
+
+/* --- 6. REMOVE THE MARKER BEFORE "Table of Contents"  (all devices)  */
+
+.wc-spekaer-left-content > ol.wp-block-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.wc-spekaer-left-content > ol.wp-block-list > li {
+  list-style: none !important;
+}
+
+.wc-spekaer-left-content > ol.wp-block-list > li::marker {
+  content: "" !important;
+}
+
+/* 
+7. SESSION FORMATS CARDS — one column on phones 
+ */
+
+@media (max-width: 600px) {
+  .wc-spekers-grid-section .wp-block-group.is-layout-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* 
+ 8. "I want to be a speaker" — paragraph padding + Send button 
+  */
+
+@media (max-width: 781px) {
+  .entry-content:has(.wc-spekaer-left-content)
+    .sponsor-form-section
+    .sponsor-form
+    > p {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .entry-content:has(.wc-spekaer-left-content)
+    .sponsor-form-section
+    .wp-block-button {
+    width: 100% !important;
+  }
+
+  .entry-content:has(.wc-spekaer-left-content)
+    .sponsor-form-section
+    .wp-block-button__link {
+    width: 100% !important;
+    min-height: 52px !important;
+  }
+}
+
+/* 
+   CHECKED AND LEFT ALONE
+*/
+
+/* 
+ 9. ACTIVE TABLE OF CONTENTS ITEM 
+ */
+
+/* Gives the highlight somewhere to sit. Cancels itself out visually. */
+.wc-spekaer-left-content ol.wp-block-list a {
+  padding: 3px 8px;
+  margin-left: -8px;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wc-spekaer-left-content ol.wp-block-list a {
+    transition: none;
+  }
+}
+
+/* The active entry — one line per heading id. */
+.entry-content:has(#what-we-re-looking-for:target)
+  .wc-spekaer-left-content
+  a[href$="#what-we-re-looking-for"],
+.entry-content:has(#session-formats:target)
+  .wc-spekaer-left-content
+  a[href$="#session-formats"],
+.entry-content:has(#what-you-can-speak-about:target)
+  .wc-spekaer-left-content
+  a[href$="#what-you-can-speak-about"],
+.entry-content:has(#why-speak-at-wordcamp-sylhet:target)
+  .wc-spekaer-left-content
+  a[href$="#why-speak-at-wordcamp-sylhet"],
+.entry-content:has(#how-many-talks-can-you-submit:target)
+  .wc-spekaer-left-content
+  a[href$="#how-many-talks-can-you-submit"],
+.entry-content:has(#what-to-prepare-before-you-apply:target)
+  .wc-spekaer-left-content
+  a[href$="#what-to-prepare-before-you-apply"],
+.entry-content:has(#important-dates:target)
+  .wc-spekaer-left-content
+  a[href$="#important-dates"],
+.entry-content:has(#i-want-to-be-a-speaker:target)
+  .wc-spekaer-left-content
+  a[href$="#i-want-to-be-a-speaker"] {
+  background-color: rgba(22, 84, 47, 0.12) !important;
+  font-weight: 700 !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 3px !important;
+}
