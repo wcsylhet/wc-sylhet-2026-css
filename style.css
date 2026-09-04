@@ -1829,3 +1829,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
     overflow: hidden;
     min-height: calc((15px * 1.6 * 1) + 4px);
 }
+
+.single-speaker-avatar {
+  margin: 0 auto !important;
+}
