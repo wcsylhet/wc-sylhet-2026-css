@@ -1776,16 +1776,39 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 
 
-/* HTML: <img class="scalloped-box" src="" alt=""> */
-.avatar-image-shape img {
-  --r: 25px; /* radius of circles */
-  height: 320px;
-  aspect-ratio: 1;
-  padding: calc(1.5*var(--r));
+figure.avatar-image-shape {
+  --r: 25px;
+
+  width: 256px !important;
+  height: 256px !important;
+  padding: 0 !important;
+  margin-left: auto;
+  margin-right: auto;
+
   background: #b7d856;
-  mask: 
+
+  -webkit-mask:
     linear-gradient(#000 0 0) no-repeat
-     50%/calc(100% - 2*var(--r)) calc(100% - 2*var(--r)), 
-    radial-gradient(farthest-side,#000 97%,#0000) 
-     0 0/calc(2*var(--r)) calc(2*var(--r)) round;
+      50% / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)),
+    radial-gradient(
+      farthest-side,
+      #000 97%,
+      transparent
+    ) 0 0 / calc(2 * var(--r)) calc(2 * var(--r)) round;
+
+  mask:
+    linear-gradient(#000 0 0) no-repeat
+      50% / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)),
+    radial-gradient(
+      farthest-side,
+      #000 97%,
+      transparent
+    ) 0 0 / calc(2 * var(--r)) calc(2 * var(--r)) round;
+}
+
+figure.avatar-image-shape img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
 }
