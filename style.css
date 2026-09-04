@@ -1796,8 +1796,8 @@ body.single-post .entry-content.wp-block-post-content a:hover {
     margin: -40px -42px !important;
     transform: scale(0.7213) !important;
     transform-origin: center !important;
+    margin: 0 auto !important;
 }
-
 
 .all-speakers li.wcb_speaker .wp-block-wordcamp-avatar img {
     position: absolute !important;
@@ -1811,7 +1811,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
     display: block !important;
     border: 0 !important;
     border-radius: 0 !important;
-    margin: 0 auto !important;
+  
 }
 
 
