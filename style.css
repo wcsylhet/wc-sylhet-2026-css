@@ -1776,39 +1776,16 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 
 
-figure.avatar-image-shape {
-  --r: 25px;
-
-  width: 256px !important;
-  height: 256px !important;
-  padding: 0 !important;
-  margin-left: auto;
-  margin-right: auto;
-
-  background: #b7d856;
-
-  -webkit-mask:
-    linear-gradient(#000 0 0) no-repeat
-      50% / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)),
-    radial-gradient(
-      farthest-side,
-      #000 97%,
-      transparent
-    ) 0 0 / calc(2 * var(--r)) calc(2 * var(--r)) round;
-
-  mask:
-    linear-gradient(#000 0 0) no-repeat
-      50% / calc(100% - 2 * var(--r)) calc(100% - 2 * var(--r)),
-    radial-gradient(
-      farthest-side,
-      #000 97%,
-      transparent
-    ) 0 0 / calc(2 * var(--r)) calc(2 * var(--r)) round;
-}
-
-figure.avatar-image-shape img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-  display: block;
+.all-speakers li.wcb_speaker .wp-block-wordcamp-avatar img {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transform: translate(-50%, -50%) !important;
+    clip-path: path('M106.06 15.6273C128.817 -4.67283 163.183 -4.6728 185.94 15.6274L216.447 42.8401C219.437 45.5069 222.686 47.8675 226.146 49.8867L261.454 70.4913C287.793 85.8619 298.412 118.545 286.138 146.462L269.684 183.885C268.072 187.552 266.831 191.372 265.98 195.286L257.294 235.234C250.815 265.033 223.013 285.233 192.67 282.186L151.994 278.102C148.008 277.702 143.992 277.702 140.006 278.102L99.3299 282.186C68.9866 285.233 41.1846 265.033 34.7055 235.234L26.0202 195.286C25.1691 191.372 23.928 187.552 22.3156 183.885L5.86185 146.462C-6.4123 118.545 4.20713 85.8619 30.5462 70.4913L65.8542 49.8867C69.3143 47.8675 72.5634 45.5069 75.553 42.8401L106.06 15.6273Z');
+    display: block !important;
+    border: 0 !important;
+    border-radius: 0 !important;
 }
