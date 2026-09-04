@@ -1827,5 +1827,5 @@ body.single-post .entry-content.wp-block-post-content a:hover {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: calc((15px * 1.6 * 3) + 4px);
+    min-height: calc((15px * 1.6 * 1) + 4px);
 }
