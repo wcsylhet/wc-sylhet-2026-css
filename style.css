@@ -1777,7 +1777,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 
 /* HTML: <img class="scalloped-box" src="" alt=""> */
-.avatar-image-shape {
+.avatar-image-shape img {
   --r: 25px; /* radius of circles */
   height: 320px;
   aspect-ratio: 1;
