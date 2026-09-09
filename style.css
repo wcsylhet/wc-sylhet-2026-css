@@ -1841,7 +1841,12 @@ body.single-post .entry-content.wp-block-post-content a:hover {
    Paste into Appearance → Customize → Additional CSS (or Remote CSS)
    ===================================================================== */
 
-/* ---------- 1. Common: consistent 24px gap + centered logos ---------- */
+/* ---------- 1. Common: reset list, 24px gap, centered logos ---------- */
+.wc-sponsors ul.wordcamp-post-list {
+  padding: 0; /* remove browser default 40px left padding on <ul> */
+  margin: 0;
+  list-style: none;
+}
 .wc-sponsors .wordcamp-post-list.has-layout-grid {
   grid-column-gap: 24px;
   grid-row-gap: 24px;
@@ -1849,6 +1854,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 }
 .wc-sponsors .wordcamp-post-list__post {
   margin: 0;
+  box-sizing: border-box;
 }
 .wc-sponsors .wordcamp-sponsors__logo img {
   display: block;
@@ -1877,9 +1883,11 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 }
 
 /* ---------- 3. Tablet (601px – 1024px): all tiers → 2 columns ---------- */
-@media (max-width: 1024px) {
-  .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-4,
-  .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-3 {
+@media (min-width: 601px) and (max-width: 1024px) {
+  .wc-sponsors .wordcamp-post-list.has-layout-grid,
+  .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-3,
+  .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-4 {
+    display: grid;
     grid-template-columns: repeat(
       2,
       minmax(0, 300px)
@@ -1899,26 +1907,28 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   }
 }
 
-/* ---------- 4. Mobile (≤600px): all tiers → 1 column, centered ---------- */
+/* ---------- 4. Mobile (≤600px, incl. iPhone SE 375px): 1 column, centered ---------- */
+/* blocks.css only applies display:grid from 400px up, so we force the grid
+   here to get equal 24px spacing and true centering on small phones too. */
 @media (max-width: 600px) {
   .wc-sponsors .wordcamp-post-list.has-layout-grid,
   .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-3,
   .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-4 {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: minmax(0, 260px);
+    justify-content: center; /* centers the single column in the container */
     grid-row-gap: 24px;
-    justify-items: center;
+    grid-column-gap: 0;
   }
+  .wc-sponsors .wordcamp-post-list.has-layout-grid > li,
   .wc-sponsors
     .wordcamp-post-list.has-layout-grid
     > li:last-child:nth-child(odd) {
+    grid-column: auto;
     width: 100%;
     max-width: 260px;
+    margin: 0 auto;
   }
-  .wc-sponsors .wordcamp-post-list__post {
-    width: 100%;
-    max-width: 260px;
-  }
-  /* Slightly smaller tier headings on phones */
   .wc-sponsors h2.wp-block-heading {
     font-size: 26px !important;
   }
