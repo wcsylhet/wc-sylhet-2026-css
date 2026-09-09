@@ -1774,62 +1774,152 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 }
 
 .all-speakers li.wp-block-post.wcb_speaker {
-    position: relative !important;
-    grid-column: auto !important;
-    grid-row: auto !important;
-    aspect-ratio: auto !important;
-    width: auto !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    overflow: visible !important;
-    filter: none !important;
-    text-align: center !important;
-    transition: transform .22s ease !important;
+  position: relative !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  aspect-ratio: auto !important;
+  width: auto !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  filter: none !important;
+  text-align: center !important;
+  transition: transform 0.22s ease !important;
 }
 
-.all-speakers li.wcb_speaker .wp-block-wordcamp-avatar.wp-block-wordcamp-avatar
- {
-    position: relative !important;
-    inset: auto !important;
-    width: 305px !important;
-    height: 290px !important;
-    margin: -40px -42px !important;
-    transform: scale(0.7213) !important;
-    transform-origin: center !important;
-    margin: 0 auto !important;
+.all-speakers
+  li.wcb_speaker
+  .wp-block-wordcamp-avatar.wp-block-wordcamp-avatar {
+  position: relative !important;
+  inset: auto !important;
+  width: 305px !important;
+  height: 290px !important;
+  margin: -40px -42px !important;
+  transform: scale(0.7213) !important;
+  transform-origin: center !important;
+  margin: 0 auto !important;
 }
 
 .all-speakers li.wcb_speaker .wp-block-wordcamp-avatar img {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    transform: translate(-50%, -50%) !important;
-    clip-path: path('M106.06 15.6273C128.817 -4.67283 163.183 -4.6728 185.94 15.6274L216.447 42.8401C219.437 45.5069 222.686 47.8675 226.146 49.8867L261.454 70.4913C287.793 85.8619 298.412 118.545 286.138 146.462L269.684 183.885C268.072 187.552 266.831 191.372 265.98 195.286L257.294 235.234C250.815 265.033 223.013 285.233 192.67 282.186L151.994 278.102C148.008 277.702 143.992 277.702 140.006 278.102L99.3299 282.186C68.9866 285.233 41.1846 265.033 34.7055 235.234L26.0202 195.286C25.1691 191.372 23.928 187.552 22.3156 183.885L5.86185 146.462C-6.4123 118.545 4.20713 85.8619 30.5462 70.4913L65.8542 49.8867C69.3143 47.8675 72.5634 45.5069 75.553 42.8401L106.06 15.6273Z');
-    display: block !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-  
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transform: translate(-50%, -50%) !important;
+  clip-path: path(
+    "M106.06 15.6273C128.817 -4.67283 163.183 -4.6728 185.94 15.6274L216.447 42.8401C219.437 45.5069 222.686 47.8675 226.146 49.8867L261.454 70.4913C287.793 85.8619 298.412 118.545 286.138 146.462L269.684 183.885C268.072 187.552 266.831 191.372 265.98 195.286L257.294 235.234C250.815 265.033 223.013 285.233 192.67 282.186L151.994 278.102C148.008 277.702 143.992 277.702 140.006 278.102L99.3299 282.186C68.9866 285.233 41.1846 265.033 34.7055 235.234L26.0202 195.286C25.1691 191.372 23.928 187.552 22.3156 183.885L5.86185 146.462C-6.4123 118.545 4.20713 85.8619 30.5462 70.4913L65.8542 49.8867C69.3143 47.8675 72.5634 45.5069 75.553 42.8401L106.06 15.6273Z"
+  );
+  display: block !important;
+  border: 0 !important;
+  border-radius: 0 !important;
 }
 
-
 .all-speakers li.wcb_speaker .wp-block-wordcamp-speaker-sessions li p {
-    width: auto;
-    background: #e8f3f0;
-    border-left: 4px var(--wp--preset--color--custom-primary) solid;
-    padding: 5px 10px 1px;
-    margin-top: 10px;
-    font-size: 15px;
-    line-height: 1.6;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: calc((15px * 1.6 * 1) + 4px);
+  width: auto;
+  background: #e8f3f0;
+  border-left: 4px var(--wp--preset--color--custom-primary) solid;
+  padding: 5px 10px 1px;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc((15px * 1.6 * 1) + 4px);
 }
 
 .single-speaker-avatar {
   margin: 0 auto !important;
+}
+
+/* =====================================================================
+   WordCamp Sylhet 2026 – Sponsors page responsive fixes
+   Paste into Appearance → Customize → Additional CSS (or Remote CSS)
+   ===================================================================== */
+
+/* ---------- 1. Common: consistent 24px gap + centered logos ---------- */
+.wc-sponsors .wordcamp-post-list.has-layout-grid {
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  align-items: center;
+}
+.wc-sponsors .wordcamp-post-list__post {
+  margin: 0;
+}
+.wc-sponsors .wordcamp-sponsors__logo img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- 2. Desktop (≥1025px): Silver – center the 2 logos ---------- */
+/* Matches any 4-column sponsor grid that has exactly 2 items,
+   so it will not affect the tiers with 3+ sponsors. */
+@media (min-width: 1025px) {
+  .wc-sponsors
+    .wordcamp-sponsors.has-grid-columns-4:has(> li:nth-child(2):last-child) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
+  .wc-sponsors
+    .wordcamp-sponsors.has-grid-columns-4:has(> li:nth-child(2):last-child)
+    > .wordcamp-post-list__post {
+    flex: 0 0 auto;
+    width: calc((100% - 3 * 24px) / 4); /* same width as one grid column */
+  }
+}
+
+/* ---------- 3. Tablet (601px – 1024px): all tiers → 2 columns ---------- */
+@media (max-width: 1024px) {
+  .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-4,
+  .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-3 {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 300px)
+    ); /* two 300px columns, hugging the center */
+    justify-content: center;
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
+  }
+  /* If a tier has an odd number of logos, center the last one */
+  .wc-sponsors
+    .wordcamp-post-list.has-layout-grid
+    > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 300px;
+    max-width: 100%;
+  }
+}
+
+/* ---------- 4. Mobile (≤600px): all tiers → 1 column, centered ---------- */
+@media (max-width: 600px) {
+  .wc-sponsors .wordcamp-post-list.has-layout-grid,
+  .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-3,
+  .wc-sponsors .wordcamp-post-list.has-layout-grid.has-grid-columns-4 {
+    grid-template-columns: 1fr;
+    grid-row-gap: 24px;
+    justify-items: center;
+  }
+  .wc-sponsors
+    .wordcamp-post-list.has-layout-grid
+    > li:last-child:nth-child(odd) {
+    width: 100%;
+    max-width: 260px;
+  }
+  .wc-sponsors .wordcamp-post-list__post {
+    width: 100%;
+    max-width: 260px;
+  }
+  /* Slightly smaller tier headings on phones */
+  .wc-sponsors h2.wp-block-heading {
+    font-size: 26px !important;
+  }
 }
