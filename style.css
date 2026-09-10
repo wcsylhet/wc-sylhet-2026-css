@@ -1933,3 +1933,24 @@ body.single-post .entry-content.wp-block-post-content a:hover {
     font-size: 26px !important;
   }
 }
+/* ===== Workshop sessions: different background (Speakers page) ===== */
+.all-speakers
+  li.wcb_speaker.post-1835
+  .wp-block-wordcamp-speaker-sessions
+  li:first-child
+  p,
+.all-speakers
+  li.wcb_speaker.post-1638
+  .wp-block-wordcamp-speaker-sessions
+  li:first-child
+  p,
+.all-speakers
+  li.wcb_speaker.post-1942
+  .wp-block-wordcamp-speaker-sessions
+  li:first-child
+  p {
+  background: #fff3d1; /* soft amber */
+  border-left-color: #e0a100; /* amber accent bar */
+  color: #7a4b00;
+  font-weight: 600;
+}
