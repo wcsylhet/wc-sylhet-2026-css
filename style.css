@@ -1948,6 +1948,11 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   li.wcb_speaker.post-1942
   .wp-block-wordcamp-speaker-sessions
   li:first-child
+  p,
+.all-speakers
+  li.wcb_speaker.post-90401
+  .wp-block-wordcamp-speaker-sessions
+  li:first-child
   p {
   background: #ffd3a7; /* soft amber */
   border-left-color: #e0a100; /* amber accent bar */
@@ -1955,104 +1960,102 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   font-weight: 600;
 }
 
-
-
 /* Attendee grid */
 #tix-attendees .tix-attendee-list {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    column-gap: 32px !important;
-    row-gap: 55px !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  column-gap: 32px !important;
+  row-gap: 55px !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
-    list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
 }
 
 /* Each attendee */
 #tix-attendees .tix-attendee-list > li {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
 
-    width: 100% !important;
-    height: auto !important;
-    min-height: 140px !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 140px !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 
-    text-align: center !important;
+  text-align: center !important;
 }
 
 /* Avatar */
 #tix-attendees .tix-attendee-list > li img.avatar {
-    display: block !important;
+  display: block !important;
 
-    width: 96px !important;
-    height: 96px !important;
-    min-width: 96px !important;
-    min-height: 96px !important;
+  width: 96px !important;
+  height: 96px !important;
+  min-width: 96px !important;
+  min-height: 96px !important;
 
-    object-fit: cover !important;
-    border-radius: 50% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
 
-    margin: 0 0 14px 0 !important;
-    padding: 0 !important;
+  margin: 0 0 14px 0 !important;
+  padding: 0 !important;
 }
 
 /* Attendee name */
 #tix-attendees .tix-attendee-name {
-    display: block !important;
+  display: block !important;
 
-    width: 100% !important;
+  width: 100% !important;
 
-    margin: 0 !important;
-    padding: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 
-    font-size: 16px !important;
-    line-height: 1.4 !important;
-    text-align: center !important;
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
 }
 
 /* Keep first + last name together */
 #tix-attendees .tix-attendee-name .tix-first,
 #tix-attendees .tix-attendee-name .tix-last {
-    display: inline !important;
+  display: inline !important;
 }
 
 /* Tablet */
 @media (max-width: 900px) {
-    #tix-attendees .tix-attendee-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        column-gap: 25px !important;
-        row-gap: 45px !important;
-    }
+  #tix-attendees .tix-attendee-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    column-gap: 25px !important;
+    row-gap: 45px !important;
+  }
 }
 
 /* Mobile */
 @media (max-width: 600px) {
-    #tix-attendees .tix-attendee-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        column-gap: 20px !important;
-        row-gap: 40px !important;
-    }
+  #tix-attendees .tix-attendee-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    column-gap: 20px !important;
+    row-gap: 40px !important;
+  }
 }
 
 /* More playful organic shapes */
 #tix-attendees .tix-attendee-list > li:nth-child(4n + 1) img.avatar {
-    border-radius: 60% 40% 55% 45% / 45% 55% 40% 60% !important;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60% !important;
 }
 
 #tix-attendees .tix-attendee-list > li:nth-child(4n + 2) img.avatar {
-    border-radius: 40% 60% 45% 55% / 55% 40% 60% 45% !important;
+  border-radius: 40% 60% 45% 55% / 55% 40% 60% 45% !important;
 }
 
 #tix-attendees .tix-attendee-list > li:nth-child(4n + 3) img.avatar {
-    border-radius: 50% 50% 40% 60% / 60% 45% 55% 40% !important;
+  border-radius: 50% 50% 40% 60% / 60% 45% 55% 40% !important;
 }
 
 #tix-attendees .tix-attendee-list > li:nth-child(4n + 4) img.avatar {
-    border-radius: 45% 55% 60% 40% / 50% 60% 40% 50% !important;
+  border-radius: 45% 55% 60% 40% / 50% 60% 40% 50% !important;
 }
