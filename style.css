@@ -2152,7 +2152,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   grid-row: auto !important;
   grid-area: auto !important;
   margin: 0 !important;
-  padding: 20px 24px 20px 0 !important;
+  padding: 20px 24px 20px 20px !important;
   display: flex !important;
   align-items: center;
   gap: 24px;
@@ -2173,7 +2173,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
     "Sofia Sans Extra Condensed",
     sans-serif
   );
-  font-size: 28px !important;
+  font-size: 22px !important;
   font-weight: 700;
   line-height: 1.2;
   color: var(--wp--preset--color--custom-primary, #16542f);
