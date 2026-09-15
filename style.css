@@ -2155,7 +2155,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   padding: 20px 24px 20px 20px !important;
   display: flex !important;
   align-items: center;
-  gap: 24px;
+  gap: 8px;
   background: var(--wp--preset--color--custom-background, #fbf1e0) !important;
   border: 1px solid var(--wp--preset--color--custom-primary, #16542f) !important;
   border-left: 0 !important;
@@ -2244,7 +2244,9 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   dd:after {
   content: none;
 }
-
+.wordcamp-schedule__session .dashicons:before {
+  display: none;
+}
 /* ---------- Break rows: warm background, no track pill ---------- */
 /* Matches sessions whose slug starts with "break", "lunch", "tea-break", "coffee-break",
    or that have a "Break" category. Add more slugs here if you name breaks differently. */
