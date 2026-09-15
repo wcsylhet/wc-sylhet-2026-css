@@ -2059,3 +2059,325 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 #tix-attendees .tix-attendee-list > li:nth-child(4n + 4) img.avatar {
   border-radius: 45% 55% 60% 40% / 50% 60% 40% 50% !important;
 }
+/* =====================================================================
+   WordCamp Sylhet 2026 – Schedule page design
+   Targets: .wordcamp-schedule.wcsyl-schedule-2026 (the Schedule block)
+   Paste into Appearance → Customize → Additional CSS (or Remote CSS)
+   ===================================================================== */
+
+/* ---------- Day tabs ---------- */
+.wp-block-tabs .wp-block-tab-list {
+  display: inline-flex !important;
+  gap: 4px;
+  padding: 4px;
+  margin: 0 auto 40px;
+  border: 1px solid var(--wp--preset--color--custom-primary, #16542f);
+  border-radius: 8px;
+  background: transparent;
+  width: auto;
+}
+.wp-block-tabs .wp-block-tab-list button {
+  font-family: var(--wp--preset--font-family--geist, Geist, sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--wp--preset--color--custom-primary, #16542f);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.wp-block-tabs .wp-block-tab-list button:hover {
+  background: rgba(22, 84, 47, 0.08);
+}
+.wp-block-tabs .wp-block-tab-list button[aria-selected="true"],
+.wp-block-tabs .wp-block-tab-list button.is-active {
+  background: var(--wp--preset--color--custom-primary, #16542f);
+  color: #fff;
+}
+/* Center the whole tab list */
+.wp-block-tabs {
+  text-align: center;
+}
+.wp-block-tabs .wp-block-tab-panels {
+  text-align: left;
+}
+
+/* ---------- Schedule wrapper ---------- */
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__date,
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__column-header {
+  display: none !important; /* date heading + "Time / Main Track" headers */
+}
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__day {
+  display: grid !important;
+  grid-template-columns: 150px 1fr !important;
+  grid-template-rows: none !important;
+  grid-auto-rows: auto !important;
+  grid-auto-flow: row;
+  column-gap: 0 !important;
+  row-gap: 16px !important;
+  background: transparent !important;
+}
+
+/* ---------- Row = time cell + session cell ---------- */
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__time-slot-header {
+  grid-column: 1 !important;
+  grid-row: auto !important;
+  margin: 0 !important;
+  padding: 24px 0 24px 24px !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left !important;
+  font-family: var(--wp--preset--font-family--geist, Geist, sans-serif);
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--custom-primary, #16542f);
+  background: var(--wp--preset--color--custom-background, #fbf1e0) !important;
+  border: 1px solid var(--wp--preset--color--custom-primary, #16542f) !important;
+  border-right: 0 !important;
+  border-radius: 8px 0 0 8px;
+}
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__time-slot-header.is-empty {
+  display: none !important;
+}
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session {
+  grid-column: 2 !important;
+  grid-row: auto !important;
+  grid-area: auto !important;
+  margin: 0 !important;
+  padding: 20px 24px 20px 0 !important;
+  display: flex !important;
+  align-items: center;
+  gap: 24px;
+  background: var(--wp--preset--color--custom-background, #fbf1e0) !important;
+  border: 1px solid var(--wp--preset--color--custom-primary, #16542f) !important;
+  border-left: 0 !important;
+  border-radius: 0 8px 8px 0;
+  text-align: left !important;
+  font-family: var(--wp--preset--font-family--geist, Geist, sans-serif);
+}
+
+/* Title */
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-title {
+  flex: 1 1 auto;
+  margin: 0 !important;
+  font-family: var(
+    --wp--preset--font-family--sofia-sans-extra-condensed,
+    "Sofia Sans Extra Condensed",
+    sans-serif
+  );
+  font-size: 28px !important;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--wp--preset--color--custom-primary, #16542f);
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+}
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-title a {
+  color: inherit;
+  text-decoration: none;
+}
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session-title
+  a:hover {
+  text-decoration: underline;
+}
+/* Favourite star: keep it, but subtle */
+.wordcamp-schedule.wcsyl-schedule-2026 .wcb-session-favourite-icon {
+  display: inline-flex;
+  opacity: 0.45;
+}
+.wordcamp-schedule.wcsyl-schedule-2026 .wcb-session-favourite-icon:hover {
+  opacity: 1;
+}
+
+/* Hide the "11:00 am - 11:30 am" line and the Category line */
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session > p,
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-category {
+  display: none !important;
+}
+
+/* Speakers – small muted line under the title (delete this block to hide speakers) */
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-speakers {
+  order: 2;
+  flex: 0 1 auto;
+  margin: 0 !important;
+  font-size: 14px;
+  color: var(--wp--preset--color--custom-primary, #16542f);
+  opacity: 0.75;
+}
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-speakers a {
+  color: inherit;
+}
+
+/* Track pill (right side) */
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-tracks {
+  display: block !important;
+  order: 3;
+  flex: 0 0 auto;
+  margin: 0 0 0 auto !important;
+  padding: 8px 30px;
+  border-radius: 6px;
+  background: #f5ddd5;
+  color: var(--wp--preset--color--custom-secondary-accent, #a90005);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-tracks dd {
+  display: inline;
+  margin: 0;
+}
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session-tracks
+  dd:after {
+  content: none;
+}
+
+/* ---------- Break rows: warm background, no track pill ---------- */
+/* Matches sessions whose slug starts with "break", "lunch", "tea-break", "coffee-break",
+   or that have a "Break" category. Add more slugs here if you name breaks differently. */
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-break"],
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-lunch"],
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-tea-break"],
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-coffee-break"],
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session.has-category-break {
+  background: #fdf3dc !important;
+}
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__time-slot-header:has(
+    + .wordcamp-schedule__session[class*="has-slug-break"]
+  ),
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__time-slot-header:has(
+    + .wordcamp-schedule__session[class*="has-slug-lunch"]
+  ),
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__time-slot-header:has(
+    + .wordcamp-schedule__session[class*="has-slug-tea-break"]
+  ),
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__time-slot-header:has(
+    + .wordcamp-schedule__session[class*="has-slug-coffee-break"]
+  ),
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__time-slot-header:has(
+    + .wordcamp-schedule__session.has-category-break
+  ) {
+  background: #fdf3dc !important;
+}
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-break"]
+  .wordcamp-schedule__session-tracks,
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-lunch"]
+  .wordcamp-schedule__session-tracks,
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-tea-break"]
+  .wordcamp-schedule__session-tracks,
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-coffee-break"]
+  .wordcamp-schedule__session-tracks,
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session.has-category-break
+  .wordcamp-schedule__session-tracks,
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-break"]
+  .wcb-session-favourite-icon,
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session[class*="has-slug-lunch"]
+  .wcb-session-favourite-icon {
+  display: none !important;
+}
+/* Non-talk items (Registration, Group Photo, Closing…) keep the pill but no favourite star */
+.wordcamp-schedule.wcsyl-schedule-2026
+  .wordcamp-schedule__session.is-type-custom
+  .wcb-session-favourite-icon {
+  display: none !important;
+}
+
+/* ---------- Tablet (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__day {
+    grid-template-columns: 120px 1fr !important;
+  }
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__time-slot-header {
+    padding-left: 18px !important;
+    font-size: 14px !important;
+  }
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session {
+    padding: 16px 18px 16px 0 !important;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-title {
+    font-size: 24px !important;
+  }
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-tracks {
+    padding: 7px 18px;
+  }
+}
+
+/* ---------- Mobile (≤600px): time on top, session below, one card ---------- */
+@media (max-width: 600px) {
+  .wp-block-tabs .wp-block-tab-list {
+    display: flex !important;
+    width: 100%;
+  }
+  .wp-block-tabs .wp-block-tab-list button {
+    flex: 1 1 0;
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__day {
+    grid-template-columns: 1fr !important;
+    row-gap: 0 !important;
+  }
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__time-slot-header {
+    grid-column: 1 !important;
+    padding: 12px 16px 0 !important;
+    border: 1px solid var(--wp--preset--color--custom-primary, #16542f) !important;
+    border-bottom: 0 !important;
+    border-radius: 8px 8px 0 0;
+    font-size: 13px !important;
+  }
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session {
+    grid-column: 1 !important;
+    padding: 8px 16px 16px !important;
+    margin-bottom: 16px !important;
+    border: 1px solid var(--wp--preset--color--custom-primary, #16542f) !important;
+    border-top: 0 !important;
+    border-radius: 0 0 8px 8px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-title {
+    flex: 1 1 100%;
+    font-size: 22px !important;
+  }
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-speakers {
+    flex: 1 1 100%;
+  }
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-tracks {
+    margin-left: 0 !important;
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
