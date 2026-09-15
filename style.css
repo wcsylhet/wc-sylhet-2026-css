@@ -2244,7 +2244,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
   dd:after {
   content: none;
 }
-.wordcamp-schedule__session .dashicons:before {
+.wordcamp-schedule__session .dashicons {
   display: none;
 }
 /* ---------- Break rows: warm background, no track pill ---------- */
