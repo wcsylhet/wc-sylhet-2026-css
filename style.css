@@ -2383,3 +2383,212 @@ body.single-post .entry-content.wp-block-post-content a:hover {
     font-size: 12px;
   }
 }
+
+/* =========================================
+   Ticket Attendee Edit Form
+========================================= */
+
+.tix-attendee-form {
+	width: 100% !important;
+	max-width: 1100px !important;
+	margin: 40px auto 80px !important;
+}
+
+/* Heading */
+.tix-attendee-form h2 {
+	margin: 0 0 35px !important;
+	font-size: 42px !important;
+	line-height: 1.1 !important;
+	font-weight: 700 !important;
+}
+
+/* Ticket type heading */
+.tix-attendee-form .tix-tickets-table > tbody > tr:first-child th {
+	padding: 0 0 20px !important;
+	background: transparent !important;
+	border: 0 !important;
+	font-size: 20px !important;
+	font-weight: 700 !important;
+	text-align: left !important;
+}
+
+/* Form table */
+.tix-attendee-form .tix-tickets-table {
+	width: 100% !important;
+	border: 0 !important;
+	border-spacing: 0 !important;
+	background: transparent !important;
+}
+
+/* Rows */
+.tix-attendee-form .tix-tickets-table tr {
+	border: 0 !important;
+}
+
+/* Cells */
+.tix-attendee-form .tix-tickets-table td {
+	padding: 10px 0 !important;
+	border: 0 !important;
+	vertical-align: middle !important;
+}
+
+/* Labels */
+.tix-attendee-form .tix-tickets-table td:first-child {
+	width: 46% !important;
+	padding-right: 50px !important;
+	font-size: 16px !important;
+	line-height: 1.5 !important;
+}
+
+/* =========================================
+   Text Inputs
+========================================= */
+
+.tix-attendee-form input[type="text"],
+.tix-attendee-form input[type="email"],
+.tix-attendee-form input[type="url"],
+.tix-attendee-form input[type="tel"],
+.tix-attendee-form select,
+.tix-attendee-form textarea {
+	width: 100% !important;
+	max-width: 480px !important;
+	min-height: 42px !important;
+	padding: 8px 12px !important;
+	border: 1px solid #aaa !important;
+	border-radius: 3px !important;
+	background: #fff !important;
+	font-family: inherit !important;
+	font-size: 15px !important;
+	box-sizing: border-box !important;
+}
+
+/* Input focus */
+.tix-attendee-form input[type="text"]:focus,
+.tix-attendee-form input[type="email"]:focus,
+.tix-attendee-form input[type="url"]:focus,
+.tix-attendee-form input[type="tel"]:focus,
+.tix-attendee-form select:focus,
+.tix-attendee-form textarea:focus {
+	outline: none !important;
+	border-color: #555 !important;
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* =========================================
+   Radio Buttons
+========================================= */
+
+.tix-attendee-form input[type="radio"] {
+	appearance: none !important;
+	-webkit-appearance: none !important;
+
+	width: 16px !important;
+	height: 16px !important;
+	min-width: 16px !important;
+	min-height: 16px !important;
+
+	margin: 0 7px 0 0 !important;
+	padding: 0 !important;
+
+	border: 1px solid #888 !important;
+	border-radius: 50% !important;
+
+	background: #fff !important;
+
+	vertical-align: -3px !important;
+	cursor: pointer !important;
+}
+
+.tix-attendee-form input[type="radio"]:checked {
+	border: 5px solid #222 !important;
+	background: #fff !important;
+}
+
+.tix-attendee-form input[type="radio"]:focus {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.tix-attendee-form input[type="radio"]:hover {
+	border-color: #222 !important;
+}
+
+/* =========================================
+   Checkboxes
+========================================= */
+
+.tix-attendee-form input[type="checkbox"] {
+	width: auto !important;
+	min-width: auto !important;
+	min-height: auto !important;
+	margin-right: 7px !important;
+}
+
+/* =========================================
+   Links
+========================================= */
+
+.tix-attendee-form a {
+	color: #d33 !important;
+}
+
+/* =========================================
+   Save Button
+========================================= */
+
+.tix-attendee-form input[type="submit"],
+.tix-attendee-form button[type="submit"] {
+	margin-top: 25px !important;
+	padding: 10px 20px !important;
+
+	border: 1px solid #999 !important;
+	border-radius: 3px !important;
+
+	background: #eee !important;
+	color: #222 !important;
+
+	font-family: inherit !important;
+	font-size: 14px !important;
+
+	cursor: pointer !important;
+}
+
+/* =========================================
+   Mobile
+========================================= */
+
+@media (max-width: 700px) {
+
+	.tix-attendee-form {
+		margin: 30px auto 50px !important;
+		padding: 0 20px !important;
+	}
+
+	.tix-attendee-form h2 {
+		font-size: 32px !important;
+	}
+
+	.tix-attendee-form .tix-tickets-table,
+	.tix-attendee-form .tix-tickets-table tbody,
+	.tix-attendee-form .tix-tickets-table tr,
+	.tix-attendee-form .tix-tickets-table td {
+		display: block !important;
+		width: 100% !important;
+	}
+
+	.tix-attendee-form .tix-tickets-table td:first-child {
+		padding: 8px 0 4px !important;
+	}
+
+	.tix-attendee-form .tix-tickets-table td:nth-child(2) {
+		padding: 4px 0 15px !important;
+	}
+
+	.tix-attendee-form input[type="text"],
+	.tix-attendee-form input[type="email"],
+	.tix-attendee-form select,
+	.tix-attendee-form textarea {
+		max-width: 100% !important;
+	}
+}
+
