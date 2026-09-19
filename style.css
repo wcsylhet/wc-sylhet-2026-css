@@ -2389,55 +2389,55 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 ========================================= */
 
 .tix-attendee-form {
-	width: 100% !important;
-	max-width: 1100px !important;
-	margin: 40px auto 80px !important;
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin: 40px auto 80px !important;
 }
 
 /* Heading */
 .tix-attendee-form h2 {
-	margin: 0 0 35px !important;
-	font-size: 42px !important;
-	line-height: 1.1 !important;
-	font-weight: 700 !important;
+  margin: 0 0 35px !important;
+  font-size: 42px !important;
+  line-height: 1.1 !important;
+  font-weight: 700 !important;
 }
 
 /* Ticket type heading */
 .tix-attendee-form .tix-tickets-table > tbody > tr:first-child th {
-	padding: 0 0 20px !important;
-	background: transparent !important;
-	border: 0 !important;
-	font-size: 20px !important;
-	font-weight: 700 !important;
-	text-align: left !important;
+  padding: 0 0 20px !important;
+  background: transparent !important;
+  border: 0 !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  text-align: left !important;
 }
 
 /* Form table */
 .tix-attendee-form .tix-tickets-table {
-	width: 100% !important;
-	border: 0 !important;
-	border-spacing: 0 !important;
-	background: transparent !important;
+  width: 100% !important;
+  border: 0 !important;
+  border-spacing: 0 !important;
+  background: transparent !important;
 }
 
 /* Rows */
 .tix-attendee-form .tix-tickets-table tr {
-	border: 0 !important;
+  border: 0 !important;
 }
 
 /* Cells */
 .tix-attendee-form .tix-tickets-table td {
-	padding: 10px 0 !important;
-	border: 0 !important;
-	vertical-align: middle !important;
+  padding: 10px 0 !important;
+  border: 0 !important;
+  vertical-align: middle !important;
 }
 
 /* Labels */
 .tix-attendee-form .tix-tickets-table td:first-child {
-	width: 46% !important;
-	padding-right: 50px !important;
-	font-size: 16px !important;
-	line-height: 1.5 !important;
+  width: 46% !important;
+  padding-right: 50px !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
 }
 
 /* =========================================
@@ -2450,16 +2450,16 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 .tix-attendee-form input[type="tel"],
 .tix-attendee-form select,
 .tix-attendee-form textarea {
-	width: 100% !important;
-	max-width: 480px !important;
-	min-height: 42px !important;
-	padding: 8px 12px !important;
-	border: 1px solid #aaa !important;
-	border-radius: 3px !important;
-	background: #fff !important;
-	font-family: inherit !important;
-	font-size: 15px !important;
-	box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  min-height: 42px !important;
+  padding: 8px 12px !important;
+  border: 1px solid #aaa !important;
+  border-radius: 3px !important;
+  background: #fff !important;
+  font-family: inherit !important;
+  font-size: 15px !important;
+  box-sizing: border-box !important;
 }
 
 /* Input focus */
@@ -2469,9 +2469,9 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 .tix-attendee-form input[type="tel"]:focus,
 .tix-attendee-form select:focus,
 .tix-attendee-form textarea:focus {
-	outline: none !important;
-	border-color: #555 !important;
-	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08) !important;
+  outline: none !important;
+  border-color: #555 !important;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* =========================================
@@ -2479,38 +2479,38 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 ========================================= */
 
 .tix-attendee-form input[type="radio"] {
-	appearance: none !important;
-	-webkit-appearance: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
 
-	width: 16px !important;
-	height: 16px !important;
-	min-width: 16px !important;
-	min-height: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
 
-	margin: 0 7px 0 0 !important;
-	padding: 0 !important;
+  margin: 0 7px 0 0 !important;
+  padding: 0 !important;
 
-	border: 1px solid #888 !important;
-	border-radius: 50% !important;
+  border: 1px solid #888 !important;
+  border-radius: 50% !important;
 
-	background: #fff !important;
+  background: #fff !important;
 
-	vertical-align: -3px !important;
-	cursor: pointer !important;
+  vertical-align: -3px !important;
+  cursor: pointer !important;
 }
 
 .tix-attendee-form input[type="radio"]:checked {
-	border: 5px solid #222 !important;
-	background: #fff !important;
+  border: 5px solid #222 !important;
+  background: #fff !important;
 }
 
 .tix-attendee-form input[type="radio"]:focus {
-	outline: none !important;
-	box-shadow: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .tix-attendee-form input[type="radio"]:hover {
-	border-color: #222 !important;
+  border-color: #222 !important;
 }
 
 /* =========================================
@@ -2518,10 +2518,10 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 ========================================= */
 
 .tix-attendee-form input[type="checkbox"] {
-	width: auto !important;
-	min-width: auto !important;
-	min-height: auto !important;
-	margin-right: 7px !important;
+  width: auto !important;
+  min-width: auto !important;
+  min-height: auto !important;
+  margin-right: 7px !important;
 }
 
 /* =========================================
@@ -2529,7 +2529,7 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 ========================================= */
 
 .tix-attendee-form a {
-	color: #d33 !important;
+  color: #d33 !important;
 }
 
 /* =========================================
@@ -2538,19 +2538,19 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 .tix-attendee-form input[type="submit"],
 .tix-attendee-form button[type="submit"] {
-	margin-top: 25px !important;
-	padding: 10px 20px !important;
+  margin-top: 25px !important;
+  padding: 10px 20px !important;
 
-	border: 1px solid #999 !important;
-	border-radius: 3px !important;
+  border: 1px solid #999 !important;
+  border-radius: 3px !important;
 
-	background: #eee !important;
-	color: #222 !important;
+  background: #eee !important;
+  color: #222 !important;
 
-	font-family: inherit !important;
-	font-size: 14px !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
 
-	cursor: pointer !important;
+  cursor: pointer !important;
 }
 
 /* =========================================
@@ -2558,37 +2558,293 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 ========================================= */
 
 @media (max-width: 700px) {
+  .tix-attendee-form {
+    margin: 30px auto 50px !important;
+    padding: 0 20px !important;
+  }
 
-	.tix-attendee-form {
-		margin: 30px auto 50px !important;
-		padding: 0 20px !important;
-	}
+  .tix-attendee-form h2 {
+    font-size: 32px !important;
+  }
 
-	.tix-attendee-form h2 {
-		font-size: 32px !important;
-	}
+  .tix-attendee-form .tix-tickets-table,
+  .tix-attendee-form .tix-tickets-table tbody,
+  .tix-attendee-form .tix-tickets-table tr,
+  .tix-attendee-form .tix-tickets-table td {
+    display: block !important;
+    width: 100% !important;
+  }
 
-	.tix-attendee-form .tix-tickets-table,
-	.tix-attendee-form .tix-tickets-table tbody,
-	.tix-attendee-form .tix-tickets-table tr,
-	.tix-attendee-form .tix-tickets-table td {
-		display: block !important;
-		width: 100% !important;
-	}
+  .tix-attendee-form .tix-tickets-table td:first-child {
+    padding: 8px 0 4px !important;
+  }
 
-	.tix-attendee-form .tix-tickets-table td:first-child {
-		padding: 8px 0 4px !important;
-	}
+  .tix-attendee-form .tix-tickets-table td:nth-child(2) {
+    padding: 4px 0 15px !important;
+  }
 
-	.tix-attendee-form .tix-tickets-table td:nth-child(2) {
-		padding: 4px 0 15px !important;
-	}
-
-	.tix-attendee-form input[type="text"],
-	.tix-attendee-form input[type="email"],
-	.tix-attendee-form select,
-	.tix-attendee-form textarea {
-		max-width: 100% !important;
-	}
+  .tix-attendee-form input[type="text"],
+  .tix-attendee-form input[type="email"],
+  .tix-attendee-form select,
+  .tix-attendee-form textarea {
+    max-width: 100% !important;
+  }
 }
 
+/* =====================================================================
+   WordCamp Sylhet 2026 – Complimentary Ticket page (/complementory-ticket/)
+   Scoped to body.page-slug-complementory-ticket so no other page changes.
+   Paste into Appearance → Customize → Additional CSS (or Remote CSS)
+   ===================================================================== */
+
+/* ---------- 1. Hide Micro Sponsor + Regular ticket rows on this page only ---------- */
+body.page-slug-complementory-ticket .tix-ticket-90722,   /* Micro Sponsor Ticket */
+body.page-slug-complementory-ticket .tix-ticket-90393 {
+  /* Regular Ticket */
+  display: none !important;
+}
+
+/* ---------- 2. Centered container ---------- */
+body.page-slug-complementory-ticket
+  .entry-content
+  > p.wp-block-paragraph[style*="padding-top:80px"] {
+  display: block;
+  max-width: 900px;
+  margin: 0 auto !important;
+  padding: 72px 24px 80px !important;
+}
+body.page-slug-complementory-ticket #tix {
+  font-family: var(--wp--preset--font-family--geist, Geist, sans-serif);
+  color: var(--wp--preset--color--custom-primary, #16542f);
+}
+
+/* ---------- 3. Login notice → soft card ---------- */
+body.page-slug-complementory-ticket #tix-notices .tix-notice {
+  background: #fff;
+  border: 1px solid var(--wp--preset--color--custom-primary, #16542f);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 0 0 32px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.6;
+}
+body.page-slug-complementory-ticket #tix-notices .tix-notice p {
+  margin: 0 0 8px;
+}
+body.page-slug-complementory-ticket #tix-notices .tix-notice p:last-child {
+  margin-bottom: 0;
+}
+body.page-slug-complementory-ticket #tix-notices .tix-notice a {
+  color: var(--wp--preset--color--custom-secondary-accent, #a90005);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+body.page-slug-complementory-ticket #not-your-personal-site {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-top: 12px !important;
+}
+
+/* ---------- 4. Ticket table → clean bordered table ---------- */
+body.page-slug-complementory-ticket .tix_tickets_table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--wp--preset--color--custom-primary, #16542f);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+body.page-slug-complementory-ticket .tix_tickets_table thead th {
+  background: var(--wp--preset--color--custom-primary, #16542f);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 20px;
+  text-align: center;
+  border: 0;
+}
+body.page-slug-complementory-ticket
+  .tix_tickets_table
+  thead
+  th.tix-column-description {
+  text-align: left;
+}
+body.page-slug-complementory-ticket .tix_tickets_table tbody th,
+body.page-slug-complementory-ticket .tix_tickets_table tbody td {
+  padding: 20px;
+  border: 0;
+  border-top: 1px solid rgba(22, 84, 47, 0.18);
+  vertical-align: middle;
+  text-align: center;
+  font-size: 16px;
+}
+body.page-slug-complementory-ticket .tix_tickets_table tbody tr:first-child th,
+body.page-slug-complementory-ticket .tix_tickets_table tbody tr:first-child td {
+  border-top: 0;
+}
+body.page-slug-complementory-ticket
+  .tix_tickets_table
+  tbody
+  th.tix-column-description {
+  text-align: left;
+  font-weight: 700;
+  font-family: var(
+    --wp--preset--font-family--sofia-sans-extra-condensed,
+    "Sofia Sans Extra Condensed",
+    sans-serif
+  );
+  font-size: 22px;
+}
+body.page-slug-complementory-ticket .tix-ticket-title {
+  cursor: pointer;
+}
+body.page-slug-complementory-ticket .tix-column-price {
+  font-weight: 600;
+  white-space: nowrap;
+}
+body.page-slug-complementory-ticket tbody td.tix-column-remaining {
+  opacity: 0.8;
+}
+
+/* Quantity dropdown */
+body.page-slug-complementory-ticket .tix-column-quantity select {
+  min-width: 80px;
+  padding: 8px 12px;
+  border: 1px solid var(--wp--preset--color--custom-primary, #16542f);
+  border-radius: 8px;
+  background: #fbf1e0;
+  color: var(--wp--preset--color--custom-primary, #16542f);
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Coupon row */
+body.page-slug-complementory-ticket .tix-row-coupon td {
+  background: #fbf1e0;
+  text-align: center !important;
+  font-size: 14px;
+}
+body.page-slug-complementory-ticket #tix-coupon-link {
+  color: var(--wp--preset--color--custom-secondary-accent, #a90005);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+body.page-slug-complementory-ticket #tix-coupon-container {
+  margin-top: 12px;
+}
+body.page-slug-complementory-ticket #tix-coupon-input {
+  padding: 8px 12px;
+  border: 1px solid var(--wp--preset--color--custom-primary, #16542f);
+  border-radius: 8px;
+  font: inherit;
+  margin-right: 8px;
+}
+
+/* ---------- 5. Register button → centered, brand green ---------- */
+body.page-slug-complementory-ticket #tix form > p {
+  text-align: center;
+  margin: 28px 0 0;
+}
+body.page-slug-complementory-ticket #tix input[type="submit"],
+body.page-slug-complementory-ticket #tix-coupon-container input[type="submit"] {
+  float: none !important;
+  display: inline-block;
+  background: var(--wp--preset--color--custom-primary, #16542f);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 14px 40px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+body.page-slug-complementory-ticket #tix input[type="submit"]:hover {
+  background: #0d3a1f;
+  transform: translateY(-1px);
+}
+body.page-slug-complementory-ticket #tix-coupon-container input[type="submit"] {
+  padding: 9px 18px;
+  font-size: 14px;
+}
+body.page-slug-complementory-ticket .tix-clear {
+  display: none;
+}
+
+/* ---------- 6. Hide the "Share this" block on this page ---------- */
+body.page-slug-complementory-ticket .sharedaddy {
+  display: none;
+}
+
+/* ---------- Mobile (≤600px): table becomes stacked cards ---------- */
+@media (max-width: 600px) {
+  body.page-slug-complementory-ticket
+    .entry-content
+    > p.wp-block-paragraph[style*="padding-top:80px"] {
+    padding: 48px 16px 56px !important;
+  }
+  body.page-slug-complementory-ticket .tix_tickets_table thead {
+    display: none;
+  }
+  body.page-slug-complementory-ticket .tix_tickets_table,
+  body.page-slug-complementory-ticket .tix_tickets_table tbody,
+  body.page-slug-complementory-ticket .tix_tickets_table tr,
+  body.page-slug-complementory-ticket .tix_tickets_table th,
+  body.page-slug-complementory-ticket .tix_tickets_table td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  body.page-slug-complementory-ticket .tix_tickets_table tbody tr {
+    border-top: 1px solid rgba(22, 84, 47, 0.18);
+    padding: 16px;
+  }
+  body.page-slug-complementory-ticket .tix_tickets_table tbody tr:first-child {
+    border-top: 0;
+  }
+  body.page-slug-complementory-ticket .tix_tickets_table tbody th,
+  body.page-slug-complementory-ticket .tix_tickets_table tbody td {
+    padding: 6px 0;
+    border: 0 !important;
+    text-align: left;
+  }
+  body.page-slug-complementory-ticket
+    .tix_tickets_table
+    tbody
+    th.tix-column-description {
+    padding-bottom: 10px;
+  }
+  body.page-slug-complementory-ticket .tix-column-price:before {
+    content: "Price: ";
+    font-weight: 400;
+    opacity: 0.7;
+  }
+  body.page-slug-complementory-ticket .tix-column-remaining:before {
+    content: "Remaining: ";
+    opacity: 0.7;
+  }
+  body.page-slug-complementory-ticket .tix-column-quantity:before {
+    content: "Quantity: ";
+    opacity: 0.7;
+    margin-right: 8px;
+  }
+  body.page-slug-complementory-ticket .tix-column-quantity {
+    display: flex;
+    align-items: center;
+  }
+  body.page-slug-complementory-ticket .tix-row-coupon {
+    padding: 16px;
+  }
+  body.page-slug-complementory-ticket #tix input[type="submit"] {
+    width: 100%;
+  }
+}
