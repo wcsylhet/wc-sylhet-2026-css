@@ -3144,3 +3144,7 @@ body.page-id-90988 .sharedaddy {
     width: 100%;
   }
 }
+
+body.page-id-90988 .tix_tickets_table thead th.tix-column-price, body.page-id-90988 .tix_tickets_table tbody td.tix-column-price{
+    display: none;
+}
