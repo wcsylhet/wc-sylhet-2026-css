@@ -2599,7 +2599,8 @@ body.single-post .entry-content.wp-block-post-content a:hover {
 
 /* ---------- 1. Hide Micro Sponsor + Regular ticket rows on this page only ---------- */
 body.page-slug-complementory-ticket .tix-ticket-90722,   /* Micro Sponsor Ticket */
-body.page-slug-complementory-ticket .tix-ticket-90393 {
+body.page-slug-complementory-ticket .tix-ticket-90393,
+body.page-slug-complementory-ticket .tix-ticket-90965  {
   /* Regular Ticket */
   display: none !important;
 }
