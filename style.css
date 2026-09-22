@@ -3177,7 +3177,6 @@ body.page-id-91030 .entry-content .wp-block-columns:last-child {
 
 /* ---------- Lead card (no box – matches Speakers page) ---------- */
 body.page-id-91030 .entry-content .wp-block-column {
-  flex: 0 1 calc(33.333% - 16px) !important;
   max-width: 360px;
   box-sizing: border-box;
   text-align: center;
