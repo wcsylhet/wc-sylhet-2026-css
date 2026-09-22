@@ -2856,13 +2856,13 @@ body.page-slug-complementory-ticket .sharedaddy {
    ===================================================================== */
 
 /* ---------- 1. Hide Micro Sponsor + Regular ticket rows on this page only ---------- */
-body.page-id-90988 .tix-ticket-90722,
+/* body.page-id-90988 .tix-ticket-90722,
 body.page-id-90988 .tix-ticket-90944,
 body.page-id-90988 .tix-ticket-90393,
 body.page-id-90988 .tix-ticket-90725,
 body.page-id-90988 .tix-ticket-90840 {
   display: none !important;
-}
+} */
 
 /* ---------- 2. Centered container ---------- */
 body.page-id-90988
