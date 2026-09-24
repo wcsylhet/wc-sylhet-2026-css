@@ -3002,6 +3002,7 @@ body.page-id-91030 .entry-content .wp-block-column p.wp-block-paragraph {
   font-weight: 700;
   color: var(--wp--preset--color--custom-primary, #16542f);
   margin: 0 0 20px !important;
+  text-align: center;
 }
 
 /* ---------- The table ---------- */
