@@ -3159,6 +3159,18 @@ body.page-id-91030 .entry-content .wp-block-column p.wp-block-paragraph {
   background: #fffaf0 !important;
 }
 
+/* ---------- Column widths: Main Track wider, Workshop narrower ---------- */
+/* Track IDs on this site: 46 = Main Track, 47 = Workshop (kept as named grid lines) */
+@media screen and (min-width: 550px) {
+  .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__day {
+    grid-template-columns:
+      [times] 140px
+      [wordcamp-schedule-track-46-start] 2fr
+      [wordcamp-schedule-track-46-end wordcamp-schedule-track-47-start] 1fr
+      [wordcamp-schedule-track-47-end] !important;
+  }
+}
+
 /* ---------- Tablet (550–1024px) ---------- */
 @media (min-width: 550px) and (max-width: 1024px) {
   .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__time-slot-header {
