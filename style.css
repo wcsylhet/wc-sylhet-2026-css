@@ -3064,9 +3064,10 @@ body.page-id-91030 .entry-content .wp-block-column p.wp-block-paragraph {
 .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-title {
   flex: 1 1 auto;
   margin: 0 !important;
-  font-size: 22px !important;
-  font-weight: 700;
+  font-size: 20px !important;
+  font-weight: 600;
   line-height: 1.2;
+  font-family: var(--wp--preset--font-family--geist);
   color: var(--wp--preset--color--custom-primary, #16542f);
   text-align: center !important;
   display: flex !important;
