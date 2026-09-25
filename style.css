@@ -3131,11 +3131,23 @@ body.page-id-91030 .entry-content .wp-block-column p.wp-block-paragraph {
 }
 /* Category (e.g. "Workshop") – small italic */
 .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-category {
-  margin: 0 !important;
-  font-size: 13px;
-  font-style: italic;
-  color: var(--wp--preset--color--custom-primary, #16542f);
-  opacity: 0.7;
+    display: inline-block !important;
+    margin: 0 0 8px !important;
+    padding: 4px 10px !important;
+
+    background: #e8f5ed !important;
+    border: 1px solid #b7ddc5 !important;
+    border-radius: 999px !important;
+
+    color: #16542f !important;
+    font-size: 12px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.02em !important;
+    text-transform: uppercase !important;
+
+    opacity: 1 !important;
 }
 /* Track pill not needed on desktop – the column already says the track */
 .wordcamp-schedule.wcsyl-schedule-2026 .wordcamp-schedule__session-tracks {
