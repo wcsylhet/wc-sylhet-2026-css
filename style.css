@@ -3279,166 +3279,374 @@ body.page-id-91030 .entry-content .wp-block-column p.wp-block-paragraph {
 }
 
 
-body.single-wcb_session .speaker-feedback {
+/* =========================================================
+   Speaker Feedback
+   ========================================================= */
+
+body.single-wcb_session form.speaker-feedback {
+    width: 100% !important;
     max-width: 720px !important;
     margin: 40px auto !important;
     padding: 40px !important;
-    background: #fff !important;
+    background: #ffffff !important;
     border: 1px solid #e5e7eb !important;
     border-radius: 16px !important;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06) !important;
+}
+
+
+/* Reset everything inside */
+body.single-wcb_session form.speaker-feedback,
+body.single-wcb_session form.speaker-feedback * {
     box-sizing: border-box !important;
 }
 
-body.single-wcb_session .speaker-feedback *,
-body.single-wcb_session .speaker-feedback *::before,
-body.single-wcb_session .speaker-feedback *::after {
-    box-sizing: border-box !important;
-}
 
-/* Heading */
-body.single-wcb_session .speaker-feedback h3 {
-    margin: 0 0 28px !important;
-    color: #111827 !important;
-    font-size: 28px !important;
-    line-height: 1.25 !important;
-    font-weight: 700 !important;
-}
+/* =========================================================
+   Heading
+   ========================================================= */
 
-/* Notice */
-body.single-wcb_session .speaker-feedback .speaker-feedback__notice {
+body.single-wcb_session form.speaker-feedback > h3 {
     margin: 0 0 30px !important;
-    padding: 14px 16px !important;
-    background: #f0f9ff !important;
-    border: 1px solid #bae6fd !important;
-    border-left: 4px solid #0284c7 !important;
-    border-radius: 8px !important;
-    color: #075985 !important;
-    font-size: 15px !important;
-    line-height: 1.6 !important;
+    padding: 0 !important;
+    font-size: 28px !important;
+    line-height: 1.2 !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
 }
 
-/* Fields */
-body.single-wcb_session .speaker-feedback .speaker-feedback__field {
-    margin: 0 0 24px !important;
-}
 
-/* Labels */
-body.single-wcb_session .speaker-feedback label {
+/* =========================================================
+   Notice
+   ========================================================= */
+
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__notice {
     display: block !important;
-    margin: 0 0 8px !important;
-    color: #1f2937 !important;
-    font-size: 15px !important;
+    width: 100% !important;
+
+    margin: 0 0 30px !important;
+    padding: 14px 18px !important;
+
+    background: #e8f7fc !important;
+    border-left: 5px solid #0ea5d8 !important;
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+
+    border-radius: 0 !important;
+
+    color: #164e63 !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+}
+
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__notice p {
+    margin: 0 !important;
+}
+
+
+/* =========================================================
+   Every feedback field
+   ========================================================= */
+
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field {
+    display: block !important;
+    width: 100% !important;
+
+    margin: 0 0 28px !important;
+    padding: 0 !important;
+}
+
+
+/* =========================================================
+   Labels
+   ========================================================= */
+
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field > label {
+    display: block !important;
+    width: 100% !important;
+
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+
+    color: #111827 !important;
+    font-size: 17px !important;
     line-height: 1.5 !important;
     font-weight: 600 !important;
 }
 
-/* Textareas */
-body.single-wcb_session .speaker-feedback textarea {
+
+/* Required */
+body.single-wcb_session form.speaker-feedback
+.is-required {
+    color: #ef4444 !important;
+}
+
+
+/* =========================================================
+   TEXTAREAS
+   ========================================================= */
+
+/*
+ * This is the important part.
+ *
+ * Target the textarea specifically inside
+ * .speaker-feedback__field.
+ */
+
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field > textarea {
     display: block !important;
+
     width: 100% !important;
-    min-height: 110px !important;
-    padding: 13px 15px !important;
+    max-width: none !important;
+    min-width: 0 !important;
+
+    height: 140px !important;
+    min-height: 140px !important;
+
     margin: 0 !important;
-    background: #fff !important;
-    border: 1px solid #d1d5db !important;
-    border-radius: 8px !important;
+    padding: 14px 16px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #9ca3af !important;
+    border-radius: 6px !important;
+
     color: #111827 !important;
+
     font-family: inherit !important;
     font-size: 15px !important;
-    line-height: 1.6 !important;
+    line-height: 1.5 !important;
+
     resize: vertical !important;
+
     outline: none !important;
+    box-shadow: none !important;
 }
 
-body.single-wcb_session .speaker-feedback textarea:focus {
-    border-color: #2563eb !important;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+
+/* Textarea hover */
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field > textarea:hover {
+    border-color: #6b7280 !important;
 }
 
-/* Character counter */
-body.single-wcb_session .speaker-feedback .char-count,
-body.single-wcb_session .speaker-feedback .speaker-feedback__field > div:last-child {
-    margin-top: 6px !important;
-    color: #9ca3af !important;
-    font-size: 12px !important;
+
+/* Textarea focus */
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field > textarea:focus {
+    border-color: #0284c7 !important;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12) !important;
+}
+
+
+/* =========================================================
+   Character counter
+   ========================================================= */
+
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field-help {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 6px 0 0 !important;
+    padding: 0 !important;
+
+    color: #6b7280 !important;
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+
     text-align: right !important;
 }
 
-/* Star rating */
-body.single-wcb_session .speaker-feedback input[type="radio"] {
-    position: absolute !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+
+/* =========================================================
+   Rating
+   ========================================================= */
+
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field-rating {
+    display: flex !important;
+    flex-wrap: wrap !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 0 !important;
 }
 
-body.single-wcb_session .speaker-feedback input[type="radio"] + label {
+
+/* Rating legend */
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field-rating > legend {
+    display: block !important;
+
+    flex: 0 0 100% !important;
+
+    width: 100% !important;
+
+    margin: 0 0 8px !important;
+    padding: 0 !important;
+
+    color: #111827 !important;
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+    font-weight: 600 !important;
+}
+
+
+/* Hide all radio buttons */
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field-rating > input[type="radio"] {
+    position: absolute !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    margin: -1px !important;
+    padding: 0 !important;
+
+    opacity: 0 !important;
+}
+
+
+/* =========================================================
+   Stars
+   ========================================================= */
+
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field-rating > label {
     display: inline-flex !important;
+
     align-items: center !important;
     justify-content: center !important;
+
     width: 48px !important;
     height: 48px !important;
+
     margin: 0 5px 0 0 !important;
-    padding: 0 !important;
+    padding: 5px !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
     border-radius: 8px !important;
-    cursor: pointer !important;
+
     color: #d1d5db !important;
-    font-size: 32px !important;
-    font-weight: 400 !important;
+
+    cursor: pointer !important;
 }
 
-body.single-wcb_session .speaker-feedback input[type="radio"] + label:hover,
-body.single-wcb_session .speaker-feedback input[type="radio"]:checked + label {
+
+/* SVG star */
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field-rating > label svg {
+    display: block !important;
+
+    width: 34px !important;
+    height: 34px !important;
+
+    margin: 0 !important;
+
+    fill: currentColor !important;
+}
+
+
+/* Hover */
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field-rating > label:hover {
     color: #f59e0b !important;
     background: #fffbeb !important;
 }
 
-body.single-wcb_session .speaker-feedback input[type="radio"]:focus-visible + label {
-    outline: 3px solid rgba(37, 99, 235, 0.25) !important;
-    outline-offset: 2px !important;
+
+/* Selected */
+body.single-wcb_session form.speaker-feedback
+.speaker-feedback__field-rating
+> input[type="radio"]:checked + label {
+    color: #f59e0b !important;
+    background: #fffbeb !important;
 }
 
-/* Submit */
-body.single-wcb_session .speaker-feedback input[type="submit"],
-body.single-wcb_session .speaker-feedback button[type="submit"] {
-    display: inline-flex !important;
+
+/* =========================================================
+   Submit button
+   ========================================================= */
+
+body.single-wcb_session form.speaker-feedback
+> input[type="submit"] {
+    display: flex !important;
+
     align-items: center !important;
     justify-content: center !important;
+
     width: 100% !important;
-    min-height: 50px !important;
-    margin: 8px 0 0 !important;
-    padding: 13px 24px !important;
-    border: 0 !important;
-    border-radius: 8px !important;
+    height: 56px !important;
+
+    margin: 10px 0 0 !important;
+    padding: 0 24px !important;
+
     background: #111827 !important;
-    color: #fff !important;
+
+    border: 0 !important;
+    border-radius: 10px !important;
+
+    color: #ffffff !important;
+
     font-family: inherit !important;
-    font-size: 15px !important;
+    font-size: 17px !important;
     font-weight: 600 !important;
+
     cursor: pointer !important;
 }
 
-body.single-wcb_session .speaker-feedback input[type="submit"]:hover,
-body.single-wcb_session .speaker-feedback button[type="submit"]:hover {
+
+body.single-wcb_session form.speaker-feedback
+> input[type="submit"]:hover {
     background: #2563eb !important;
+    color: #ffffff !important;
 }
 
-/* Mobile */
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
 @media (max-width: 767px) {
-    body.single-wcb_session .speaker-feedback {
-        margin: 24px 16px !important;
+
+    body.single-wcb_session form.speaker-feedback {
+        width: calc(100% - 24px) !important;
+        margin: 24px auto !important;
         padding: 24px !important;
-        border-radius: 12px !important;
     }
 
-    body.single-wcb_session .speaker-feedback h3 {
+    body.single-wcb_session form.speaker-feedback > h3 {
         font-size: 24px !important;
     }
 
-    body.single-wcb_session .speaker-feedback input[type="radio"] + label {
-        width: 42px !important;
-        height: 42px !important;
-        margin-right: 2px !important;
-        font-size: 28px !important;
+    body.single-wcb_session form.speaker-feedback
+    .speaker-feedback__field > textarea {
+        height: 130px !important;
+        min-height: 130px !important;
+    }
+
+    body.single-wcb_session form.speaker-feedback
+    .speaker-feedback__field-rating > label {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    body.single-wcb_session form.speaker-feedback
+    .speaker-feedback__field-rating > label svg {
+        width: 30px !important;
+        height: 30px !important;
     }
 }
